@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="shortcut icon" type="image/x-icon" href="imgs/icono.ico">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Thambi" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">	
+	<link rel="stylesheet" type="text/css" href="css/hover.css">
+	<link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script  src="prgfiles/details.js"></script>
+	<script  src="prgfiles/operations.js"></script>
+
+	<title id ="Numeration">Suma</title>
+</head>
+<body onload="ShowValues('Add'), onLeaveAction()">
+
+	<div id="all">
+
+	<div class="animated fadeInLeft"  id="GameNavigationBar"> 
+	<ul>
+		<li><a href="index.html"><img class=" hvr-hang" src="imgs/home-icon.png" style="height: 40px; width: 40px; margin-bottom: 30px;">
+		</a>
+		</li>
+
+		<li>
+			<h4 class="roboto_letra " style="color:#5F5E68
+			;  " ><b>Cambiar Modo de Juego</b> </h4>
+		</li>
+
+		<li><a href="Resta.html"><button class="button_style5 hvr-grow">Resta</button></a></li>
+
+		<li><a href="Multiply.html"><button class="button_style5 hvr-grow">Multiplicación</button></a></li>
+
+		<li><a href="Division.html"><button class="button_style5 hvr-grow">División</button></a></li>
+
+		<li><h5 id ="Segundos"></h5></li>
+
+	</ul>
+		
+	</div>
+
+	<!-- n1(numero 1)
+	 n2(numero 2)  -->
+
+	<div id ="Cifras" class=" animated zoomInDown ">
+		<ul>
+			<li><h3  id ="n1"></h3></li>
+		
+		
+		<li><h3 id ="OperationMode"> + </h3></li>
+		
+
+		<li><h3  id = "n2"></h3></li>
+		
+		<li><input onkeypress="return justNumbers(event);"  id="UserInput" type="text"  ></li>
+
+		<li><button class="button_styleInput hvr-grow" onclick="check('Add')" id="InsertBtn" > Insertar </button></li>
+
+	</ul>
+		</div>
+
+			<div id= "Result" style="margin-left: 70px;">
+
+		<ul>
+
+			<li>
+				<h2 class="animated fadeInDown" id="Right" style="display:none;">Correcto! √ </h2>
+
+				<h2 class="animated fadeInDown" id="Wrong" style="display:none;">Incorrecto  X</h2>
+			</li>
+			
+			
+
+
+			<img onclick="exitTags('Add')" src="imgs/Flecha.png" id="Arrow" class="hvr-grow animated fadeInLeft retrasoDeAnimacion_1" >
+
+		</ul>
+			</div>
+		
+
+		</div>	
+
+		<div class="text-center bungee_letra " id="ShowFinish" >
+
+			<h2 class="animated lightSpeedIn">Terminastes!</h2>
+
+			<h3 class=" animated fadeInDown retrasoDeAnimacion_1 " id="Results"></h3>
+
+			<br>
+			<br>
+			<br>
+
+			<div class="animated rotateInDownLeft retrasoDeAnimacion_2" id="phrase">
+			<h4>Puedes intentarlo de nuevo!</h4>
+			
+
+			<h4 style="color:#FF2600;"><i>"El fracaso es una gran oportunidad para empezar otra vez con más inteligencia."</i></h4>
+			<h5 style="float:right"><i>Henry Ford</i></h5>
+			
+			<a href="javascript:location.reload()"><img class="hvr-grow" src="imgs/Return.png"></a>
+			</div>	
+
+		</div>
+
+</body>
+
+	
+	
+			
+
+	
+
+</html>
+

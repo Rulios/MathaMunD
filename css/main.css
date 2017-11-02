@@ -1,0 +1,685 @@
+
+#play{
+	background-image: url('ma1.jpg');
+	
+}
+
+
+
+.bungee_letra{
+	font-family: 'Bungee', cursive;
+}
+.roboto_letra{
+	font-family: 'Roboto', sans-serif;
+}
+.oswald_letra{
+	font-family: 'Oswald', sans-serif;
+}
+.baloo-thambi_letra{
+	font-family: 'Baloo Thambi', cursive;
+}
+.righteous_letra{
+	font-family: 'Righteous', cursive;
+}
+.sizeLetter_130{
+	font-size: 130px;	
+}
+.sizeLetter_60{
+	font-size: 60px;
+}
+.sizeLetter_25{
+	font-size: 25px;
+}
+
+.toDisplayNone{
+	display:none;
+}
+.retrasoDeAnimacion_1{
+
+	-webkit-animation-delay:1s;
+	-moz-animation-delay:1s;
+	animation-delay: 1s;
+}
+.retrasoDeAnimacion_2{
+
+	-webkit-animation-delay:2s;
+	-moz-animation-delay:2s;
+	animation-delay: 2s;
+}
+.button_style1{
+	text-decoration: none;
+	border-radius: 35px;
+	border: 5px solid #0FBEF6;
+	background-color: transparent;
+	height: 2.5em;
+	margin-bottom: 10px;
+
+
+}
+.button_style2{
+	text-decoration: none;
+	border-radius: 20px;
+	border: 3px solid #23E726;
+	height: 100px;
+	width: 250px;
+	font-size: 20px;
+	background-color: transparent;
+	margin:70px;
+	margin-left: 70px;
+	font-family: 'Bungee', cursive;
+}
+.button_style3{
+	text-decoration: none;
+	border-radius: 20px;
+	border: 3px solid #572183;
+	height: 100px;
+	width: 250px;
+	font-size: 20px;
+	background-color: transparent;
+	margin:70px;
+	font-family: 'Bungee', cursive;
+}
+.button_style4{
+	text-decoration: none;
+	border-radius: 20px;
+	border: 3px solid #B60832;
+	height: 100px;
+	width: 250px;
+	font-size: 20px;
+	background-color: transparent;
+	margin:70px;
+	font-family: 'Bungee', cursive;
+}
+.button_style5{
+	border-radius: 20px;
+	height: 50px;
+	width: 150px;
+	font-size: 21px;
+	text-decoration: none;
+	border: 2px solid #37E3AD;
+	background-color: transparent;
+	font-family: 'Baloo Thambi', cursive;
+	box-shadow: none;
+
+}
+.button_MathaForum{
+	border-radius: 20px;
+	height: 60px;
+	width: 160px;
+	font-size: 20px;
+	text-decoration: none;
+	border: 2px solid #9838C6;
+	background-color: transparent;
+	font-family: 'Bungee', cursive;
+	box-shadow: none;
+}
+.button_style6{
+	text-decoration: none;
+	border-radius: 20px;
+	border: 3px solid #7F7F7F;
+	height: 100px;
+	width: 250px;
+	font-size: 20px;
+	background-color: transparent;
+	margin:30px;
+	font-family: 'Bungee', cursive;
+}
+.button_style7{
+
+	border-radius: 20px;
+	border: 5px solid #572183;
+	height: 100px;
+	width: 250px;
+	font-size: 17px;
+	background-color: transparent;
+	margin:30px;
+	font-family: 'Bungee', cursive;
+
+}
+.button_stylefrmAsk{
+	text-decoration: none;
+	border-radius: 20px;
+	border: 2px solid #7F7F7F;
+	height: 50px;
+	width: 170px;
+	font-size: 20px;
+	background-color: transparent;
+	font-family: 'Bungee', cursive;
+	display:inline-block;
+}
+.button_styleFilter{
+	text-decoration: none;
+	border-radius: 20px;
+	border: 2px solid #8200FF;
+	height: 50px;
+	width: 200px;
+	font-size: 20px;
+	background-color: transparent;
+	margin:30px;
+	font-family: 'Bungee', cursive;
+}
+.button_styleInput{
+	text-align: center;
+	text-decoration: none;
+	height: 150px;
+	width: 200px;
+	background-color: #1ED7E0;
+	border: 0px solid ;
+	font-family: 'Righteous', cursive;
+	font-size: 40px;
+}
+
+#filter{
+	display:inline-block;
+}
+
+#Jugar{
+	font-size: 35px;
+	text-decoration:none;
+	font-family: 'Bungee', cursive;
+
+}
+#spnToCustom{
+	float:right;
+	margin-right: 30px;
+	margin-bottom: 30px;
+}
+
+#mforum * {
+	
+	margin:20px;
+}
+
+
+#ask{
+	float:right;
+	margin:40px;
+	margin-right: 80px;
+}
+
+#mforum h5{
+	font-family: 'Bungee', cursive;
+	font-size: 30px;
+	display:inline-block;
+}
+
+#selectFilter{
+	font-family: 'Bungee', cursive;
+	width:170px;
+	border-radius: 5px;
+	font-size: 16px;
+}
+/*Form to insert data or question */
+
+#frmToAsk{
+	float:right;
+	margin-right:60px;
+}
+#reportBtn{
+	float:right;
+	margin-left: 10px;
+	font-family: 'Oswald', sans-serif;
+	font-size: 20px;
+	background-color: transparent;
+	border-radius:6px;
+	border: 2px solid #F40C0A;
+}
+#commentBtn{
+	float:right;
+	margin-left: 10px;
+	font-family: 'Oswald', sans-serif;
+	font-size: 20px;
+	background-color: transparent;
+	border-radius:6px;
+	border: 2px solid #1FDF3F;
+}
+#content{
+	border-radius: 6px;
+	border: 2px solid #27C0D7;
+	padding:10px;
+	display:none;
+	word-wrap: break-word;
+}
+
+#content form[name="commentFrm"]{
+	margin-bottom: 10px;
+	margin-top: 30px;
+}
+
+form[name="commentFrm"] input[name="name"]{
+	width: 100px;
+}
+
+form[name="commentFrm"] input{
+	margin: 10px;
+}
+
+form[name="commentFrm"] input[name="comment"]{
+
+	width: 400px;
+}
+
+div[name="divItem"]{
+	padding:10px;
+	margin-bottom: 50px;
+	border-radius: 10px;
+}
+
+
+#GameNavigationBar{
+	margin-top: 30px;
+}
+#GameNavigationBar ul li {
+
+	display:inline-block;
+	margin:15px;
+}
+#GameNavigationBar h5{
+	font-family: 'Righteous', cursive;
+	font-size: 30px;
+	color: #41D628;	
+
+}
+
+
+
+#Cifras h3{
+	
+	font-size: 130px;
+	font-family: 'Baloo Thambi', cursive;
+	color:#4C4C4C;
+	
+}
+#Cifras ul li {
+
+	display:inline-block;
+	margin: 30px;
+	margin-top: 100px;
+}
+
+#UserInput {
+	height:150px;
+	width: 230px;
+	font-size: 110px;
+	font-family: 'Bungee', cursive;
+	color : #4ad;
+	vertical-align: middle;
+	border-radius: 3px;
+	border: 2px solid;
+}
+#Result h2{
+	font-family: 'Righteous', cursive;
+	font-size: 90px;
+	float: left;
+
+}
+#Result ul li{
+	display:inline-block;
+	
+}
+#Arrow {
+	height: 180px;
+	width: 300px;
+	margin-right: 30px;
+	display: none;
+
+	float:right;
+	
+}
+.queEs{
+	margin-top: 60px;
+	 font-size: 8em; 
+	 color:#11C8C0;
+}
+.queEsMathaForum{
+	margin-top: 60px;
+	 font-size: 8em; 
+	 color:#EF5E0F;
+}
+.titles{
+	font-size: 100px;
+}
+
+#ShowFinish{
+	display:none;
+}
+
+#ShowFinish h2{
+
+	font-size: 90px;
+	color: #1E79E0;
+	margin-top: 60px;
+
+}
+
+#ShowFinish h3{
+	margin-top: 2em;
+	font-size: 40px;
+	color: #3CC278;
+}
+#phrase h4{
+	font-size: 30px;
+
+}
+.img-change{
+	width: 800px;
+	height: 430px;
+}
+#DescMath{
+	font-size: 49px;
+}
+#h1OfFeedBack{
+	color:#2483DA;
+	font-size: 60px;
+	margin-top: 10px;
+}
+#FormStyle h3{
+	font-family: 'Bungee', cursive;
+	font-size: 20px;
+	color:#7F7F7F;
+}
+#DataBox{
+	margin-left:100px; 
+	float:left;
+}
+#FeedBackBox{
+	margin-right: 100px;
+	float:right;
+}
+#buttonToSubmit{
+	text-align: center;
+	text-decoration: none;
+	height: 50px;
+	width: 150px;
+	background-color: #1ED7E0;
+	border: 0px solid ;
+	font-family: 'Righteous', cursive;
+	font-size: 30px;
+}
+
+/*--------------------------------------*/
+
+#MainTitleCustom{
+	font-family: 'Bungee', cursive;
+	color: #982DD1;
+	display:inline-block;
+	font-size: 30px;
+	margin-left: 50px;
+
+
+}
+
+#DescriptionCustom{
+	font-size: 30px;
+	font-family: 'Bungee', cursive;
+	word-wrap: break-word;
+}
+
+
+#divAnswerCustom{
+	margin-top: 50px;
+}
+
+#inputCustom{
+	border-radius: 3px;
+	border: 2px solid;
+}
+
+#btnAnswer{
+	border-radius: 4px;
+	background-color: transparent;
+	color:#3FBF9D;
+	border: 3px solid;
+	margin: 10px;
+
+	display:inline-block;
+}
+@media only screen and (max-width: 768px){
+
+	.img-change{
+		width: 360px;
+		height: 200px;
+	}
+
+	#GameNavigationBar ul li{
+		margin: 5px;
+		margin-bottom: 20px;
+	}
+
+	#GameNavigationBar img{
+		margin-right: 30px;
+	}
+
+	#GameNavigationBar h5{
+		font-size: 25px;
+	}
+
+	/* ---------------------------------------- */
+	
+	#UserInput{
+		height:70px;
+		width: 130px;
+		margin-left: 10px;
+		font-size: 50px;
+	}
+		
+
+	.button_style5{
+		font-size: 20px;
+		width: 140px;
+		height:35px ;
+	}
+
+	/* ---------------------------------------- */
+
+	#Cifras ul li {
+		margin:10px;
+	}
+
+	#Cifras h3{
+		font-size: 75px;
+	}
+
+	.button_styleInput{
+		height: 75px;
+		width: 100px;
+		font-size: 20px;
+	}
+
+	/* ---------------------------------------- */
+
+	#Result h2{
+		font-size: 30px;
+	}
+
+	#Arrow{
+		height: 80px;
+		width: 150px;
+		margin-right: 20px;
+		float:right;
+	}
+
+	/* ---------------------------------------- */
+	.button_style2, .button_style3, .button_style4{
+		height: 60px;
+		margin:  10px;
+	}
+
+
+	.queEs{
+		font-size: 2.8em;
+	}
+
+	.queEsMathaForum{
+		font-size: 2.8em;
+	}
+	
+
+	#DescMath{
+		font-size: 30px;
+	}
+	
+	.titles{
+		font-size: 50px;
+	}
+
+	/* ---------------------------------------- */
+
+	#ShowFinish h2{
+		font-size: 50px;
+	}
+
+	#ShowFinish h3{
+	margin-top: 1.2em;
+	font-size: 27px;
+	}
+
+	#phrase h4{
+	font-size: 20px;
+	}
+
+	#phrase img{
+		float:right;
+		height: 120px;
+		width: 120px;
+		margin-top: 90px;
+	}
+
+	/* ---------------------------------------- */
+	/*FeedBack Part*/
+
+	#FormStyle{
+		margin-top: 30px;
+	}
+
+	#h1OfFeedBack{
+		font-size: 30px;
+		margin-top: 3px;
+	}
+
+	#DataBox {
+			margin-left:5px;
+	}
+
+	#DataBox input{
+		width: 100px;
+		height: 30px;
+	
+	}
+
+	#FeedBackBox{
+		margin-right: 5px;
+		margin-bottom: 40px;
+	}
+
+	#FeedBackBox h3{
+		font-size: 15px;
+	}
+
+	#FeedBackBox textarea{
+		width: 200px;
+		height: 100px;
+	}
+
+	/* -------------------------- */
+	#filter{
+		display: block;
+	}
+
+	.button_stylefrmAsk{
+		display:block;
+		font-size: 16px;
+		width: 150px;
+
+	}
+
+
+	#selectFilter{
+		font-size: 12px;
+		
+	}
+
+	#frmToAsk {
+		
+		float:center;
+		
+	}
+
+	#mforum h5{
+		display: block;
+	font-size: 25px;
+	}
+
+	#Jugar{
+		font-size: 32px;
+		float:right;
+	}
+	#ask{
+		margin-right: 120px;
+	}
+	form[name="commentFrm"]{
+		margin-top: 10px;
+	}
+
+	form[name="commentFrm"] input[name="comment"]{
+
+	width: 200px;
+	}
+
+	form[name="commentFrm"] label{
+	display:block;
+	}
+
+	form[name="commentFrm"] input{
+	margin: 5px;
+
+	}
+
+	/*-----------------------*/
+	#spnToCustom{
+		float:left;
+		display:block;
+		margin-right: 10px;
+		margin-bottom: 30px;
+	}
+
+	#inputCustom{
+		width: 140px;
+	}
+
+	#btnAnswer{
+		margin-top: 20px;
+
+	}
+
+	.sizeLetter_25{
+		font-size: 18px;
+	}
+
+	#divAnswerCustom{
+		margin-top: 40px;
+	}
+
+}
+
+
+
+
+
+
+
+}
+@media only screen and (max-width: 992px){
+
+	.sizeLetter_25{
+		font-size: 20px;
+	}
+
+	#GameNavigationBar h4{
+		display: none;
+	}
+
+}
+
+
+

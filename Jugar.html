@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="description" content="math">
+	<meta name="description" content="Math">
+	<meta name="description" content="MathaForum">
+	<meta name="description" content="mathamund">
+	<link rel="shortcut icon" type="image/x-icon" href="icono.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">	
+	<link rel="stylesheet" type="text/css" href="css/hover.css">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script  src="prgfiles/details.js"></script>
+	<script src="prgfiles/CustomGenStyles.js" ></script>
+
+	<title id="title">Jugar</title>
+
+</head>
+<body id="play" onload="generatePythagorasQuestions()">
+
+		<a href="index.html"><img src="imgs/home-icon.png" style="height: 40px; width: 40px; margin:40px;">
+		</a>
+
+	
+
+		<a href="MathaForum.html"><button class="hvr-grow animated fadeInDown button_MathaForum " style="margin:30px; float:right;">MathaForum</button></a>
+	
+
+	<div id="allPlayPage">
+	
+	
+
+		
+		<h1 class=" text-center  animated rollIn  bungee_letra titles" style="color:#BD330B; ">Elige Modo de Juego</h1>
+
+		<div class="animated fadeInDown " style="margin-top: 70px; ">
+		
+		<center>
+
+			<a href="Suma.html">
+
+				<button   class="button_style2 hvr-grow-rotate" > Suma  /  Add  /  +
+			 </button>
+			</a>
+
+			<a href="Resta.html">
+				<button class=" button_style3 hvr-grow"> Resta  / Substract  /  - </button>
+			</a>
+
+			<a href="Multiply.html">
+				<button class="button_style4 hvr-buzz-out" > Multiplicación / Multiplication / * </button>
+			</a>
+
+		</center>
+
+		</div>
+
+		<center>
+
+		<div class="animated fadeInDown " style=" margin-top: 10px;">
+
+		<a href="Division.html">
+			
+			<button class="button_style6 hvr-grow">
+				División / Division / ÷
+			</button>
+
+		</a>
+
+
+			
+			
+			<button id="Practice" class="button_style7 hvr-grow " >Quiero Practicar!</button>
+
+		<span id="spnToCustom" class="toDisplayNone">
+
+			
+				<h4 class="bungee_letra" style="display:inline-block;">Selecciona Áreas para Practicar!</h4>
+				<br>
+				<br>
+			
+				<input type="checkbox"  name="items1" value="Teorema de Pitagoras"> Teorema de Pitágoras
+
+				<br>
+				<br>
+
+				<input type="checkbox"  name="items1" value="Areas y Perimetros"> Áreas y Perímetros
+
+				<br>
+				<br>
+
+				
+				<button style="border-radius: 3px; border:2px solid #4ad; background-color: transparent; font-size: 20px; height: 40px;" class="hvr-grow bungee_letra" id="startCustom">
+				Iniciar Práctica!</button>
+	
+
+			</span>		 
+
+
+		</center>
+
+
+
+		</div>
+
+	
+	</div>
+
+	<!-- Custom page!!! -->
+
+	<div id="allCustom" style="display:none;">
+
+		<div class="animated fadeInDown">
+
+		
+
+
+		<h3  id="MainTitleCustom" >
+
+			<u>
+			Title
+			</u>
+
+		</h3>
+
+		</div>
+
+		<br>
+		<br>
+
+
+		<div class="animated fadeInDown  text-center bungee_letra" >
+			<h3 id="DescriptionCustom" >
+				aaaa
+			</h3>
+
+			<h5 id="FormulaDescriptionCustom" >Fórmula: </h5>
+
+			<img src="imgs/formulaPythagoras.png" style="width:200px; height: 50;">
+
+			<br>
+			
+
+			<h5 id="keyWords" style="font-size: 16px;" >Referencia: <br><br> </h5>
+		</div>
+
+	
+	
+
+		<div class="animated fadeInDown bungee_letra sizeLetter_25 text-center" id="divAnswerCustom">
+
+			<label style="color:#606060; margin-right: 30px;">Tu Respuesta: </label>
+
+			<input onkeypress="return justNumbers(event);" type="text" name="inputCustom" id="inputCustom">
+
+			<center>
+			<button id="btnAnswer" class=" hvr-grow">Responder</button>
+			</center>
+		</div>
+
+
+		<div id= "Result" style="margin-left: 70px;">
+
+		<ul>
+
+			<li>
+				<h2 class="animated fadeInDown" id="Right" style="display:none; color:green;">Correcto! √ </h2>
+
+				<h2 class="animated fadeInDown" id="Wrong" style="display:none; color:red;">Incorrecto  X</h2>
+			</li>
+			
+			
+
+
+			<img onclick="" src="imgs/Flecha.png" id="Arrow" class="hvr-grow animated fadeInLeft retrasoDeAnimacion_1" >
+
+		</ul>
+			</div>
+
+	</div>
+
+</body>
+</html>

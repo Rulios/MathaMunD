@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="description" content="math">
+<meta name="description" content="Math">
+<meta name="description" content="MathaForum">
+<meta name="description" content="mathamund">
+<meta name="description" content="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script  src="prgfiles/details.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/hover.css">
+
+	
+	
+
+	<title>MathaForum</title>
+
+	
+
+
+</head>
+<body id="forum" >
+
+<div class="container-fluid">
+
+<div class="row">
+
+ <div id="mforum" class="animated slideInDown">
+ 		
+ 	
+ 		<a href="index.html"><img src="imgs/home-icon.png" style="height: 40px; width: 40px; margin:30px;" >
+		</a>
+
+		<a href="Jugar.html"  id="Jugar"> Jugar</a>
+		
+		
+
+		<h5 class="text-center" >Filtrar:</h5>	
+
+	
+	<span id="filter">
+	<center>
+		<form action="prgfiles/filterAct.php" method="GET" name="filterSlct">
+		<select  id="selectFilter" name="filter">
+		
+			
+		<option value="Mixto">Mixto</option>
+		<option value="Aritmetica">Aritmética</option>
+		<option value="Algebra">Álgebra</option>
+		<option value="Geometria">Geometría</option>
+
+		</select>
+		</form>
+	</center>
+	</span>
+	
+		
+	
+	
+	<button  class="  button_stylefrmAsk hvr-grow " id="ask">Preguntar</button>	
+
+	
+	
+	</div>		
+
+ </div>
+
+<div   class="toDisplayNone" id="frmToAsk">
+
+<form  action="prgfiles/insertar.php" method="POST" name="frmForum" style="background-color: transparent;"">
+	
+	Nombre: <br>
+	<input type="text" required placeholder="Nombre..." id="name" name="name" maxlength="20"> 
+
+	<br>
+	<br>
+
+	<b>Area:</b> <br> 
+	<br>
+
+	<select name="slctArea" ">
+		
+	<option value="Mixto">Mixto</option>
+	<option value="Aritmetica">Aritmética</option>
+	<option value="Algebra">Álgebra</option>
+	<option value="Geometria">Geometría</option>
+
+	</select>
+
+<!-- 	<input type="radio" value="Mixto" name="group1"> Mixto
+	<br>
+
+	<input type="radio" value="Aritmetica" checked="checked" name="group1" > Aritmética
+	<br>
+
+	<input type="radio" value="Algebra" name="group1" > Álgebra
+	<br>
+
+	<input type="radio" value="Geometria" name="group1" > Geometría	 -->
+
+	<br>
+	<br>
+
+	Problema del Post: <br>
+	<textarea required placeholder="Problema..." rows="4" cols="25" maxlength="140" id="postP" name="postP"></textarea>
+	
+
+	<br>
+	<br>
+
+	Posdata: <br>
+	<input type="text"  placeholder="Posdata..." name="postD" id="postD" maxlength="50">
+
+	<br>
+	<br>
+
+	<input type="submit" name="submit" style="margin-bottom: 10px;	" value="Enviar">
+	<h5 id="sent" style="display:inline-block;"></h5>
+
+</form>
+
+
+</div>
+</div>
+
+<div class="container" id="ForumSection">
+	<div id="content" class="animated fadeInLeft">
+		
+	</div>
+</div>
+	
+
+
+
+
+
+
+
+</body>
+</html>
