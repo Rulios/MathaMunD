@@ -3,8 +3,21 @@
 	background-image: url('ma1.jpg');
 	
 }
-
-
+body{
+	margin: 0px;
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+.wrapper{
+	padding:20px;
+	height:auto;
+}
+footer{
+	
+	display:table-row;
+	height: 10px;
+}
 
 .bungee_letra{
 	font-family: 'Bungee', cursive;
