@@ -9,7 +9,7 @@ $id = $_GET['id'];
 
 
 
-$con = mysql_connect($host, $user, $pw) or die ('problemas al conectar server');
+$con = mysql_connect($host, $user, $pw) or $con = mysql_connect($host, $user, $db) or die ('problemas al conectar server');
 
 mysql_select_db($db, $con ) or die ('Problemas al conectar la base de datos');
 

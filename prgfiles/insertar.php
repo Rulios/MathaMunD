@@ -13,7 +13,7 @@ $posdata = $_POST['postD'];
 
 	# code...
 
-	$conn = mysql_connect($host, $user, $pw) or die ("Problemas al Conectar");
+	$conn = mysql_connect($host, $user) or $conn = mysql_connect($host, $user, $db) or die ("Problemas al Conectar");
 
 	mysql_select_db($db, $conn) or die ("Problemas al Conectar Base de Datos");
 

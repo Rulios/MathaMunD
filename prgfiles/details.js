@@ -329,7 +329,7 @@ function loadAjaxForum(event){
 					for (var i in data){
 
 					var row = data[i];
-
+					alert(row[0]);
 					var name = row[1];
 					var area = row[2];
 					var problem = row[3];
