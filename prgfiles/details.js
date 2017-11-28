@@ -354,7 +354,8 @@ function loadAjaxForum(event){
 
 					var divElements = document.createElement('DIV');
 
-					divElements.setAttribute('style', 'border: 2px solid #5EB549; ');
+					divElements.setAttribute('style', 'border: 2px solid #5EB549;');
+					
 					divElements.setAttribute('value', row[0]);
 					divElements.setAttribute('name', 'divItem');
 

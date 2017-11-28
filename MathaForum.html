@@ -76,21 +76,19 @@
 	</div>		
 
  </div>
+<center>
+<div   class="toDisplayNone roboto_letra" id="frmToAsk" >
 
-<div   class="toDisplayNone" id="frmToAsk">
-
-<form  action="prgfiles/insertar.php" method="POST" name="frmForum" style="background-color: transparent;"">
+<form  action="prgfiles/insertar.php" method="POST" name="frmForum" style="background-color: transparent;">
 	
-	Nombre: <br>
+	<b>Nombre:</b> 
 	<input type="text" required placeholder="Nombre..." id="name" name="name" maxlength="20"> 
 
-	<br>
-	<br>
+	&nbsp
+	<b>Area:</b>
+		
 
-	<b>Area:</b> <br> 
-	<br>
-
-	<select name="slctArea" ">
+	<select id="slctArea"name="slctArea" ">
 		
 	<option value="Mixto">Mixto</option>
 	<option value="Aritmetica">Aritmética</option>
@@ -113,15 +111,15 @@
 	<br>
 	<br>
 
-	Problema del Post: <br>
-	<textarea required placeholder="Problema..." rows="4" cols="25" maxlength="140" id="postP" name="postP"></textarea>
+	<b> Problema del Post:</b> <br>
+	<textarea required placeholder="Problema..." rows="4" cols="100" maxlength="140" id="postP" name="postP"></textarea>
 	
 
 	<br>
 	<br>
 
-	Posdata: <br>
-	<input type="text"  placeholder="Posdata..." name="postD" id="postD" maxlength="50">
+	<b>Posdata:</b> <br>
+	<input type="text"  placeholder="Posdata..." rows="4" cols="100" name="postD" id="postD" maxlength="140">
 
 	<br>
 	<br>
@@ -134,13 +132,13 @@
 
 </div>
 </div>
+</center>
 
-<div class="container" id="ForumSection">
+	<div class="container" id="ForumSection" >
 	<div id="content" class="animated fadeInLeft">
 		
 	</div>
-</div>
-	
+	</div>
 
 
 
