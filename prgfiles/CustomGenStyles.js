@@ -72,7 +72,13 @@ function randomizeCustomModes(context){
 //Initialize the generate
   if (context == 'all') {
 
-    randomMode = generate(3 ,false);
+    context = generate(2 ,false);
+
+    if (context == '1') {
+      generatePythagoras();
+    }else if (context == '2') {
+      areaAndPerimeter();
+    }
 
   }else if (context == '1') { //Pythagoras
 
@@ -438,8 +444,9 @@ function areaAndPerimeter(){
 
 function generateQuestionsAreaAndPerimeter(context, a , b){
 
+  $('#FormulaDescriptionCustom').text('');
   $('#keyWords').text('');
-  
+  $('#imgPythagoras').css('display' , 'none');
 
   var questionsDescription = $('#DescriptionCustom');
 
@@ -447,27 +454,35 @@ function generateQuestionsAreaAndPerimeter(context, a , b){
   'Tienes un cuadrado en la que el lado A es ' + a + ', Calcula su Área.'
   ,
   'Tienes un cuadrado en la que el lado B es ' + b + ', Calcula su Área.'
+  ,
+  'Juan se encuentra con una baldosa que por un lado mide ' + a + ' en lo que él muestra interés por saber el área, te lo agradecería si le ayudas.'
   ]
 
   var questionsContext2 = [ //For area of rectangles
-  'En un rectángulo, el lado A es de ' + a + ' y el lado B es de' + b +' , Calcula su Área.'
+  'En un rectángulo, el lado A es de ' + a + ' y el lado B es de ' + b +' , Calcula su Área.'
   ,
-  'En un rectángulo, el lado B es de ' + b + ' y el lado A es de' + a + ' , Calcula su Área.'
+  'En un rectángulo, el lado B es de ' + b + ' y el lado A es de ' + a + ' , Calcula su Área.'
+  ,
+  'Cada tarde Rodrigo sale a jugar fútbol en una cancha cercana, un día se da cuenta de que su cancha no es igual a las otras, por lo que empieza a medirla. El primer lado le da ' + a + ' , mientras el otro lado le da ' + b + ' , entonces sabes cuál es el área de la cancha?'
   ]
 
   var questionContext3 = [ // For perimeter of squares 
   'Tienes un cuadrado en la que el lado A es ' + a + ', Calcula su Perímetro.'
   ,
   'Tienes un cuadrado en la que el lado B es ' + b + ', Calcula su Perímetro.'
+  ,
+  'En la granja de Pedro hay una casa en la que Pedro se interesa mucho, debido a que sus lados son exactamente iguales, por lo que el concluye que para sacar su perímetro, solo es necesario medir un lado. Al medirlo le da ' + a + ' , y con esta medición Pedro concluye que puede hallar el perímetro.'
   ]
 
   var questionsContext4 = [ //For perimeter of rectangles
   'En un rectángulo, el lado A es de' + a + ' y el lado B es de' + b +' , Calcula su Perímetro.'
   ,
   'En un rectángulo, el lado B es de' + b + ' y el lado A es de' + a + ' , Calcula su Perímetro.'
+  ,
+  'Jose es un arquitecto muy reconocido, en el que tiene que calcular el perímetro de una sección rectangular de su obra, a él le dan valores de dos lados, el primero es de ' + a + ' y el otro lado es de ' + b +  ' , sabes de cuanto es el perímetro de la sección?' 
   ]
 
-  var rdn = generate(2,false);
+  var rdn = generate(3,false);
 
     if (context == 'AreaSquare') {
 
@@ -489,6 +504,7 @@ function generateQuestionsAreaAndPerimeter(context, a , b){
       questionsDescription.html(questionsContext4[rdn]);
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
     }
+
 
 }
 
