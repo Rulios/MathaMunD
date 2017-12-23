@@ -263,7 +263,7 @@ function check(mode){
 		if (contador_s >= 16) {
 			showRight_or_WrongTag(false);
 		}else{
-			alert('Inserte algún valor');
+			alert('"HASTA QUE ESOS 15 SEGUNDOS NO SE ACABEN, AUN PODRÁS RESOLVERLO!"');
 			Temp(mode);
 		}
 

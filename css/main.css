@@ -351,15 +351,9 @@ div[name="divItem"]{
 	float:right;
 	
 }
-.queEs{
+.FQATitles{
 	margin-top: 60px;
-	 font-size: 8em; 
-	 color:#11C8C0;
-}
-.queEsMathaForum{
-	margin-top: 60px;
-	 font-size: 8em; 
-	 color:#EF5E0F;
+	font-size: 8em; 
 }
 .titles{
 	font-size: 100px;
@@ -536,13 +530,7 @@ div[name="divItem"]{
 		height: 60px;
 		margin:  10px;
 	}
-
-
-	.queEs{
-		font-size: 2.8em;
-	}
-
-	.queEsMathaForum{
+	.FQATitles{
 		font-size: 2.8em;
 	}
 	
@@ -581,20 +569,22 @@ div[name="divItem"]{
 	/*FeedBack Part*/
 
 	#FormStyle{
-		margin-top: 30px;
+		margin-top: 40px;
 	}
 
 	#h1OfFeedBack{
 		font-size: 30px;
 		margin-top: 3px;
+		color:#B945AAFF;
 	}
 
 	#DataBox {
 			margin-left:5px;
+			width: 100%;
 	}
 
 	#DataBox input{
-		width: 100px;
+		width: 70%;
 		height: 30px;
 	
 	}
@@ -609,7 +599,7 @@ div[name="divItem"]{
 	}
 
 	#FeedBackBox textarea{
-		width: 200px;
+		width: 90%;
 		height: 100px;
 	}
 
@@ -698,6 +688,8 @@ div[name="divItem"]{
 	#divAnswerCustom{
 		margin-top: 40px;
 	}
+
+	
 
 }
 
