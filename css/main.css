@@ -2,6 +2,8 @@
 #play{
 	background-image: url('ma1.jpg');
 	
+
+	
 }
 body{
 	margin: 0px;
@@ -213,7 +215,7 @@ footer{
 
 #ask{
 	float:right;
-	margin:40px;
+	margin-top:40px;
 	margin-right: 80px;
 }
 
@@ -367,14 +369,14 @@ div[name="divItem"]{
 
 	font-size: 90px;
 	color: #1E79E0;
-	margin-top: 60px;
+	margin-top: 30px;
 
 }
 
 #ShowFinish h3{
-	margin-top: 2em;
+	margin-top: 1em;
 	font-size: 40px;
-	color: #3CC278;
+	
 }
 #phrase h4{
 	font-size: 30px;
@@ -615,6 +617,9 @@ div[name="divItem"]{
 
 	}
 
+	#sLogo{
+		display:none;
+	}
 
 	#selectFilter{
 		font-size: 12px;

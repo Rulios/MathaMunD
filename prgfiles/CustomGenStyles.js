@@ -329,13 +329,16 @@ function generatePythagorasQuestions(context, a , b, c){
     //Context 1 =  Having a and b but need to find c
     var questionsContext1 = [
 
-    /*0 */'Tienes un Triángulo en la que necesitas resolver el lado más largo,  los valores que sabes son los de los lados mas cortos, el valor del lado corto A es: ' + a + ' y del lado corto B es: ' + b + ' . Cuánto es que mide la hipotenusa?'
+    /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver el lado más largo,  los valores que sabes son los de los lados mas cortos, el valor del lado corto A es: ' + a + ' y del lado corto B es: ' + b + ' . Cuánto es que mide la hipotenusa?'
     ,
 
     /*1 */'Con los lados cortos A: ' + a + ' y B:' + b + ' Cuánto mide el lado más largo (C) de un Triángulo Rectángulo con estos valores dados?'
     ,
 
-    /*2 */'Dado las medidas de los catetos de un Triángulo Rectángulo: A: ' + a + ' ,B: ' + b + ' . Cuánto mide la hipotenusa de ese Triángulo Rectángulo?' 
+    /*2 */'Dado las medidas de los catetos de un Triángulo Rectángulo: A: ' + a + ' ,B: ' + b + ' . Cuánto mide la hipotenusa de ese Triángulo Rectángulo?'
+    ,
+    
+    /*3*/ 'En un día soleado, Marta ve que le sombra de un edificio se proyecta perpendicularmente de un edificio con altura de ' + a + '. Ella mide que el largo de esa sombra es de ' + b + ' Marta nota que lo que ve forma un triángulo rectángulo. ¿Sabes cuánto es que recorre el rayo de luz desde que toca el borde del edificio hasta llegar a la superficie formando la sombra del edificio?'   
     ];
 
     //Words to the second context
@@ -351,6 +354,9 @@ function generatePythagorasQuestions(context, a , b, c){
     ,
 
     /*2 */'Dado la medida del Cateto A: ' + a + ' y la medida de la Hipotenusa (C): ' + c + ' en un Triángulo Rectángulo, Cuánto mide el Cateto B?' 
+    ,
+
+    /*3*/'Franklin compra un "sandwich" en su mejor cafetería, él lo quiere compartir con su mamá, por lo que su solución es cortarlo por la mitad diagonalmente. Él mide que la mitad cortada es de ' + c + ', mientras un borde mide ' + a + '. ¿Sabes cuánto mide el borde restante del "sandwich"?'
     ];
 
     //Words to the third context
@@ -367,11 +373,14 @@ function generatePythagorasQuestions(context, a , b, c){
 
     /*2 */'Dado la medida de la Hipotenusa (C): ' + c + ' y la medida del Cateto (B): ' + b + ' en un Triángulo Rectángulo, Cuánto mide el Cateto A?' 
 
+    ,
+
+    /*3*/'En una clase de matemáticas, Edgar saca su regla con forma de triángulo rectángulo. Edgar ve que en las medidas mostradas en la regla son: La del lado más largo es de ' + c + ', y un lado es de ' + b  + '. ¿Sabes cuánto mide la del lado faltante? ' 
 
     ];
 
 
-    var rdn = generate(3, true);
+    var rdn = generate(4, true);
     var questionsDescription = $('#DescriptionCustom');
 
 

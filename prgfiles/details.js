@@ -84,7 +84,7 @@ $(document).ready(function(){
 				complete: function(jqXHR, state){
 					console.log('Complete: '  + state);
 
-					alert("Complete " + state);
+					
 				},
 
 				timeout: 5000
@@ -173,18 +173,80 @@ $(document).ready(function(){
 			},200);
 
 
-		
-
-		
-			
 
 			// $('form[id="'+ valOfbtn + '"][name=commentFrm]').slideToggle('1000');
 			// $('form[id="'+ valOfbtn + '"][name=commentFrm]').toggleClass('toDisplayNone');
 
 		
 
+	});
+
+//This acts when the report button is clicked
+//It automatically fills a form which is sent to the database
+//The report system works with human intervention, which means
+//that the report and the question is checked by a person
+//which decides whether or not to eliminate the question.
+	$('body').on('click', '#reportBtn', function(e){
+
+		var valueOfReport = $(this).attr('value');
+
+				var frmToReport = document.createElement('FORM');
+
+					frmToReport.setAttribute('action', 'prgfiles/reportQuestions.php');
+					frmToReport.setAttribute('method', 'POST');
+					frmToReport.setAttribute('name', 'reportFrm');
+					frmToReport.setAttribute('class', 'toDisplayNone');
+					frmToReport.setAttribute('id', valueOfReport);
+				
+				var idInput = document.createElement('input');
+
+					idInput.setAttribute('type', 'text');
+					idInput.setAttribute('name', 'id');
+					idInput.setAttribute('value', valueOfReport);
+
+		frmToReport.append(idInput);
+		$('#content').append(frmToReport);			
+
+		$('form[name=reportFrm][id="'+ valueOfReport + '"]').submit();
+
+					
+	});
+
+	$('#content').on('submit', 'form[name=reportFrm]', function(e){
+
+		e.preventDefault();
+		var id = $(this).attr('id');
+		
+		$.ajax({
+			url: 'prgfiles/reportQuestions.php',
+			type: 'POST',
+			data: {
+				id : id,
+			},
+
+			success: function(){
+
+
+				alert('Gracias por contribuir! Procederemos a la revisión de la pregunta! Estamos concientes de que un ambiente sano es lo mejor!');
+
+			}
+		})
+			.done(function() {
+				//console.log("success");
+			})
+
+			.fail(function() {
+				//console.log("error");
+				
+			})
+
+			.always(function() {
+				//console.log("complete");
+			
+			});
 
 	});
+
 
 	
 
@@ -343,6 +405,7 @@ function loadAjaxForum(event){
 					btnReport.appendChild(txtForBtnReport);
 					btnReport.setAttribute('id', 'reportBtn');
 					btnReport.setAttribute('class', 'hvr-grow');
+					btnReport.setAttribute('value' , row[0]);
 
 					var btnComment = document.createElement('BUTTON');
 					var txtForBtnComment = document.createTextNode('Comentar');

@@ -66,12 +66,11 @@ function ShowValues(mode){
 
 	}else{ //If timesRepeated hits 10 (means 10 times), it will display the result
 		disableBeforeUnload();
-		document.getElementById('all').style.display = 'none';
 
-
-		document.getElementById('Results').innerHTML = 'Respondistes ' + CorrectAnswer + ' de 10';
-		document.getElementById('ShowFinish').style.display = 'block';
-
+		// document.getElementById('all').style.display = 'none';
+		// document.getElementById('Results').innerHTML =  CorrectAnswer + ' de 10';
+		// document.getElementById('ShowFinish').style.display = 'block';
+		displayResults();
 	}
 
 
@@ -393,9 +392,22 @@ function exitTags(mode){
 
 function displayResults(){
 
-	document.getElementById('Results').style.display = 'block';
-	document.getElementById('Results').innerHTML = "Respondistes " + CorrectAnswer + " de 10 problemas."
+	if (CorrectAnswer <= 4) {
+
+		document.getElementById('Results').style.color = "red";
+
+	} else if (CorrectAnswer >= 5 || CorrectAnswer <= 7) {
+
+		document.getElementById('Results').style.color = "yellow";
+	
+	}else if (CorrectAnswer >= 8) {
+
+		document.getElementById('Results').style.color = "green";
+	}
 	document.getElementById('all').style.display = 'none';
+	document.getElementById('ShowFinish').style.display = 'block';
+	document.getElementById('Results').innerHTML = "Respondistes " + CorrectAnswer + " de 10 problemas."
+	
 
 }
 
