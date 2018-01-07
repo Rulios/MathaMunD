@@ -5,6 +5,10 @@
 
 	
 }
+.disable{
+   cursor: not-allowed;
+   pointer-events: none;
+}
 body{
 	margin: 0px;
 	display: table;
@@ -350,6 +354,14 @@ div[name="divItem"]{
 	margin-right: 30px;
 	display: none;
 
+	float:right;
+	
+}
+#Arrow2 {
+	height: 120px;
+	width: 220px;
+	margin-right: 30px;
+	display: none;
 	float:right;
 	
 }

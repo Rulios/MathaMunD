@@ -1,7 +1,8 @@
+var actualTotalCorrectResult;
 $(document).ready(function(){
 
 	$('#startCustom').click(function(e){
-
+    actualTotalCorrectResult = 0;
   //Algorithm to get all the values of the Checkboxes
 	var selected_value = []; // initialize empty array 
 
@@ -52,13 +53,34 @@ $(document).ready(function(){
 
      }
 
-
-  
-
-
 	});
 
 	$('#inputCustom').focus();
+
+
+  $('#btnAnswer').click(function(){
+
+    var userValue = $('#inputCustom').val();
+   
+    if (userValue == 0 ) {  //Check if user entered a value
+
+      alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!')
+    }else{
+
+
+      if (userValue == actualTotalCorrectResult) { //check if the value is corect
+        $('#Right').css('display', 'inline-block');
+      }else{
+        $('#Wrong').css('display', 'inline-block');
+      }
+
+      document.getElementById("btnAnswer").classList.add('disable');
+      $('#Arrow2').css('display', 'inline-block');
+
+    }
+
+
+  });
 
 });
 
@@ -183,6 +205,7 @@ var c = 0;
 
       }while(notDecimal == false)
    
+      actualTotalCorrectResult = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
       generatePythagorasQuestions(1, a, b, 0);
 ////////////////////////////////////////////////////////////////////
    }else if(pythagorasSideCheck == 2){//having a and c but need to solve B
@@ -221,6 +244,7 @@ var c = 0;
 
       }while(notDecimal == false)
       
+      actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(a,2));
       generatePythagorasQuestions(2, a, 0 , c);
 
 
@@ -261,6 +285,8 @@ var c = 0;
 
       console.log('Before Root'+beforeRoot);
       console.log('Square Root' + squareRoot);
+
+      actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(b,2));
       generatePythagorasQuestions(3, 0, b, c);
 
    }
@@ -294,9 +320,6 @@ function generate(range ,needZero){
 
   }
 
-
-
-  
   return n;
 
 }
@@ -338,7 +361,7 @@ function generatePythagorasQuestions(context, a , b, c){
     /*2 */'Dado las medidas de los catetos de un Triángulo Rectángulo: A: ' + a + ' ,B: ' + b + ' . Cuánto mide la hipotenusa de ese Triángulo Rectángulo?'
     ,
     
-    /*3*/ 'En un día soleado, Marta ve que le sombra de un edificio se proyecta perpendicularmente de un edificio con altura de ' + a + '. Ella mide que el largo de esa sombra es de ' + b + ' Marta nota que lo que ve forma un triángulo rectángulo. ¿Sabes cuánto es que recorre el rayo de luz desde que toca el borde del edificio hasta llegar a la superficie formando la sombra del edificio?'   
+    /*3*/ 'En un día soleado, Marta ve que la sombra de un edificio se proyecta perpendicularmente de un edificio con altura de ' + a + '. Ella mide que el largo de esa sombra es de ' + b + ' Marta nota que lo que ve forma un triángulo rectángulo. ¿Sabes cuánto es que recorre el rayo de luz desde que toca el borde del edificio hasta llegar a la superficie formando la sombra del edificio?'   
     ];
 
     //Words to the second context
@@ -419,11 +442,13 @@ function areaAndPerimeter(){
    
       if (a == b) {
         
+        actualTotalCorrectResult = a * b;
         generateQuestionsAreaAndPerimeter("AreaSquare", a, b);
+
       }else {
        
-
-        generateQuestionsAreaAndPerimeter("AreaRectangle", a,b);
+        actualTotalCorrectResult = a * b;
+        generateQuestionsAreaAndPerimeter("AreaRectangle", a, b);
       }
 
    }else if  (rnd ==2){ //PERIMETER OF SQUARE OR RECTANGLE
@@ -436,6 +461,7 @@ function areaAndPerimeter(){
           a = generate(20, false);
           b = generate(20, false);
         }while (a =! b);
+        actualTotalCorrectResult = a + b;
         generateQuestionsAreaAndPerimeter("PerimeterSquare", a, b);
       
 
@@ -443,7 +469,7 @@ function areaAndPerimeter(){
           a = generate(20, false);
           b = generate(20, false);
          
-
+          actualTotalCorrectResult = a + b;
         generateQuestionsAreaAndPerimeter("PerimeterRectangle", a, b);  
       } 
 
