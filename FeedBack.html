@@ -10,6 +10,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Bungee" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">	
 	<link rel="stylesheet" type="text/css" href="css/hover.css">
@@ -77,7 +78,7 @@
 	<div style="display:inline-block;" class="page-header">
 	
 	<ul  class="animated slideInDown" style="margin: 20px; float:left; ">
-		<a href="index.html"><img src="imgs/home-icon.png" style="height: 40px; width: 40px;">
+		<a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px;">
 		</a>
 		</ul>
 	
@@ -104,9 +105,9 @@
 
 	<div  id="DataBox">
 		<center>
-	<h3> Nombre:</h3> 
+	<h3 style="color:#21727F;"> Nombre:</h3> 
 	<br>
-	<input type="text"  placeholder="Nombre..." required name="realname" id="realname">
+	<input type="text"  placeholder="Nombre..." required name="realname" id="realname" >
 	<br>
 	<br>
 		</center>	
@@ -114,7 +115,7 @@
 
 	<div  id="FeedBackBox" >
 
-	<h3>Tus comentarios o sugerencias:</h3> <br>
+	<h3 style="color:#21727F;">Tus comentarios o sugerencias:</h3> <br>
 	<textarea  name="comments" id="comments" rows="6" cols="50" placeholder="Comentario..." required></textarea><br><br>
 
 	<input type="submit" class="hvr-grow" id="buttonToSubmit" value="Enviar">

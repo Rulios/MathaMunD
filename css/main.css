@@ -5,6 +5,7 @@
 
 	
 }
+
 .disable{
    cursor: not-allowed;
    pointer-events: none;
@@ -58,6 +59,13 @@ footer{
 .toDisplayNone{
 	display:none;
 }
+#IconToHover:hover{
+	-webkit-transform:scale(1.25); /* Safari and Chrome */
+    -moz-transform:scale(1.25); /* Firefox */
+    -ms-transform:scale(1.25); /* IE 9 */
+    -o-transform:scale(1.25)	; /* Opera */
+     transform:scale(1.25);
+}
 .retrasoDeAnimacion_1{
 
 	-webkit-animation-delay:1s;
@@ -66,14 +74,14 @@ footer{
 }
 .retrasoDeAnimacion_2{
 
-	-webkit-animation-delay:2s;
-	-moz-animation-delay:2s;
-	animation-delay: 2s;
+	-webkit-animation-delay:1s;
+	-moz-animation-delay:1s;
+	animation-delay: 1s;
 }
 .button_style1{
 	text-decoration: none;
 	border-radius: 35px;
-	border: 5px solid #0FBEF6;
+	border: 5px solid #113940;
 	background-color: transparent;
 	height: 2.5em;
 	margin-bottom: 40px;
@@ -402,7 +410,7 @@ div[name="divItem"]{
 	font-size: 49px;
 }
 #h1OfFeedBack{
-	color:#2483DA;
+	color:#35FFAD;
 	font-size: 60px;
 	margin-top: 10px;
 }
@@ -426,7 +434,7 @@ div[name="divItem"]{
 	width: 150px;
 	background-color: #1ED7E0;
 	border: 0px solid ;
-	font-family: 'Righteous', cursive;
+	font-family: 'Oswald', sans-serif;
 	font-size: 30px;
 }
 
