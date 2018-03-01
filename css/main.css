@@ -19,6 +19,7 @@ body{
 .wrapper{
 	padding:20px;
 	height:auto;
+	width: 100%;
 
 }
 footer{
@@ -59,12 +60,29 @@ footer{
 .toDisplayNone{
 	display:none;
 }
-#IconToHover:hover{
-	-webkit-transform:scale(1.25); /* Safari and Chrome */
-    -moz-transform:scale(1.25); /* Firefox */
-    -ms-transform:scale(1.25); /* IE 9 */
-    -o-transform:scale(1.25)	; /* Opera */
-     transform:scale(1.25);
+
+#ICDiv{
+	float:right;
+}
+#CPDiv{
+	float:left;
+}
+#SCIconToHover{
+	border-radius: 10px;
+	height: 60px;
+	width: 60px;
+}
+#IconToHover:hover, #SCIconToHover:hover{
+	/*Animation of the Social Media Icons!*/
+	-webkit-transform:scale(1.25) ; /* Safari and Chrome */
+    -moz-transform:scale(1.25) ; /* Firefox */
+    -ms-transform:scale(1.25) ; /* IE 9 */
+    -o-transform:scale(1.25) ; /* Opera */
+     transform:scale(1.25) ;
+
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition:transform 0.3s ease-in-out;
+    -ms-transition:transform 0.3s ease-in-out;
 }
 .retrasoDeAnimacion_1{
 
@@ -74,9 +92,9 @@ footer{
 }
 .retrasoDeAnimacion_2{
 
-	-webkit-animation-delay:1s;
-	-moz-animation-delay:1s;
-	animation-delay: 1s;
+	-webkit-animation-delay:2s;
+	-moz-animation-delay:2s;
+	animation-delay: 2s;
 }
 .button_style1{
 	text-decoration: none;
@@ -376,6 +394,8 @@ div[name="divItem"]{
 .FQATitles{
 	margin-top: 60px;
 	font-size: 8em; 
+
+  
 }
 .titles{
 	font-size: 100px;
@@ -476,6 +496,20 @@ div[name="divItem"]{
 	display:inline-block;
 }
 @media only screen and (max-width: 768px){
+
+
+	#IconToHover{
+		margin-bottom: 15px;
+	}
+
+
+	#ICDiv, #CPDiv{
+		float:none;
+	}
+
+	/*--------------------------------------*/
+
+
 
 	.img-change{
 		width: 340px;
