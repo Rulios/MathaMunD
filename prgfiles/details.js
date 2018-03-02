@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
 	
+	
 	var commentDiv;
 		
 
@@ -364,7 +365,7 @@ $(document).ready(function(){
 
 	});
 
-
+repeatCheckOverlapping();
 	
 });
 
@@ -386,7 +387,11 @@ function loadAjaxForum(event){
 
 				success: function (data){
 
-					
+					if (data == "") {
+						$('#forumFooter').css("position", "absolute");
+					}else{
+
+
 
 					for (var i in data){
 
@@ -473,6 +478,11 @@ function loadAjaxForum(event){
 					frmToComment.append(hideId);
 					frmToComment.append(submitButtonComment);
 
+					var hiddenDiv = document.createElement('DIV');
+					
+					hiddenDiv.setAttribute('id', 'hiddenDiv');
+					
+
 					//////////////////////////////////////////////////
 
 					var hiddenFrmToCommentaries = document.createElement('form');
@@ -503,10 +513,12 @@ function loadAjaxForum(event){
 					$('#content').append('<b>Comentarios:</b>');
 					$('#content').append(hiddenFrmToCommentaries);
 					$('#content').append(divElements);
+					$('#content').append(hiddenDiv);
+
 
 					
 					}
-
+				}
 			
 
 				}
@@ -533,6 +545,40 @@ function loadAjaxForum(event){
 
 		;
 
+}
+//This only works on Mathaforum.html!
+var checker;
+function repeatCheckOverlapping(){
+	checker = setInterval(collidesWith, 500);
+}
+
+//If content overlaps the footer
+function collidesWith (element1, element2) {
+
+	var element1 = $('#ForumSection');
+	var element2 = $('#forumFooter');
+	
+    var PosElement1 = {
+    	top: $(element1).position().top,
+    	left: $(element1).position().left,	
+    	right: Number($(element1).position().left) + Number($(element1).width()),
+    	bottom: Number($(element1).position().top) + Number($(element1).height())};
+
+  	var PosElement2 = {
+    	top: $(element2).position().top,
+    	left: $(element2).position().left,
+    	right: Number($(element2).position().left) + Number($(element2).width()),
+    	bottom: Number($(element2).position().top) + Number($(element2).height())};
+
+	// PosElement1.right > PosElement2.left && PosElement1.left < PosElement2.right && PosElement1.top < PosElement2.bottom && PosElement1.bottom > PosElement2.top
+
+    if (PosElement1.bottom >= PosElement2.top) {
+        // Do your stuff here
+
+        $('#forumFooter').css("position", "relative");
+
+    }
+    
 }
 
 
