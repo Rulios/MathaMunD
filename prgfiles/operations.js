@@ -166,8 +166,7 @@ function ShowValues(mode){
 
 	document.getElementById('UserInput').focus();
 
-	document.getElementById('n1').innerHTML = n1;
-	document.getElementById('n2').innerHTML = n2 +  "&nbsp =";
+	displayQuestions(n1,n2,tMode);
 
 	document.getElementById('Segundos').style.color = '#41D628';
 	Temp(mode);		 
@@ -194,9 +193,10 @@ function justNumbers(e)
 //Esta Funcion revisa si la el resultado y 
 //lo que el usuario introdució esta correcto
 function check(mode){
+		alert($('#Wrong').attr("class"));
+		alert($('#Arrow').hasClass('animated fadeOutUp'));
 
-	
-	var UserInput = document.getElementById('UserInput').value;
+	var UserInput = $('#UserInput').val();
 
 	stopInterval();
 
@@ -321,39 +321,42 @@ function stopInterval(){
 
 function showRight_or_WrongTag(match){
 
-	Right_tag = document.getElementById('Right');
- 	Wrong_tag = document.getElementById('Wrong');
- 	Arrow_tag = document.getElementById('Arrow');
+	Right_tag = $('#Right');
+ 	Wrong_tag = $('#Wrong');
+ 	Arrow_tag = $('#Arrow');
+
+ 	
 
 	if (match == true) {
 
-		if ( Right_tag.className.match(/(?:^|\s)animated fadeOutUp(?!\S)/)){
- 		Right_tag.className = 'animated fadeInDown';
+		if (Right_tag.hasClass('animated fadeOutUp')){
+ 		Right_tag.attr('class', "animated fadeInDown") 
  		}
 
-		if (Arrow_tag.className.match(/(?:^|\s)animated fadeOutUp(?!\S)/)){
- 		Arrow_tag.className = 'animated fadeInLeft retrasoDeAnimacion_1';
+		if (Arrow_tag.hasClass('animated fadeOutUp')){
+ 		Arrow_tag.attr('class', "animated fadeInLeft retrasoDeAnimacion_1");
  	    }
 
-		Right_tag.style.display = 'block';
-		Right_tag.style.color = '#16E842';
-		Arrow_tag.style.display = 'block';
+		Right_tag.css("display", "block");
+		Right_tag.css("color", '#16E842');
+		Arrow_tag.css("display" , "block");
 		CorrectAnswer += 1;
 
 	}else{
 
-		if (Wrong_tag.className.match(/(?:^|\s)animated fadeOutUp(?!\S)/)){
- 		Wrong_tag.className = 'animated fadeInDown';
+		if (Wrong_tag.hasClass('animated fadeOutUp')){
+ 		Wrong_tag.attr('class', "animated fadeInDown") 
  		}
 
- 		if (Arrow_tag.className.match(/(?:^|\s)animated fadeOutUp(?!\S)/)){
- 		Arrow_tag.className = 'animated fadeInLeft retrasoDeAnimacion_1';
+ 		if (Arrow_tag.hasClass('animated fadeOutUp')){
+ 		Arrow_tag.attr('class', "animated fadeInLeft retrasoDeAnimacion_1") 
+
  	    }
 
+		Wrong_tag.css("display", "block");
+		Wrong_tag.css("color", '#EF380F');
+		Arrow_tag.css("display" , "block");
 		
-		Wrong_tag.style.display = 'block';
-		Wrong_tag.style.color = '#EF380F';
-		Arrow_tag.style.display = 'block';
 	}
 
 }
@@ -361,31 +364,27 @@ function showRight_or_WrongTag(match){
 function exitTags(mode){
 
 
-	document.getElementById('UserInput').value = '';
+	$('#UserInput').val('');
 	
-	if (document.getElementById('Right').style.display == 'block'){
+	if ($('#Right').css("display") == "block"){
 
-		document.getElementById('Right').className = 'animated fadeOutUp';
+		$('#Right').attr('class', "animated fadeOutUp"); 
 		
-		document.getElementById('Arrow').className = 'animated fadeOutUp';
-
-		
-
-	}else if (document.getElementById('Wrong').style.display == 'block') {
-
-		document.getElementById('Wrong').className = 'animated fadeOutUp';
-		
-		document.getElementById('Arrow').className = 'animated fadeOutUp';
+		$('#Arrow').attr('class', "animated fadeOutUp"); 
 
 		
 
+	}else if ($('#Wrong').css("display") == "block") {
 
-	
+		$('#Wrong').attr('class', "animated fadeOutUp"); 
+		
+		$('#Arrow').attr('class', "animated fadeOutUp"); 
+
 	}
 
-	document.getElementById('Arrow').style.display = 'none';
-	document.getElementById('Right').style.display = 'none';
-	document.getElementById('Wrong').style.display = 'none';
+	$('#Arrow').css("display", "none");
+	$('#Right').css("display", "none");
+	$('#Wrong').css("display", "none");
 
 	ShowValues(mode);
 }
@@ -408,6 +407,40 @@ function displayResults(){
 	document.getElementById('ShowFinish').style.display = 'block';
 	document.getElementById('Results').innerHTML = "Respondistes " + CorrectAnswer + " de 10 problemas."
 	
+
+}
+function displayQuestions(n1,n2,mode){
+
+
+	switch(mode){
+
+		case 'Suma':
+
+			$('#TQuestion').text('¿' + n1 + ' + ' + n2 + '?');
+
+			break;
+
+		case 'Resta':
+
+			$('#TQuestion').text('¿' + n1 + ' - ' + n2 + '?');
+
+			break;
+
+		case 'Multiplicacion':
+
+			$('#TQuestion').text('¿' + n1 + ' * ' + n2 + '?');
+
+			break;
+
+		case 'Division':
+
+			$('#TQuestion').text('¿' + n1 + ' / ' + n2 + '?');
+
+			break;		
+
+	}
+
+
 
 }
 
