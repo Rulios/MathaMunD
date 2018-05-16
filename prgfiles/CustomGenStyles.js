@@ -64,14 +64,18 @@ $(document).ready(function(){
    
     if (userValue == 0 ) {  //Check if user entered a value
 
-      alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!')
+      alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
+
     }else{
 
 
       if (userValue == actualTotalCorrectResult) { //check if the value is corect
         $('#Right').css('display', 'inline-block');
+        $('#Right').css('position', 'relative');
+
       }else{
         $('#Wrong').css('display', 'inline-block');
+        $('#Wrong').css('position', 'relative');
       }
 
       document.getElementById("btnAnswer").classList.add('disable');
@@ -283,7 +287,7 @@ var c = 0;
 
       }while(notDecimal == false)
 
-      console.log('Before Root'+beforeRoot);
+      console.log('Before Root' +beforeRoot);
       console.log('Square Root' + squareRoot);
 
       actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(b,2));
