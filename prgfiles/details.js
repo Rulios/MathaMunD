@@ -14,32 +14,33 @@ $(document).ready(function(){
 		$('select').blur();
 	})
 
-		//Form to Ask
+		//Form to Ask MATHAFORUM BTN
 
 		$('#ask').click(function(){
+		    $('#modal').css('display', 'block');
+	});
+
+		//Form to ask JUGAR BTN (CUSTOM SELECTION OF SUBJECTs)
+		$('#Practice').click(function(){
 		    $('#modal').css('display', 'block');
 	});
 		
 	// When the user clicks on <span> (x), close the modal
 	var span = document.getElementsByClassName("close")[0];
-	span.onclick = function() {
+
+	span.onclick = function(){
 		$('#modal').css('display', 'none');
 	}
 
 	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-
+	window.onclick = function(event){
+		
 		if (event.target.nodeName == 'DIV') {
 			$('#modal').css('display', 'none');
+			
 		}
 	}
 
-
-		$('#Practice').click(function(){
-
-			$('#spnToCustom').animate({width:'toggle'}, 1000);
-			
-		});
 
 ///////////////////////AJAX///////////////////////////////////
 			
@@ -73,8 +74,8 @@ $(document).ready(function(){
 				
 
 
+
 					
-					$('#sent').html('Enviado!');
 
 				
 				},
@@ -87,7 +88,9 @@ $(document).ready(function(){
 				},
 
 				complete: function(jqXHR, state){
-					console.log('Complete: '  + state);
+					$('#frmAskBtn').prop("disabled", true);
+					$('#frmAskBtn').css("background-color", "#727272FF");
+					$('#frmAskBtn').val("ENVIADO!");
 
 					
 				},

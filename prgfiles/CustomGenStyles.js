@@ -2,6 +2,7 @@ var actualTotalCorrectResult;
 $(document).ready(function(){
 
 	$('#startCustom').click(function(e){
+
     actualTotalCorrectResult = 0;
   //Algorithm to get all the values of the Checkboxes
 	var selected_value = []; // initialize empty array 
@@ -25,7 +26,8 @@ $(document).ready(function(){
      var pythagorasCheck = checkSelectedModes(selected_value, 'Pythagoras');
      var perCheck = checkSelectedModes(selected_value, 'Perimeter');
   
-
+  //Hide ModalBox
+     $('#modal').css('display', 'none');
   // Hide all 'play' Selection page 
       $('#allPlayPage').slideUp(2000);    
       $('#allPlayPage').hide(2000);

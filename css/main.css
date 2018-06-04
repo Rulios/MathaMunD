@@ -234,11 +234,7 @@ footer{
 	font-family: 'Bungee', cursive;
 
 }
-#spnToCustom{
-	float:right;
-	margin-right: 30px;
-	margin-bottom: 30px;
-}
+
 
 #mforum * {
 	
@@ -308,7 +304,7 @@ footer{
     text-decoration: none;
     cursor: pointer;
 }
-#frmAskBtn{
+.modalSendBtn{
 	width: 100%;
 	padding: 20px;
 	background-color: #7BA559FF;
@@ -316,7 +312,7 @@ footer{
 	border:none;
 	font-size: 25px;
 }
-#frmAskBtn:hover{
+.modalSendBtn:hover{
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
@@ -534,9 +530,35 @@ div[name="divItem"]{
 	color:#3FBF9D;
 	border: 3px solid;
 	margin: 10px;
-
 	display:inline-block;
 }
+/*CheckBox Customization*/
+.CheckBox {
+	display:none;
+}
+.CheckBox + label span{
+	display:inline-block;
+    width:30px;
+    height:30px;
+    margin:-2px 10px 0 0;
+    vertical-align:middle;
+    border-radius:5px;
+    border: 3px solid black; 
+    background-color: #4BB1B3FF;
+    cursor:pointer;
+    
+}
+.CheckBox:hover + label span{
+	background-color: #25BFD9FF;
+}
+.CheckBox:checked + label span{
+	border-radius:5px;
+    border: 3px solid black; 
+	background: #4BB1B3FF url("checkmark.png") no-repeat;
+	background-size: cover;
+	
+}
+
 @media only screen and (max-width: 768px){
 
 
@@ -766,12 +788,6 @@ div[name="divItem"]{
 	}
 
 	/*-----------------------*/
-	#spnToCustom{
-		float:left;
-		display:block;
-		margin-right: 10px;
-		margin-bottom: 30px;
-	}
 
 	#inputCustom{
 		width: 140px;
