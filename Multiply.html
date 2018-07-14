@@ -47,40 +47,40 @@
 	<!-- n1(numero 1)
 	 n2(numero 2)  -->
 
-	<div id ="Cifras" class=" animated zoomInDown ">
-		<ul>
-			<li><h3  id ="n1"></h3></li>
-		
-		
-		<li><h3 id = "OperationMode"> * </h3></li>
-		
+	<<center>
+			<div id ="Cifras" class=" animated zoomInDown ">
+				<h3  id ="TQuestion"></h3>
 
-		<li><h3  id = "n2"></h3></li>
-		
-		<li><input onkeypress="return justNumbers(event);"  id="UserInput" type="text" ></li>
-		
-		<li><button class="button_styleInput hvr-grow" onclick="check('Multiplication')" id="InsertBtn" > Insertar </button></li>
+			</div>	
 
-	</ul>
+			<div class="animated fadeInDown bungee_letra sizeLetter_25 text-center" id="divAnswerCustom" style="margin-top: 100px;">
+
+
+				<label style="color:#606060; margin-right: 30px;">Tu Respuesta: </label>
+
+
+				<input onkeypress="return justNumbers(event);"  id="UserInput" type="text"  >
+
+				<button class="button_styleInput hvr-grow" onclick="check('Multiplication')"> Insertar </button>
+
+			</div>	
+		</center>
+
+		<br>
+		
+		<div id= "Result">
+			
+			<h2 class="animated fadeInDown" id="Right" >Correcto! √ </h2>
+
+			<h2 class="animated fadeInDown" id="Wrong" >Incorrecto  X</h2>
+
+			<span class="animated fadeInLeft" id="NxtProblem">	
+				<img src="imgs/Flecha.png" class="hvr-grow" onclick="exitTags('Multiplication')">
+			</span>
+			
 		</div>
 
-			<div id= "Result" style="margin-left: 70px;">
-
-		<ul>
-
-			<li>
-				<h2 class="animated fadeInDown" id="Right" style="display:none;">Correcto! √ </h2>
-
-				<h2 class="animated fadeInDown" id="Wrong" style="display:none;">Incorrecto  X</h2>
-			</li>
-
 			
-
-			<img onclick="exitTags('Add')" src="imgs/Flecha.png" id="Arrow" class="hvr-grow animated fadeInLeft retrasoDeAnimacion_1" >
-
-
-		</ul>
-			</div>
 		
 
 			<div class="text-center bungee_letra " id="ShowFinish" >

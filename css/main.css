@@ -103,7 +103,8 @@ footer{
 	background-color: transparent;
 	height: 2.5em;
 	margin-bottom: 40px;
-
+	width:auto;
+	height: auto;
 
 }
 .button_style2{
@@ -166,6 +167,8 @@ footer{
 	background-color: transparent;
 	font-family: 'Bungee', cursive;
 	box-shadow: none;
+	margin:30px;
+	float:right;
 }
 .button_style6{
 	text-decoration: none;
@@ -216,10 +219,15 @@ footer{
 .button_styleInput{
 	text-align: center;
 	text-decoration: none;
-	background-color: #1ED7E0;
+	background-color: transparent;
 	border: 0px solid ;
+	border: 3px solid;
 	font-family: 'Bungee', cursive;
 	font-size: 40px;
+	color:#3FBF9D;
+	border-radius: 4px;
+	width:auto;
+	height: auto;
 }
 /*#indexB{
 	background-color: #BFBFBFFF;
@@ -382,8 +390,25 @@ div[name="divItem"]{
 	color: #41D628;	
 
 }
-
-
+#Arrow2{
+	width:280px;
+	height: 180px;
+	display:none;
+}
+#Right{
+	color:green;
+}
+#Wrong{
+	color:red;
+}
+#Right , #Wrong{
+	font-family: 'Bungee', cursive;
+	font-size: 65px;
+	display:none;
+}
+#ResultAndGo h2{
+	margin-top: 50px;
+}
 #Cifras{
 	margin-top: 60px;
 }
@@ -396,37 +421,26 @@ div[name="divItem"]{
 }
 
 #UserInput {
-	
 	font-family: 'Bungee', cursive;
 	border-radius: 3px;
 	border: 2px solid;
 }
+#Result{
+	margin:auto;
+}
 #Result h2{
-	font-family: 'Righteous', cursive;
-	font-size: 90px;
+	font-family: 'Bungee', cursive;
+	font-size: 70px;
 	float: left;
-
 }
-#Result ul li{
-	display:inline-block;
-	
-}
-#Arrow {
-	height: 180px;
-	width: 300px;
-	margin-right: 30px;
-	display: none;
-
+#NxtProblem{
+	display:none;
+	margin-right: 60px;
 	float:right;
-	
 }
-#Arrow2 {
-	height: 120px;
-	width: 220px;
-	margin-right: 30px;
-	display: none;
-	float:right;
-	
+#NxtProblem img{
+	width:270px;
+	height: 170px;
 }
 .FQATitles{
 	margin-top: 60px;
@@ -441,7 +455,6 @@ div[name="divItem"]{
 #ShowFinish{
 	display:none;
 }
-
 #ShowFinish h2{
 
 	font-size: 90px;
@@ -480,10 +493,6 @@ div[name="divItem"]{
 	margin-left:100px; 
 	float:left;
 }
-#FeedBackBox{
-	margin-right: 100px;
-	float:right;
-}
 #buttonToSubmit{
 	text-align: center;
 	text-decoration: none;
@@ -498,7 +507,6 @@ div[name="divItem"]{
 /*--------------------------------------*/
 
 #MainTitleCustom{
-	font-family: 'Bungee', cursive;
 	color: #982DD1;
 	display:inline-block;
 	font-size: 30px;
@@ -506,11 +514,19 @@ div[name="divItem"]{
 
 
 }
+#NProblem{
+	display:inline-block;
+	float:right;
+	font-size:25px;
+	margin-right: 30px;
+}
 
 #DescriptionCustom{
 	font-size: 30px;
 	font-family: 'Bungee', cursive;
 	word-wrap: break-word;
+	text-align:justify;
+	padding:14px;
 }
 
 
@@ -524,23 +540,17 @@ div[name="divItem"]{
 	border: 2px solid;
 }
 
-#btnAnswer{
-	border-radius: 4px;
-	background-color: transparent;
-	color:#3FBF9D;
-	border: 3px solid;
-	margin: 10px;
-	display:inline-block;
-}
+
 /*CheckBox Customization*/
 .CheckBox {
 	display:none;
+	margin:auto;
 }
 .CheckBox + label span{
-	display:inline-block;
+	display:inline-flex;
     width:30px;
     height:30px;
-    margin:-2px 10px 0 0;
+    margin:-2px 10px 0 0;;
     vertical-align:middle;
     border-radius:5px;
     border: 3px solid black; 
@@ -560,6 +570,7 @@ div[name="divItem"]{
 }
 
 @media only screen and (max-width: 768px){
+
 
 
 	#IconToHover{
@@ -610,6 +621,7 @@ div[name="divItem"]{
 		height:35px ;
 	}
 
+
 	/* ---------------------------------------- */
 
 	#Cifras ul li {
@@ -621,23 +633,26 @@ div[name="divItem"]{
 	}
 
 	.button_styleInput{
-		height: 75px;
-		width: 100px;
-		font-size: 20px;
-	}
-
-	/* ---------------------------------------- */
-
-	#Result h2{
+		margin-top: 40px;
 		font-size: 30px;
 	}
 
-	#Arrow{
-		height: 80px;
-		width: 150px;
-		margin-right: 20px;
-		float:right;
+	/* ---------------------------------------- */
+	#Result{
+		text-align:center;
 	}
+	#Result h2{
+		font-size: 35px;
+		float:none;
+	}
+	#NxtProblem{
+		float:none;	
+		margin:auto;
+	}
+	#NxtProblem img{
+		height: 140px;
+		width: 200px;
+	}	
 
 	/* ---------------------------------------- */
 	.button_style1{
@@ -649,6 +664,10 @@ div[name="divItem"]{
 	.button_style2, .button_style3, .button_style4{
 		height: 60px;
 		margin:  10px;
+	}
+	.button_MathaForum{
+		margin: 30px;
+		float:none;
 	}
 	.FQATitles{
 		font-size: 2.8em;
@@ -696,17 +715,6 @@ div[name="divItem"]{
 		font-size: 30px;
 		margin-top: 3px;
 		color:#B945AAFF;
-	}
-
-	#DataBox {
-			margin-left:5px;
-			width: 100%;
-	}
-
-	#DataBox input{
-		width: 70%;
-		height: 30px;
-	
 	}
 
 	#FeedBackBox{
@@ -795,6 +803,7 @@ div[name="divItem"]{
 
 	#btnAnswer{
 		margin-top: 20px;
+		width: auto ;
 
 	}
 
@@ -803,8 +812,16 @@ div[name="divItem"]{
 	}
 
 	#divAnswerCustom{
-		margin-top: 40px;
+		margin-top: 30px;
 
+	}
+	#divAnswerCustom label{
+		font-size:20px;
+	}
+	#Right , #Wrong{
+	
+	font-size: 30px;
+	
 	}
 
 	

@@ -193,8 +193,7 @@ function justNumbers(e)
 //Esta Funcion revisa si la el resultado y 
 //lo que el usuario introdució esta correcto
 function check(mode){
-		alert($('#Wrong').attr("class"));
-		alert($('#Arrow').hasClass('animated fadeOutUp'));
+		
 
 	var UserInput = $('#UserInput').val();
 
@@ -323,7 +322,7 @@ function showRight_or_WrongTag(match){
 
 	Right_tag = $('#Right');
  	Wrong_tag = $('#Wrong');
- 	Arrow_tag = $('#Arrow');
+ 	NxtProblem_tag = $('#NxtProblem');
 
  	
 
@@ -333,13 +332,13 @@ function showRight_or_WrongTag(match){
  		Right_tag.attr('class', "animated fadeInDown") 
  		}
 
-		if (Arrow_tag.hasClass('animated fadeOutUp')){
- 		Arrow_tag.attr('class', "animated fadeInLeft retrasoDeAnimacion_1");
+		if (NxtProblem_tag.hasClass('animated fadeOutUp')){
+ 		NxtProblem_tag.attr('class', "animated fadeInLeft retrasoDeAnimacion_1");
  	    }
 
 		Right_tag.css("display", "block");
 		Right_tag.css("color", '#16E842');
-		Arrow_tag.css("display" , "block");
+		NxtProblem_tag.css("display" , "block");
 		CorrectAnswer += 1;
 
 	}else{
@@ -348,14 +347,14 @@ function showRight_or_WrongTag(match){
  		Wrong_tag.attr('class', "animated fadeInDown") 
  		}
 
- 		if (Arrow_tag.hasClass('animated fadeOutUp')){
- 		Arrow_tag.attr('class', "animated fadeInLeft retrasoDeAnimacion_1") 
+ 		if (NxtProblem_tag.hasClass('animated fadeOutUp')){
+ 		NxtProblem_tag.attr('class', " animated fadeInLeft retrasoDeAnimacion_1") 
 
  	    }
 
 		Wrong_tag.css("display", "block");
 		Wrong_tag.css("color", '#EF380F');
-		Arrow_tag.css("display" , "block");
+		NxtProblem_tag.css("display" , "block");
 		
 	}
 
@@ -365,12 +364,12 @@ function exitTags(mode){
 
 
 	$('#UserInput').val('');
-	
+		
 	if ($('#Right').css("display") == "block"){
 
 		$('#Right').attr('class', "animated fadeOutUp"); 
 		
-		$('#Arrow').attr('class', "animated fadeOutUp"); 
+		$('#NxtProblem').attr('class', "animated fadeOutUp"); 
 
 		
 
@@ -378,11 +377,11 @@ function exitTags(mode){
 
 		$('#Wrong').attr('class', "animated fadeOutUp"); 
 		
-		$('#Arrow').attr('class', "animated fadeOutUp"); 
+		$('#NxtProblem').attr('class', "animated fadeOutUp"); 
 
 	}
 
-	$('#Arrow').css("display", "none");
+	$('#NxtProblem').css("display", "none");
 	$('#Right').css("display", "none");
 	$('#Wrong').css("display", "none");
 
@@ -415,13 +414,13 @@ function displayQuestions(n1,n2,mode){
 	switch(mode){
 
 		case 'Suma':
-
+			
 			$('#TQuestion').text('¿' + n1 + ' + ' + n2 + '?');
 
 			break;
 
 		case 'Resta':
-
+			
 			$('#TQuestion').text('¿' + n1 + ' - ' + n2 + '?');
 
 			break;

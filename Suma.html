@@ -2,8 +2,8 @@
 <html>
 <head>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="shortcut icon" type="image/x-icon" href="imgs/icono.ico">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<link href="https://fonts.googleapis.com/css?family=Bungee|Oswald" rel="stylesheet">
@@ -24,73 +24,65 @@
 
 	<div id="all">
 
-	<div class="animated fadeInLeft"  id="GameNavigationBar"> 
-	<ul>
-		<li><a href="index.html"><img id="IconToHover" src="imgs/home-icon.png" style="height: 40px; width: 40px; margin-top: 20px;">
-		</a>
-		</li>
+		<div class="animated fadeInLeft"  id="GameNavigationBar"> 
+			<ul>
+				<li><a href="index.html"><img id="IconToHover" src="imgs/home-icon.png" style="height: 40px; width: 40px; margin-top: 20px;">
+				</a>
+			</li>
 
-		<li>
-			<h5 class="oswald_letra" style="color:#5F5E68 
-			;  font-size: 15px;" >Cambiar Modo de Juego </h5>
-		</li>
+			<li>
+				<h5 class="oswald_letra" style="color:#5F5E68 
+				;  font-size: 15px;" >Cambiar Modo de Juego </h5>
+			</li>
 
-		<li><a href="Resta.html"><button class="button_style5 hvr-grow">Resta</button></a></li>
+			<li><a href="Resta.html"><button class="button_style5 hvr-grow">Resta</button></a></li>
 
-		<li><a href="Multiply.html"><button class="button_style5 hvr-grow">Multiplicación</button></a></li>
+			<li><a href="Multiply.html"><button class="button_style5 hvr-grow">Multiplicación</button></a></li>
 
-		<li><a href="Division.html"><button class="button_style5 hvr-grow">División</button></a></li>
+			<li><a href="Division.html"><button class="button_style5 hvr-grow">División</button></a></li>
 
-		<li><h5 id ="Segundos"></h5></li>
+			<li><h5 id ="Segundos"></h5></li>
 
-	</ul>
+		</ul>
 		
 	</div>
 
 	<!-- n1(numero 1)
-	 n2(numero 2)  -->
-	<center>
-	<div id ="Cifras" class=" animated zoomInDown ">
-		
-		
+		n2(numero 2)  -->
+		<center>
+			<div id ="Cifras" class=" animated zoomInDown ">
+				<h3  id ="TQuestion"></h3>
 
-		<h3  id ="TQuestion"></h3>
+			</div>	
 
-	</div>	
-
-	<div class="animated fadeInDown bungee_letra sizeLetter_25 text-center" id="divAnswerCustom" style="margin-top: 100px;">
+			<div class="animated fadeInDown bungee_letra sizeLetter_25 text-center" id="divAnswerCustom" style="margin-top: 100px;">
 
 
-		<label style="color:#606060; margin-right: 30px;">Tu Respuesta: </label>
-
-		
-		<input onkeypress="return justNumbers(event);"  id="UserInput" type="text"  >
-
-		<button class="button_styleInput hvr-grow" onclick="check('Add')" id="btnAnswer" > Insertar </button>
-
-	</div>	
-	</center>
+				<label style="color:#606060; margin-right: 30px;">Tu Respuesta: </label>
 
 
+				<input onkeypress="return justNumbers(event);"  id="UserInput" type="text"  >
+
+				<button class="button_styleInput hvr-grow" onclick="check('Add')"> Insertar </button>
+
+			</div>	
+		</center>
 
 
-			<div id= "Result" style="margin-left: 70px;">
+		<br>
 
-		<ul>
+		<div id= "Result">
+			
+			<h2 class="animated fadeInDown" id="Right">Correcto! √ </h2>
 
-			<li>
-				<h2 class="animated fadeInDown" id="Right" style="display:none;">Correcto! √ </h2>
+			<h2 class="animated fadeInDown" id="Wrong" >Incorrecto  X</h2>
 
-				<h2 class="animated fadeInDown" id="Wrong" style="display:none;">Incorrecto  X</h2>
-			</li>
+			<span class="animated fadeInLeft" id="NxtProblem">	
+				<img src="imgs/Flecha.png" class="hvr-grow" onclick="exitTags('Add')">
+			</span>
+			
+		</div>
 
-			<img onclick="exitTags('Add')" src="imgs/Flecha.png" id="Arrow" class="hvr-grow animated fadeInLeft retrasoDeAnimacion_1" >
-
-		</ul>
-			</div>
-		
-
-		</div>	
 
 		<div class="text-center bungee_letra " id="ShowFinish" >
 			<img src="imgs/MathaMunD.png" height="120" width="200" >
@@ -106,24 +98,24 @@
 			<br>
 
 			<div class="animated rotateInDownLeft retrasoDeAnimacion_2" id="phrase">
-			<h4>Puedes intentarlo de nuevo!</h4>
-			
+				<h4>Puedes intentarlo de nuevo!</h4>
 
-			<h4 style="color:#FF2600;"><i>"El fracaso es una gran oportunidad para empezar otra vez con más inteligencia."</i></h4>
-			<h5 style="float:right; margin-right: 40px;"><i>Henry Ford</i></h5>
-			
-			<a href="javascript:location.reload()"><img class="hvr-grow" width="200px" height="200px" src="imgs/Return.png"></a>
+
+				<h4 style="color:#FF2600;"><i>"El fracaso es una gran oportunidad para empezar otra vez con más inteligencia."</i></h4>
+				<h5 style="float:right; margin-right: 40px;"><i>Henry Ford</i></h5>
+
+				<a href="javascript:location.reload()"><img class="hvr-grow" width="200px" height="200px" src="imgs/Return.png"></a>
 			</div>	
 
 		</div>
 
-</body>
+	</body>
 
 	
 	
-			
+
 
 	
 
-</html>
+	</html>
 

@@ -23,7 +23,7 @@
 	<title id="title">Jugar</title>
 
 </head>
-<body id="play" onload="generatePythagorasQuestions()">
+<body id="play">
 
 	<div class="animated fadeInDown">
 		<center>
@@ -35,7 +35,7 @@
 		<img src="imgs/MathaMunD.png" id="sLogo"  height="120" width="200">
 		
 
-		<a href="MathaForum.html"><button class="hvr-grow  button_MathaForum " style="margin:30px; float:right;">MathaForum</button></a>
+		<a href="MathaForum.html"><button class="hvr-grow  button_MathaForum " >MathaForum</button></a>
 
 		</center>
 	</div>
@@ -92,51 +92,55 @@
 			<div class="modal-content">
 				<span class="close">&times;</span>
 				<div class="modal-header"><h2>Selecciona temas a practicar!</h2></div>		
-
-				<span class="bungee_letra" style="font-size:20px;">
-
-				<center>
-				<input type="checkbox" id="cBTPitagoras" name="items1" value="Teorema de Pitagoras" class="CheckBox"> 
-				<label for="cBTPitagoras"><span></span>Teorema de Pitágoras</label>
 				
-				<br>
-				<br>
+					<span class="bungee_letra" style="font-size:20px; text-align: justify; ">
+						
+						<center>
 
-				<input type="checkbox" id="cBAPerimetros" name="items1" value="Areas y Perímetros" class="CheckBox"> 
-				<label for="cBAPerimetros"><span></span>Áreas y Perímetros</label>
+						<input type="checkbox" id="cBTPitagoras" name="items1" value="Teorema de Pitagoras" class="CheckBox"> 
+						<label for="cBTPitagoras"><span></span>Teorema de Pitágoras</label>
 
-				<br>
-				<br>
-				</center>
-				
+						<br>
+						<br>
+
+						<input type="checkbox" id="cBAPerimetros" name="items1" value="Areas y Perímetros" class="CheckBox"> 
+						<label for="cBAPerimetros"><span></span>Áreas y Perímetros</label>
+
+						<br>
+						<br>
+						</center>
+					</span>
+					
 				<button class="modalSendBtn" style="background-color: #AA5491FF" id="startCustom">
 				Iniciar Práctica!</button>
-				</span>
+				
 			</div>
 
 		</div>
 
 	</div>
 
-	<!-- Custom page!!! -->
+	<!-- ------------Custom page!!! .--------------------->
 
 	<div id="allCustom" style="display:none;">
 
-		<div class="animated fadeInDown">
+		<div class="animated fadeInDown bungee_letra">
 
 		
 		<h3  id="MainTitleCustom" >
 
 			<u>
-			Title
+			-------------Title--------------
 			</u>
 
 		</h3>
 
+			<h5 id="NProblem"></h5>
+		
+
 		</div>
 
 		<br>
-
 
 		<div class="animated fadeInDown  text-center bungee_letra" >
 			<h3 id="DescriptionCustom" >
@@ -159,34 +163,39 @@
 		<div class="animated fadeInDown bungee_letra sizeLetter_25 text-center" id="divAnswerCustom">
 
 			<center>
-			<label style="color:#606060; margin-right: 30px;">Tu Respuesta: </label>
+			<label style="color:#606060; margin-right: 30px; font-size:30px;">Tu Respuesta: </label>
 
 			<input onkeypress="return justNumbers(event);" type="text" name="inputCustom" id="inputCustom">
 
 			
-			<button id="btnAnswer" class=" hvr-grow ">Responder</button>
+			<button id="btnAnswer" class="button_styleInput hvr-grow ">Responder</button>
 
-			<br>
 
-			<h2 class="animated fadeInDown" id="Right" style=" display:none;  color:green; ">Correcto! √ </h2>
-
-			<h2 class="animated fadeInDown" id="Wrong" style=" display:none;  color:red;">Incorrecto  X</h2>
-
-			<img onclick="" src="imgs/Flecha.png" id="Arrow2" class="hvr-grow animated fadeInLeft retrasoDeAnimacion_1" >	
-			
 			</center>			
 
 		
 		</div>
 
 		
-			
-	
+		<div id="ResultAndGo">
+			<center>
 
-			
+				<h2 class="animated fadeInDown" id="Right">Correcto! √ </h2>
 
+				<h2 class="animated fadeInDown" id="Wrong">Incorrecto  X</h2>
+
+				<span class="hvr-grow" id="Arrow2Container" style="float:right; margin-right: 100px;">
+					<img  src="imgs/Flecha.png" id="Arrow2" class="animated fadeInLeft retrasoDeAnimacion_1  " >
+				</span>
+				
+			</center>
+
+		</div>
 
 	</div>
+
+	
+
 
 </body>
 </html>

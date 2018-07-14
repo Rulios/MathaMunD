@@ -1,4 +1,9 @@
+//Initialize the global scope variables
 var actualTotalCorrectResult;
+var pythagorasCheck;
+var perCheck;
+var timesPRep = 0; //Times in which users clicks #Arrow2
+var usrAnswer = 0; //Times the user answered correctly
 $(document).ready(function(){
 
 	$('#startCustom').click(function(e){
@@ -23,9 +28,9 @@ $(document).ready(function(){
 
    	 }else{//this part is to check the modes selected
 
-     var pythagorasCheck = checkSelectedModes(selected_value, 'Pythagoras');
-     var perCheck = checkSelectedModes(selected_value, 'Perimeter');
-  
+    pythagorasCheck = checkSelectedModes(selected_value, 'Pythagoras');
+    perCheck = checkSelectedModes(selected_value, 'Perimeter');
+      
   //Hide ModalBox
      $('#modal').css('display', 'none');
   // Hide all 'play' Selection page 
@@ -50,7 +55,7 @@ $(document).ready(function(){
 
         }else if(perCheck == true){
           randomizeCustomModes('2'); //2 means area and perimeter
-
+          
         }
 
      }
@@ -72,21 +77,48 @@ $(document).ready(function(){
 
 
       if (userValue == actualTotalCorrectResult) { //check if the value is corect
-        $('#Right').css('display', 'inline-block');
-        $('#Right').css('position', 'relative');
+      usrAnswer += 1;  
+      showTags ('Right', 'Show')
 
       }else{
-        $('#Wrong').css('display', 'inline-block');
-        $('#Wrong').css('position', 'relative');
+        
+        showTags('Wrong', 'Show');
+
       }
 
-      document.getElementById("btnAnswer").classList.add('disable');
+      $("#btnAnswer").addClass('disable');
       $('#Arrow2').css('display', 'inline-block');
 
     }
 
 
   });
+
+/*----------------- Repetition of the problem and randomization ---------*/
+$('#Arrow2Container').click(function() {
+
+ if (timesPRep < 10) {
+  showTags('none', 'Hide');
+
+  if (pythagorasCheck == true && perCheck == true) {
+          randomizeCustomModes('all');//All means all selected modes
+
+        }else if (pythagorasCheck == true) {
+          randomizeCustomModes('1'); //1 means theory of Pythagoras
+
+        }else if(perCheck == true){
+          randomizeCustomModes('2'); //2 means area and perimeter
+          
+        }
+
+      }else{
+
+        showResults();
+      } 
+
+
+
+    });
 
 });
 
@@ -97,10 +129,15 @@ function randomizeCustomModes(context){
   var randomMode;
   console.log(context)
 
+  timesPRep += 1;
+
 //Initialize the generate
   if (context == 'all') {
 
-    context = generate(2 ,false);
+    //I don't know I've got to put 3 as parameter, it seems on only an
+    //possibility of generating _context 1. But having 3 it solves this problem
+    //and generates  _context 2.
+    context = generate(3 ,false);
 
     if (context == '1') {
       generatePythagoras();
@@ -125,7 +162,7 @@ function checkSelectedModes(arrSelected , requester){
   //The parameter of receiver is to know what variable is requesting it
 
    var found = false;
-   var strToPerimeter = 'Areas y Perimetros';
+   var strToPerimeter = 'Areas y Perímetros';
    var strToPythagoras = 'Teorema de Pitagoras';
 
         //See if the variable that is requesting  is
@@ -426,6 +463,8 @@ function generatePythagorasQuestions(context, a , b, c){
       questionsDescription.html(questionsContext3[rdn]);
 
     }
+     $('#NProblem').text('#' + timesPRep);
+
 
     rdn = 0;
 
@@ -484,6 +523,7 @@ function areaAndPerimeter(){
 }
 
 function generateQuestionsAreaAndPerimeter(context, a , b){
+  
 
   $('#FormulaDescriptionCustom').text('');
   $('#keyWords').text('');
@@ -546,9 +586,63 @@ function generateQuestionsAreaAndPerimeter(context, a , b){
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
     }
 
-
+    $('#NProblem').text('#' + timesPRep);
 }
 
+function showTags(state, action){
+
+    //The parameter of _state means if it needs to show the Right or Wrong tag
+
+    //The parameter of _action means the if it needs to close or open 
+    //the tags.
+   
+    if (action == 'Show') {
+
+      if (state == 'Right') {
+
+        $('#Right').css('display', 'inline-block');
+        $('#Right').css('position', 'relative');
+
+      } else if (state == 'Wrong') {
+
+       $('#Wrong').css('display', 'inline-block');
+       $('#Wrong').css('position', 'relative');
+     }
+
+   } else if (action == 'Hide'){ //This includes all the animation hiding
+      
+      $('#Right').css('display', 'none');
+      $('#Wrong').css('display', 'none');
+      $('#inputCustom').val('');
+      $('#btnAnswer').removeClass('disable');
+      $('#Arrow2').css('display', 'none');
+
+  }
+}
+
+function showResults(){
+
+  if (usrAnswer <= 4) {
+    $('#DescriptionCustom').css('color', 'red');
+    
+
+  } else if (usrAnswer >= 5 || usrAnswer <= 7) {
+    $('#DescriptionCustom').css('color', 'yellow');
+    
+
+  }else if (usrAnswer >= 8) {
+    $('#DescriptionCustom').css('color', 'green');
+    
+  }
+
+  $('#DescriptionCustom').css('text-align' , 'center').css('font-size','60px');
+  $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de 10!');
+  $('#ResultAndGo').css('display','none');
+  $('#divAnswerCustom').css('display', 'none');
+  $('#MainTitleCustom').css('display', 'none');
+  $('#imgPythagoras').css('display', 'none');
+
+}
 
 //Javascript//////////////////////////Javascript/////Inputs / Browser
 
@@ -561,11 +655,11 @@ function onLeaveAction(){
 	}
 }
 
-function justNumbers(e)
-        {
+function justNumbers(e){
         var keynum = window.event ? window.event.keyCode : e.which;
         if ((keynum == 8) || (keynum == 46))
         return true;
          
         return /\d/.test(String.fromCharCode(keynum));
-        }
+       
+ }
