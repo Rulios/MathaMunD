@@ -91,6 +91,9 @@ $(document).ready(function(){
 					$('#frmAskBtn').prop("disabled", true);
 					$('#frmAskBtn').css("background-color", "#727272FF");
 					$('#frmAskBtn').val("ENVIADO!");
+					$('#modal').css('display', 'none');
+					
+
 
 					
 				},
@@ -99,7 +102,7 @@ $(document).ready(function(){
 
 				});
 
-
+				$('form[name=filterSlct]').submit();
 
 	
 			});			
@@ -148,7 +151,7 @@ $(document).ready(function(){
 
 		$('form[name=filterSlct]').submit();
 		resetCommTemp();
-	})
+	});
 
 
 
@@ -158,6 +161,8 @@ $(document).ready(function(){
 	
 	//When the commentButton is clicked
 	$('body').on('click', '#commentBtn', function(e){
+
+
 
 		var valOfbtn = $(this).attr('value');
 		stateOfSlide.id = $(this).attr('value');
@@ -235,7 +240,7 @@ $(document).ready(function(){
 			success: function(){
 
 
-				alert('Gracias por contribuir! Procederemos a la revisión de la pregunta! Estamos concientes de que un ambiente sano es lo mejor!');
+				alert('Gracias por contribuir! Procederemos a la revisión de la pregunta! Estamos conscientes de que un ambiente sano es lo mejor!');
 
 			}
 		})
@@ -269,9 +274,13 @@ $(document).ready(function(){
 		var nombre = $(' input[ id="'+ id + '"]').val();
 		var comentario = $('input[name="comment"][id="'+ id + '"]').val();
 
+		if (nombre == '') {
+			alert('Ingresa un nombre');
+		}else{
+
 		$.ajax({
 			url: 'prgfiles/commentsSaving.php',
-			type: 'POST',
+			type: 'GET',
 			data: {
 				id : id,
 				name: nombre,
@@ -280,9 +289,8 @@ $(document).ready(function(){
 
 			success: function(){
 
-
+				$('form[name=setComments]').submit();
 				
-
 			}
 		})
 			.done(function() {
@@ -299,6 +307,8 @@ $(document).ready(function(){
 			$('form[id="'+ id + '"][name=commentFrm]').slideToggle('1000');
 			$('form[id="'+ id + '"][name=commentFrm]').toggleClass('toDisplayNone');
 			});
+
+		}
 
 	});
 
@@ -319,10 +329,6 @@ $(document).ready(function(){
 
 		success: function(data){
 
-
-
-			
-
 			for (var i in data){
 
 				var row = data[i];
@@ -330,7 +336,7 @@ $(document).ready(function(){
 				var name  = row[1];
 				var comment = row[2];
 
-				var strToDisplay = '<b>'+ name+ '</b>' + ': ' + comment+ '<br>'
+				var strToDisplay = '<b>'+ name+ '</b>' + ': ' + comment + '<br>';
 				var txtOfDivToMatch = $('div[value="'+ row[0] + '"][name=divItem]').html();
 				var strToMatch =  strToDisplay;
 				
@@ -343,10 +349,6 @@ $(document).ready(function(){
 					
 					$('div[value="'+ row[0] + '"][name=divItem]').append(strToDisplay);
 				}
-
-				
-			
-				
 
 			}
 
@@ -367,12 +369,12 @@ $(document).ready(function(){
 		
 	});
 	
-
-
-
 	});
 
 repeatCheckOverlapping();
+
+
+
 	
 });
 
@@ -394,20 +396,27 @@ function loadAjaxForum(event){
 
 				success: function (data){
 
+					var elementId = []; //array for storing elements id	
+
 					if (data == "") {
 						$('#forumFooter').css("position", "absolute");
 					}else{
 
+					var row = [];
+					var name;
+					var area;
+					var problem;
+					var posdata;
 
-
-					for (var i in data){
-
-					var row = data[i];
+					for (var i in data.reverse()){ 
+ 					//data.reverse() is used to arrange to the most recent data
+					row = data[i];	
+					elementId.push(row[0]);
 					
-					var name = row[1];
-					var area = row[2];
-					var problem = row[3];
-					var posdata =  row[4];
+					name = row[1];
+					area = row[2];
+					problem = row[3];
+					posdata =  row[4];	
 
 					//button creations
 
@@ -417,7 +426,7 @@ function loadAjaxForum(event){
 					btnReport.appendChild(txtForBtnReport);
 					btnReport.setAttribute('id', 'reportBtn');
 					btnReport.setAttribute('class', 'hvr-grow');
-					btnReport.setAttribute('value' , row[0]);
+					btnReport.setAttribute('value' , elementId[i]);
 
 					var btnComment = document.createElement('BUTTON');
 					var txtForBtnComment = document.createTextNode('Comentar');
@@ -425,22 +434,22 @@ function loadAjaxForum(event){
 					btnComment.appendChild(txtForBtnComment);
 					btnComment.setAttribute('id', 'commentBtn' );
 					btnComment.setAttribute('class' , 'hvr-grow');
-					btnComment.setAttribute('value' , row[0]);
+					btnComment.setAttribute('value' , elementId[i]);
 
 					var divElements = document.createElement('DIV');
 
 					divElements.setAttribute('style', 'border: 2px solid #5EB549;');
 					
-					divElements.setAttribute('value', row[0]);
+					divElements.setAttribute('value', elementId[i]);
 					divElements.setAttribute('name', 'divItem');
 
 					var frmToComment = document.createElement('FORM');
 
 					frmToComment.setAttribute('action', 'prgfiles/commentsSaving.php');
-					frmToComment.setAttribute('method', 'POST');
+					frmToComment.setAttribute('method', 'GET');
 					frmToComment.setAttribute('name', 'commentFrm');
 					frmToComment.setAttribute('class', 'toDisplayNone');
-					frmToComment.setAttribute('id', row[0]);
+					frmToComment.setAttribute('id', elementId[i]);
 				
 					
 					var nameInput = document.createElement('input');
@@ -448,19 +457,19 @@ function loadAjaxForum(event){
 					nameInput.setAttribute('type', 'text');
 					nameInput.setAttribute('placeholder', 'Nombre...');
 					nameInput.setAttribute('name', 'name');
-					nameInput.setAttribute('id', row[0]);
+					nameInput.setAttribute('id', elementId[i]);
 
 					var commentInput = document.createElement('input');
 
 					commentInput.setAttribute('type', 'text');
 					commentInput.setAttribute('placeholder', 'Comentario...');
 					commentInput.setAttribute('name', 'comment');
-					commentInput.setAttribute('id', row[0] );
+					commentInput.setAttribute('id', elementId[i] );
 					commentInput.setAttribute('maxlength', '140');
 
 					var hideId = document.createElement('input');
 
-					hideId.setAttribute('value', row[0]);
+					hideId.setAttribute('value', elementId[i]);
 					hideId.setAttribute('name', 'id');
 					hideId.setAttribute('class', 'toDisplayNone');
 
@@ -496,12 +505,12 @@ function loadAjaxForum(event){
 					hiddenFrmToCommentaries.setAttribute('method', 'GET');
 					hiddenFrmToCommentaries.setAttribute('action', 'prgfiles/loadComments.php');
 					hiddenFrmToCommentaries.setAttribute('name', 'setComments');
-					hiddenFrmToCommentaries.setAttribute('id', row[0]);
+					hiddenFrmToCommentaries.setAttribute('id', elementId[i]);
 					hiddenFrmToCommentaries.setAttribute('class', 'toDisplayNone');
 
 
 					var hiddenInput = document.createElement('input');
-					hiddenInput.setAttribute('value', row[0]);
+					hiddenInput.setAttribute('value', elementId[i]);
 					hiddenInput.setAttribute('type', 'text');
 					hiddenInput.setAttribute('name', 'id');
 
@@ -523,8 +532,14 @@ function loadAjaxForum(event){
 					$('#content').append(hiddenDiv);
 
 
+
 					
+
 					}
+
+				
+
+					
 				}
 			
 
@@ -548,11 +563,9 @@ function loadAjaxForum(event){
 
 			});
 		
-			
-
-		;
-
 }
+
+
 //This only works on Mathaforum.html!
 var checker;
 function repeatCheckOverlapping(){
@@ -598,21 +611,12 @@ function resetCommTemp(){
 		addCommentReg();
 
 
-	}, 2500);
+	}, 6000);
 
 }
 
 
 function addCommentReg(){
 
-
-
 		$('form[name=setComments]').submit();
-
-
-	
-
-
-
-
 }

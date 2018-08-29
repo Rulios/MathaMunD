@@ -595,7 +595,7 @@ function showTags(state, action){
 
     //The parameter of _action means the if it needs to close or open 
     //the tags.
-   
+    
     if (action == 'Show') {
 
       if (state == 'Right') {
@@ -621,6 +621,8 @@ function showTags(state, action){
 }
 
 function showResults(){
+  
+
 
   if (usrAnswer <= 4) {
     $('#DescriptionCustom').css('color', 'red');
@@ -634,8 +636,14 @@ function showResults(){
     $('#DescriptionCustom').css('color', 'green');
     
   }
-
-  $('#DescriptionCustom').css('text-align' , 'center').css('font-size','60px');
+  
+  //Evaluate if the user is on Pc or Mobile, so it shows other description
+  if (screen.width <= 768) {
+    $('#DescriptionCustom').css('text-align' , 'center').css('font-size','40px');
+  }else{
+    $('#DescriptionCustom').css('text-align' , 'center').css('font-size','60px');
+  }
+  
   $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de 10!');
   $('#ResultAndGo').css('display','none');
   $('#divAnswerCustom').css('display', 'none');

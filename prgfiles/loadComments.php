@@ -8,12 +8,13 @@ $db = "mathaforum";
 $id = $_GET['id'];
 
 
+$con = mysql_connect($host, $user) or die ('Problemas al conectar con el servidor');
 
-$con = mysql_connect($host, $user, $pw) or $con = mysql_connect($host, $user, $db) or die ('problemas al conectar server');
+// $con = mysql_connect($host, $user, $pw) or $con = mysql_connect($host, $user, $db) or $con = mysql_connect($host, $user) or die ('problemas al conectar server');
 
-mysql_select_db($db, $con ) or die ('Problemas al conectar la base de datos');
+mysql_select_db($db, $con) or die ('Problemas al conectar la base de datos');
 
- $registro = mysql_query("SELECT * FROM commentsofquestions WHERE id=$id") or die ('Problemas en la consulta: '.mysql_error());
+ $registro = mysql_query("SELECT * FROM commentsofquestions WHERE id = $id") or die ('Problemas en la consulta: '.mysql_error());
 
 
 $data = array();
