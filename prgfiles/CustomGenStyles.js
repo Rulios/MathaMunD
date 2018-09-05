@@ -4,6 +4,14 @@ var pythagorasCheck;
 var perCheck;
 var timesPRep = 0; //Times in which users clicks #Arrow2
 var usrAnswer = 0; //Times the user answered correctly
+
+//Obligatory variables; These variables made the code more flexible
+var pythagorasSideCheck = 0; //is the Context "Situation in which it is randomly decided to solve"
+
+///// Questions Variable /////////////
+var pythagorasQuestions = [];
+var perAQuestions = [];
+
 $(document).ready(function(){
 
 	$('#startCustom').click(function(e){
@@ -93,6 +101,7 @@ $(document).ready(function(){
 
 
   });
+
 
 /*----------------- Repetition of the problem and randomization ---------*/
 $('#Arrow2Container').click(function() {
@@ -214,7 +223,7 @@ var c = 0;
 //Randomize the type, so it can have to A, To B, To C
 
 
- var pythagorasSideCheck = generate(4);
+ pythagorasSideCheck = generate(3, false);
 
 
    if (pythagorasSideCheck == 1) { //Having a and b but need to solve C
@@ -240,29 +249,29 @@ var c = 0;
 
       squareRoot = Math.sqrt(beforeRoot); //Get the Square Root
 
-        if (squareRoot % 1 != 0){
-          notDecimal = false;
-        }else{
-          notDecimal = true;
-        }
+      if (squareRoot % 1 != 0){
+        notDecimal = false;
+      }else{
+        notDecimal = true;
+      }
 
-      }while(notDecimal == false)
-   
-      actualTotalCorrectResult = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
-      generatePythagorasQuestions(1, a, b, 0);
+    }while(notDecimal == false)
+
+    actualTotalCorrectResult = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
+    //generatePythagorasQuestions(1, a, b, 0);
 ////////////////////////////////////////////////////////////////////
    }else if(pythagorasSideCheck == 2){//having a and c but need to solve B
 
-      do{
+    do{
 
         do{//To check if Hypotenuse is bigger than legs
 
-        a = generate(15);
-        c = generate(15);
+          a = generate(15);
+          c = generate(15);
 
         }while(c <= a);
 
-      
+
 
       var notDecimal = false;//This variable is to check if 
                 //the result is going decimal
@@ -279,30 +288,30 @@ var c = 0;
 
       squareRoot = Math.sqrt(beforeRoot); //Get the Square Root
 
-        if (squareRoot % 1 != 0){
-          notDecimal = false;
-        }else{
-          notDecimal = true;
-        }
+      if (squareRoot % 1 != 0){
+        notDecimal = false;
+      }else{
+        notDecimal = true;
+      }
 
-      }while(notDecimal == false)
-      
-      actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(a,2));
-      generatePythagorasQuestions(2, a, 0 , c);
+    }while(notDecimal == false)
+
+    actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(a,2));
+    //generatePythagorasQuestions(2, a, 0 , c);
 
 
    }else if(pythagorasSideCheck == 3){//having b and c but need to solve a
 
-      do{
+    do{
 
         do{//To check if Hypotenuse is bigger than longest
 
-        b = generate(15);
-        c = generate(15);
+          b = generate(15);
+          c = generate(15);
 
         }while(c <= b);
 
-   
+
 
       var notDecimal = false;//This variable is to check if 
                 //the result is going decimal
@@ -318,21 +327,26 @@ var c = 0;
 
       squareRoot = Math.sqrt(beforeRoot); //Get the Square Root
 
-        if (squareRoot % 1 != 0){
-          notDecimal = false;
-        }else{
-          notDecimal = true;
-        }
+      if (squareRoot % 1 != 0){
+        notDecimal = false;
+      }else{
+        notDecimal = true;
+      }
 
-      }while(notDecimal == false)
+    }while(notDecimal == false)
 
-      console.log('Before Root' +beforeRoot);
-      console.log('Square Root' + squareRoot);
+    console.log('Before Root' +beforeRoot);
+    console.log('Square Root' + squareRoot);
 
-      actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(b,2));
-      generatePythagorasQuestions(3, 0, b, c);
+    actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(b,2));
+    //generatePythagorasQuestions(3, 0, b, c);
+  }
 
-   }
+    //See structure//
+    //It Ajax's the questions from the DB, to then direct to the 
+    //HTML convertion
+    fetchCustomQuestions(a, b,c, "Teorema de Pitagoras");
+    
 
 
 
@@ -347,7 +361,7 @@ var c = 0;
 function generate(range ,needZero){
 
   var n ;
-
+  range += 1; //add 1, Don't know why, but it fix some accuracy problems
 
   if (needZero == true) {
 
@@ -379,8 +393,37 @@ function changeToPositive(n){
 
 }
 
-function generatePythagorasQuestions(context, a , b, c){
+function generatePythagorasQuestions(a , b, c){
 
+    
+    
+    
+    for(i = 0; i < pythagorasQuestions.length; i++){
+      var x = 0;
+      x = (questionIdentification(pythagorasQuestions[i]));
+
+      switch(x){
+
+        case 1:
+
+            questionsContext1.push(pythagorasQuestions[i]);
+            break;
+
+        case 2:
+            questionsContext2.push(pythagorasQuestions[i]);
+            break;
+
+        case 3:
+            questionsContext3.push(pythagorasQuestions[i]);
+            break;    
+      }
+
+    }
+
+    console.log(questionsContext1);
+    console.log(questionsContext2);
+    console.log(questionsContext3);
+    
     //Context means the side to solve it
      
     $('#keyWords').text('');
@@ -446,23 +489,23 @@ function generatePythagorasQuestions(context, a , b, c){
     ];
 
 
-    var rdn = generate(4, true);
-    var questionsDescription = $('#DescriptionCustom');
+    // var rdn = generate(4, true);
+    // var questionsDescription = $('#DescriptionCustom');
 
 
-    if (context == 1) {
+    // if (context == 1) {
 
-      questionsDescription.html(questionsContext1[rdn]);
+    //   questionsDescription.html(questionsContext1[rdn]);
 
-    }else if (context == 2) {
+    // }else if (context == 2) {
 
-      questionsDescription.html(questionsContext2[rdn]);
+    //   questionsDescription.html(questionsContext2[rdn]);
 
-    }else if (context == 3) {
+    // }else if (context == 3) {
 
-      questionsDescription.html(questionsContext3[rdn]);
+    //   questionsDescription.html(questionsContext3[rdn]);
 
-    }
+    // }
      $('#NProblem').text('#' + timesPRep);
 
 
@@ -471,7 +514,7 @@ function generatePythagorasQuestions(context, a , b, c){
 }
 
 function areaAndPerimeter(){
-  console.log('AR')
+   console.log('AR');
    var rnd = generate(2, false);
    var a,b ;
 
@@ -651,6 +694,90 @@ function showResults(){
   $('#imgPythagoras').css('display', 'none');
 
 }
+//Javascript///////////////////////////fetch with AJAX
+function fetchCustomQuestions(a, b,c,mode){ //This is used to get the questions from the DB
+
+var mode = mode;
+var row = [];
+
+
+      $.ajax({
+        url: 'prgfiles/requestINTQuestions.php',
+        type: 'GET',
+        data: {mode: mode},
+        datatype:'json',
+
+        success: function(data){
+          data = JSON.stringify(data);
+          row =  JSON.parse(data);
+          console.log(row);
+          switch(mode){
+
+            case "Teorema de Pitagoras" : 
+
+                for(var i in row){
+                pythagorasQuestions.push(row[i].question);
+                }
+
+                generatePythagorasQuestions(a,b,c);
+
+                break;
+
+            case "Area y Perimetro" : 
+
+                for(var i in row){
+                perAQuestions.push(row[i].question);
+                }      
+
+                break;
+
+          }
+          
+
+        }
+
+          
+      })
+
+      .done(function() {
+        //console.log("success");
+      })
+
+      .fail(function() {
+        //console.log("error");
+      })
+
+      .always(function() {
+        //console.log("complete");
+        
+      });
+
+          
+}
+//Function to replace values
+function questionIdentification(question){//function to see which context
+//Pythagoras
+  var context;
+
+  var aFound, bFound, cFound;
+
+  aFound = question.search("-*a*-");
+  bFound = question.search("-*b*-");
+  cFound = question.search("-*c*-");
+
+  if ((aFound && bFound) >= 0) {
+    context = 1;
+  }else if ((aFound && cFound) >= 0 ) {
+    context = 2;
+  }else if ((bFound && cFound) >= 0) {
+    context = 3;
+  }
+
+
+  return context;
+
+}
+
 
 //Javascript//////////////////////////Javascript/////Inputs / Browser
 

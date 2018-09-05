@@ -7,7 +7,7 @@
 	$desde = "FROM:". "mathamund_Suggestions";
 	
 
-	$sent= mail($destino,$asunto, $mensaje, $desde );
+	$sent= mail($destino,$asunto, $mensaje, $desde);
 
 	if ($sent) {
 		# code...
