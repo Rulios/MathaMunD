@@ -51,7 +51,7 @@ function ShowValues(mode){
 
 	}else if (mode == 'Multiplication') {
 
-		tMode = 'Multiplicación';
+		tMode = 'Multiplicacion';
 	}else if (mode == 'Division') {
 
 		tMode = 'Division'
@@ -110,6 +110,7 @@ function ShowValues(mode){
 		}
 
 	}else if (mode == 'Multiplication') {
+
 
 		n1 = Math.floor(Math.random() * 25);
 		n2 = Math.floor(Math.random() * 10);
@@ -410,7 +411,7 @@ function displayResults(){
 
 }
 function displayQuestions(n1,n2,mode){
-
+	
 
 	switch(mode){
 

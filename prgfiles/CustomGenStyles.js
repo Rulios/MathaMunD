@@ -393,15 +393,18 @@ function changeToPositive(n){
 
 }
 
-function generatePythagorasQuestions(a , b, c){
+function generatePythagorasQuestions(a , b, c, questions){
 
-    
+    var questionsContext1 = [];
+    var questionsContext2 = [];
+    var questionsContext3 = [];
+    pythagorasQuestions = StrToArraySeparation(questions);
     
     
     for(i = 0; i < pythagorasQuestions.length; i++){
       var x = 0;
       x = (questionIdentification(pythagorasQuestions[i]));
-
+      alert(x + " " + pythagorasQuestions[i]);
       switch(x){
 
         case 1:
@@ -420,9 +423,7 @@ function generatePythagorasQuestions(a , b, c){
 
     }
 
-    console.log(questionsContext1);
-    console.log(questionsContext2);
-    console.log(questionsContext3);
+    
     
     //Context means the side to solve it
      
@@ -436,57 +437,57 @@ function generatePythagorasQuestions(a , b, c){
     //words to the first context
 
     //Context 1 =  Having a and b but need to find c
-    var questionsContext1 = [
+    // var questionsContext1 = [
 
-    /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver el lado más largo,  los valores que sabes son los de los lados mas cortos, el valor del lado corto A es: ' + a + ' y del lado corto B es: ' + b + ' . Cuánto es que mide la hipotenusa?'
-    ,
+    // /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver el lado más largo,  los valores que sabes son los de los lados mas cortos, el valor del lado corto A es: ' + a + ' y del lado corto B es: ' + b + ' . Cuánto es que mide la hipotenusa?'
+    // ,
 
-    /*1 */'Con los lados cortos A: ' + a + ' y B:' + b + ' Cuánto mide el lado más largo (C) de un Triángulo Rectángulo con estos valores dados?'
-    ,
+    // /*1 */'Con los lados cortos A: ' + a + ' y B:' + b + ' Cuánto mide el lado más largo (C) de un Triángulo Rectángulo con estos valores dados?'
+    // ,
 
-    /*2 */'Dado las medidas de los catetos de un Triángulo Rectángulo: A: ' + a + ' ,B: ' + b + ' . Cuánto mide la hipotenusa de ese Triángulo Rectángulo?'
-    ,
+    // /*2 */'Dado las medidas de los catetos de un Triángulo Rectángulo: A: ' + a + ' ,B: ' + b + ' . Cuánto mide la hipotenusa de ese Triángulo Rectángulo?'
+    // ,
     
-    /*3*/ 'En un día soleado, Marta ve que la sombra de un edificio se proyecta perpendicularmente de un edificio con altura de ' + a + '. Ella mide que el largo de esa sombra es de ' + b + ' Marta nota que lo que ve forma un triángulo rectángulo. ¿Sabes cuánto es que recorre el rayo de luz desde que toca el borde del edificio hasta llegar a la superficie formando la sombra del edificio?'   
-    ];
+    // /*3*/ 'En un día soleado, Marta ve que la sombra de un edificio se proyecta perpendicularmente de un edificio con altura de ' + a + '. Ella mide que el largo de esa sombra es de ' + b + ' Marta nota que lo que ve forma un triángulo rectángulo. ¿Sabes cuánto es que recorre el rayo de luz desde que toca el borde del edificio hasta llegar a la superficie formando la sombra del edificio?'   
+    // ];
 
-    //Words to the second context
+    // //Words to the second context
 
-    //Context 2 = Having a and c but need to find B
+    // //Context 2 = Having a and c but need to find B
 
-    var questionsContext2 = [
+    // var questionsContext2 = [
 
-    /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver un lado corto que tiene nombre de B, los valores que disponen a ti sería La Hipotenusa C: '+ c + ' y un lado corto A: ' + a + ' .Cuánto mide el lado B en este Triángulo Rectángulo?'  
-    ,
+    // /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver un lado corto que tiene nombre de B, los valores que disponen a ti sería La Hipotenusa C: '+ c + ' y un lado corto A: ' + a + ' .Cuánto mide el lado B en este Triángulo Rectángulo?'  
+    // ,
 
-    /*1 */'Teniendo en cuenta de valores de un lado corto A: ' + a + ' y el valor de la Hipotenusa (C): ' + c + ' de un Triángulo Rectángulo, Cuánto equivaldría la medida del Lado Corto B?'
-    ,
+    // /*1 */'Teniendo en cuenta de valores de un lado corto A: ' + a + ' y el valor de la Hipotenusa (C): ' + c + ' de un Triángulo Rectángulo, Cuánto equivaldría la medida del Lado Corto B?'
+    // ,
 
-    /*2 */'Dado la medida del Cateto A: ' + a + ' y la medida de la Hipotenusa (C): ' + c + ' en un Triángulo Rectángulo, Cuánto mide el Cateto B?' 
-    ,
+    // /*2 */'Dado la medida del Cateto A: ' + a + ' y la medida de la Hipotenusa (C): ' + c + ' en un Triángulo Rectángulo, Cuánto mide el Cateto B?' 
+    // ,
 
-    /*3*/'Franklin compra un "sandwich" en su mejor cafetería, él lo quiere compartir con su mamá, por lo que su solución es cortarlo por la mitad diagonalmente. Él mide que la mitad cortada es de ' + c + ', mientras un borde mide ' + a + '. ¿Sabes cuánto mide el borde restante del "sandwich"?'
-    ];
+    // /*3*/'Franklin compra un "sandwich" en su mejor cafetería, él lo quiere compartir con su mamá, por lo que su solución es cortarlo por la mitad diagonalmente. Él mide que la mitad cortada es de ' + c + ', mientras un borde mide ' + a + '. ¿Sabes cuánto mide el borde restante del "sandwich"?'
+    // ];
 
-    //Words to the third context
+    // //Words to the third context
 
-    //Context 3 = Having b and c but need to find a
+    // //Context 3 = Having b and c but need to find a
 
-    var questionsContext3 = [
+    // var questionsContext3 = [
 
-     /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver un lado corto que tiene nombre de A, los valores que disponen a ti sería La Hipotenusa C: '+ c + ' y un lado corto B: ' + b + ' .Cuánto mide el lado A en este Triángulo Rectángulo?'  
-    ,
+    //  /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver un lado corto que tiene nombre de A, los valores que disponen a ti sería La Hipotenusa C: '+ c + ' y un lado corto B: ' + b + ' .Cuánto mide el lado A en este Triángulo Rectángulo?'  
+    // ,
 
-    /*1 */'Teniendo en cuenta de valores de un lado corto B: ' + b + ' y el valor de la Hipotenusa (C): ' + c + ' de un Triángulo Rectángulo, Cuánto equivaldría la medida del Lado Corto A?'
-    ,
+    // /*1 */'Teniendo en cuenta de valores de un lado corto B: ' + b + ' y el valor de la Hipotenusa (C): ' + c + ' de un Triángulo Rectángulo, Cuánto equivaldría la medida del Lado Corto A?'
+    // ,
 
-    /*2 */'Dado la medida de la Hipotenusa (C): ' + c + ' y la medida del Cateto (B): ' + b + ' en un Triángulo Rectángulo, Cuánto mide el Cateto A?' 
+    // /*2 */'Dado la medida de la Hipotenusa (C): ' + c + ' y la medida del Cateto (B): ' + b + ' en un Triángulo Rectángulo, Cuánto mide el Cateto A?' 
 
-    ,
+    // ,
 
-    /*3*/'En una clase de matemáticas, Edgar saca su regla con forma de triángulo rectángulo. Edgar ve que en las medidas mostradas en la regla son: La del lado más largo es de ' + c + ', y un lado es de ' + b  + '. ¿Sabes cuánto mide la del lado faltante? ' 
+    // /*3*/'En una clase de matemáticas, Edgar saca su regla con forma de triángulo rectángulo. Edgar ve que en las medidas mostradas en la regla son: La del lado más largo es de ' + c + ', y un lado es de ' + b  + '. ¿Sabes cuánto mide la del lado faltante? ' 
 
-    ];
+    // ];
 
 
     // var rdn = generate(4, true);
@@ -702,32 +703,26 @@ var row = [];
 
 
       $.ajax({
-        url: 'prgfiles/requestINTQuestions.php',
+        url: 'prgfiles/fetchCustomQuestions-CustomMode.php',
         type: 'GET',
         data: {mode: mode},
         datatype:'json',
 
         success: function(data){
-          data = JSON.stringify(data);
-          row =  JSON.parse(data);
-          console.log(row);
+          //row =  JSON.parse(JSON.stringify(data));
+          
           switch(mode){
 
             case "Teorema de Pitagoras" : 
+                
 
-                for(var i in row){
-                pythagorasQuestions.push(row[i].question);
-                }
-
-                generatePythagorasQuestions(a,b,c);
+                generatePythagorasQuestions(a,b,c, data);
 
                 break;
 
             case "Area y Perimetro" : 
 
-                for(var i in row){
-                perAQuestions.push(row[i].question);
-                }      
+              
 
                 break;
 
@@ -754,6 +749,20 @@ var row = [];
 
           
 }
+function StrToArraySeparation(strData){
+  
+
+  var text;
+
+  text = strData.split("-*-");
+
+  text.pop(); //Remove last element to remove the blank space
+
+  return text;
+
+
+
+}
 //Function to replace values
 function questionIdentification(question){//function to see which context
 //Pythagoras
@@ -761,15 +770,15 @@ function questionIdentification(question){//function to see which context
 
   var aFound, bFound, cFound;
 
-  aFound = question.search("-*a*-");
-  bFound = question.search("-*b*-");
-  cFound = question.search("-*c*-");
+  aFound = question.search("valorA");
+  bFound = question.search("valorB");
+  cFound = question.search("valorC");
 
-  if ((aFound && bFound) >= 0) {
+  if ((aFound >= 0) && (bFound >= 0)) {
     context = 1;
-  }else if ((aFound && cFound) >= 0 ) {
+  }else if ((aFound >= 0) && (cFound >= 0)) {
     context = 2;
-  }else if ((bFound && cFound) >= 0) {
+  }else if ((bFound >= 0) && (cFound >= 0)) {
     context = 3;
   }
 
