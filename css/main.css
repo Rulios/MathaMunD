@@ -60,7 +60,16 @@ footer{
 .toDisplayNone{
 	display:none;
 }
-
+.bold{
+	font-weight: bold;
+}
+.italic{
+	font-style: italic;
+}
+.attachToBottom{
+	
+	bottom:0;
+}
 #ICDiv{
 	float:right;
 }
@@ -334,27 +343,34 @@ footer{
 	border: 2px solid #F40C0A;
 }
 #commentBtn{
-	float:right;
-	margin-left: 10px;
+	
+	
 	font-family: 'Oswald', sans-serif;
 	font-size: 20px;
 	background-color: transparent;
 	border-radius:6px;
 	border: 2px solid #1FDF3F;
 }
+
 #content{
 	border-radius: 6px;
-	border: 5px solid #27C0D7;
+	/*border: 5px solid #27C0D7;*/
 	padding:10px;
 	display:none;
 	word-wrap: break-word;
 
 }
-
-#content form[name="commentFrm"]{
+.divEachElementContainer{
+	border: 5px solid #27C0D7;
+	border-radius: 6px;
+	word-wrap: break-word;
+	padding:50px;
+	margin-bottom: 20px;
+}
+/*#content form[name="commentFrm"]{
 	margin-bottom: 10px;
 	margin-top: 30px;
-}
+}*/
 
 form[name="commentFrm"] input[name="name"]{
 	width: 100px;
@@ -370,9 +386,11 @@ form[name="commentFrm"] input[name="comment"]{
 }
 
 div[name="divItem"]{
+	margin-top:30px;
 	padding:10px;
-	margin-bottom: 50px;
 	border-radius: 10px;
+	border: 2px solid #5EB549;
+	bottom:0;
 }
 
 

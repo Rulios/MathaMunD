@@ -157,43 +157,7 @@ $(document).ready(function(){
 
 	
 
-	var stateOfSlide = {id: 0, state : false};
 	
-	//When the commentButton is clicked
-	$('body').on('click', '#commentBtn', function(e){
-
-
-
-		var valOfbtn = $(this).attr('value');
-		stateOfSlide.id = $(this).attr('value');
-		var cronCommentToggle;
-
-		clearTimeout(cronCommentToggle);
-
-		cronCommentToggle = setTimeout(function(){
-
-			
-
-			if (stateOfSlide.state == false) {
-			 $('form[id="'+ valOfbtn + '"][name=commentFrm]').slideDown('1000');
-			 stateOfSlide.state = true;
-			}else{
-			$('form[id="'+ valOfbtn + '"][name=commentFrm]').slideUp('1000');
-			stateOfSlide.state = false;
-			}
-	
-
-			},200);
-
-
-
-			// $('form[id="'+ valOfbtn + '"][name=commentFrm]').slideToggle('1000');
-			// $('form[id="'+ valOfbtn + '"][name=commentFrm]').toggleClass('toDisplayNone');
-
-		
-
-	});
-
 //This acts when the report button is clicked
 //It automatically fills a form which is sent to the database
 //The report system works with human intervention, which means
@@ -304,8 +268,6 @@ $(document).ready(function(){
 
 			.always(function() {
 				//console.log("complete");
-			$('form[id="'+ id + '"][name=commentFrm]').slideToggle('1000');
-			$('form[id="'+ id + '"][name=commentFrm]').toggleClass('toDisplayNone');
 			});
 
 		}
@@ -428,28 +390,27 @@ function loadAjaxForum(event){
 					btnReport.setAttribute('class', 'hvr-grow');
 					btnReport.setAttribute('value' , elementId[i]);
 
-					var btnComment = document.createElement('BUTTON');
+					//var btnComment = document.createElement('BUTTON');
 					var txtForBtnComment = document.createTextNode('Comentar');
 
-					btnComment.appendChild(txtForBtnComment);
-					btnComment.setAttribute('id', 'commentBtn' );
-					btnComment.setAttribute('class' , 'hvr-grow');
-					btnComment.setAttribute('value' , elementId[i]);
+					// btnComment.appendChild(txtForBtnComment);
+					// btnComment.setAttribute('id', 'commentBtn' );
+					// btnComment.setAttribute('class' , 'hvr-grow');
+					// btnComment.setAttribute('value' , elementId[i]);
 
-					var divElements = document.createElement('DIV');
+					//Div that contains the comments
+					var divContainerComments = document.createElement('DIV');
 
-					divElements.setAttribute('style', 'border: 2px solid #5EB549;');
-					
-					divElements.setAttribute('value', elementId[i]);
-					divElements.setAttribute('name', 'divItem');
+					divContainerComments.setAttribute('value', elementId[i]);
+					divContainerComments.setAttribute('name', 'divItem');
 
 					var frmToComment = document.createElement('FORM');
 
 					frmToComment.setAttribute('action', 'prgfiles/commentsSaving.php');
 					frmToComment.setAttribute('method', 'GET');
 					frmToComment.setAttribute('name', 'commentFrm');
-					frmToComment.setAttribute('class', 'toDisplayNone');
 					frmToComment.setAttribute('id', elementId[i]);
+
 				
 					
 					var nameInput = document.createElement('input');
@@ -459,6 +420,7 @@ function loadAjaxForum(event){
 					nameInput.setAttribute('name', 'name');
 					nameInput.setAttribute('id', elementId[i]);
 
+
 					var commentInput = document.createElement('input');
 
 					commentInput.setAttribute('type', 'text');
@@ -466,6 +428,7 @@ function loadAjaxForum(event){
 					commentInput.setAttribute('name', 'comment');
 					commentInput.setAttribute('id', elementId[i] );
 					commentInput.setAttribute('maxlength', '140');
+
 
 					var hideId = document.createElement('input');
 
@@ -477,6 +440,9 @@ function loadAjaxForum(event){
 
 					submitButtonComment.setAttribute('type', 'submit');
 					submitButtonComment.setAttribute('name', 'submit');
+					submitButtonComment.setAttribute('value', 'COMENTAR');
+					submitButtonComment.setAttribute('class' , 'hvr-grow');
+					submitButtonComment.setAttribute('id', 'commentBtn');
 
 					var labelName = document.createElement('label');
 					var nameText = document.createTextNode('Nombre: ')
@@ -494,10 +460,32 @@ function loadAjaxForum(event){
 					frmToComment.append(hideId);
 					frmToComment.append(submitButtonComment);
 
-					var hiddenDiv = document.createElement('DIV');
-					
-					hiddenDiv.setAttribute('id', 'hiddenDiv');
-					
+					////////////////////////////////////////////////////
+
+					//Document elements about the questions data
+
+					var descriptionDIV = document.createElement('div');
+					descriptionDIV.setAttribute('style', 'width:100%;');
+
+					var areaSubTitle = document.createElement('h6')	;
+					areaSubTitle.append(area);
+					areaSubTitle.setAttribute('class','italic bold');
+
+
+
+					var problemTitle = document.createElement('h3');	
+					problemTitle.append(problem);
+					problemTitle.setAttribute('class', 'bold');
+					problemTitle.setAttribute('style', 'text-align:center;');
+
+					var nameSubTitle = document.createElement('h5');
+					nameSubTitle.append(name);
+					nameSubTitle.setAttribute('class', 'italic');
+					nameSubTitle.setAttribute('style', 'text-align:center;');
+
+					descriptionDIV.append(areaSubTitle);
+					descriptionDIV.append(problemTitle);
+					descriptionDIV.append(nameSubTitle);
 
 					//////////////////////////////////////////////////
 
@@ -516,30 +504,29 @@ function loadAjaxForum(event){
 
 					hiddenFrmToCommentaries.append(hiddenInput);
 
-					
-
 					//////////////////////////////////////////////////
-				
-					$('#content').append("<b>Nombre:</b> " + name + "<br><b>Area: </b>" + area + "<br><b>Problema: </b>" + problem + "<br><b>Posdata: </b>" + posdata + " ");
-					$('#content').append(btnReport);
-					$('#content').append(btnComment);
-					$('#content').append('<br> <br>');
-					$('#content').append(frmToComment);
-					$('#content').append('<br> <br>');
-					$('#content').append('<b>Comentarios:</b>');
-					$('#content').append(hiddenFrmToCommentaries);
-					$('#content').append(divElements);
-					$('#content').append(hiddenDiv);
+					divContainerComments.append(hiddenFrmToCommentaries);	
 
-
+					var divEachElementContainer = document.createElement('DIV');
+					divEachElementContainer.setAttribute('class', 'divEachElementContainer');
+					//divEachElementContainer.append("<b> Nombre: </b> " + name + "<br><b>Area: </b>" + area + "<br><b>Problema: </b>" + problem + "<br><b>Posdata: </b>" + posdata + " ");
+					divEachElementContainer.append(descriptionDIV);
+					//divEachElementContainer.append(btnReport);
+					
+					//divEachElementContainer.append(frmToComment);
 
 					
+					/////////////////////////////////////////////////
 
+				
+					
+					 divContainerComments.append(frmToComment);
+					 divEachElementContainer.append(divContainerComments);
+					 $('#content').append(divEachElementContainer);	
 					}
 
-				
-
 					
+				
 				}
 			
 
@@ -569,7 +556,7 @@ function loadAjaxForum(event){
 //This only works on Mathaforum.html!
 var checker;
 function repeatCheckOverlapping(){
-	checker = setInterval(collidesWith, 500);
+	checker = setInterval(collidesWith, 1000);
 }
 
 //If content overlaps the footer
