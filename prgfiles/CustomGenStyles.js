@@ -394,7 +394,7 @@ function changeToPositive(n){
 }
 
 function generatePythagorasQuestions(a , b, c, questions){
-
+    
     var questionsContext1 = [];
     var questionsContext2 = [];
     var questionsContext3 = [];
@@ -404,26 +404,29 @@ function generatePythagorasQuestions(a , b, c, questions){
     for(i = 0; i < pythagorasQuestions.length; i++){
       var x = 0;
       x = (questionIdentification(pythagorasQuestions[i]));
-      alert(x + " " + pythagorasQuestions[i]);
+      
       switch(x){
 
         case 1:
 
             questionsContext1.push(pythagorasQuestions[i]);
+            
             break;
 
         case 2:
             questionsContext2.push(pythagorasQuestions[i]);
+           
             break;
 
         case 3:
             questionsContext3.push(pythagorasQuestions[i]);
+            
             break;    
       }
 
     }
 
-    
+
     
     //Context means the side to solve it
      
@@ -488,29 +491,40 @@ function generatePythagorasQuestions(a , b, c, questions){
     // /*3*/'En una clase de matemáticas, Edgar saca su regla con forma de triángulo rectángulo. Edgar ve que en las medidas mostradas en la regla son: La del lado más largo es de ' + c + ', y un lado es de ' + b  + '. ¿Sabes cuánto mide la del lado faltante? ' 
 
     // ];
+    var string;
+    
+    var rdn = 0;
+    var questionsDescription = $('#DescriptionCustom');
+    
 
+    if (pythagorasSideCheck == 1) {
 
-    // var rdn = generate(4, true);
-    // var questionsDescription = $('#DescriptionCustom');
+      rdn = generate(questionsContext1.length, true);
+      string = stringReplaceValue(a,b,c,questionsContext1[rdn]);
+      
+      questionsDescription.text(string);
 
+    }else if (pythagorasSideCheck == 2) {
 
-    // if (context == 1) {
+      rdn = generate(questionsContext2.length, true);
+      string = stringReplaceValue(a,b,c,questionsContext2[rdn]);
+      
+      questionsDescription.text(string);
 
-    //   questionsDescription.html(questionsContext1[rdn]);
+    }else if (pythagorasSideCheck == 3) {
 
-    // }else if (context == 2) {
+      rdn = generate(questionsContext3.length, true);
+      string = stringReplaceValue(a,b,c,questionsContext3[rdn]);
+      
+      questionsDescription.text(string);
+      
 
-    //   questionsDescription.html(questionsContext2[rdn]);
-
-    // }else if (context == 3) {
-
-    //   questionsDescription.html(questionsContext3[rdn]);
-
-    // }
+    }
+    
      $('#NProblem').text('#' + timesPRep);
 
 
-    rdn = 0;
+    
 
 }
 
@@ -763,7 +777,7 @@ function StrToArraySeparation(strData){
 
 
 }
-//Function to replace values
+//Function to see what context means
 function questionIdentification(question){//function to see which context
 //Pythagoras
   var context;
@@ -787,6 +801,35 @@ function questionIdentification(question){//function to see which context
 
 }
 
+function stringReplaceValue(a,b,c,question){
+
+
+
+
+  if (a != 0 || typeof a =='undefined'){
+    
+  question = question.replace('valorA', a);
+
+  }
+
+  if (b != 0 || typeof b =='undefined') {
+  question = question.replace('valorB', b);
+    
+  }
+
+  if(c != 0 || typeof c =='undefined'){
+  question = question.replace('valorC', c);
+    
+  }
+
+ 
+
+
+
+  
+
+  return question;
+}
 
 //Javascript//////////////////////////Javascript/////Inputs / Browser
 
