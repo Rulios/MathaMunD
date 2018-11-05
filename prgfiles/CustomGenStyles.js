@@ -136,7 +136,7 @@ $('#Arrow2Container').click(function() {
 function randomizeCustomModes(context){
 
   var randomMode;
-  console.log(context)
+  
 
   timesPRep += 1;
 
@@ -335,7 +335,7 @@ var c = 0;
 
     }while(notDecimal == false)
 
-    console.log('Before Root' +beforeRoot);
+    console.log('Before Root' + beforeRoot);
     console.log('Square Root' + squareRoot);
 
     actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(b,2));
@@ -351,7 +351,6 @@ var c = 0;
 
 
  }
-
 
 
 
@@ -377,7 +376,8 @@ function generate(range ,needZero){
 
   }
 
-  return n;
+  return n; 
+  
 
 }
 
@@ -399,10 +399,10 @@ function generatePythagorasQuestions(a , b, c, questions){
     var questionsContext2 = [];
     var questionsContext3 = [];
     pythagorasQuestions = StrToArraySeparation(questions);
-    
-    
+    console.log(pythagorasQuestions);
+    var x = 0;
     for(i = 0; i < pythagorasQuestions.length; i++){
-      var x = 0;
+      
       x = (questionIdentification(pythagorasQuestions[i]));
       
       switch(x){
@@ -426,8 +426,6 @@ function generatePythagorasQuestions(a , b, c, questions){
 
     }
 
-
-    
     //Context means the side to solve it
      
     $('#keyWords').text('');
@@ -437,92 +435,46 @@ function generatePythagorasQuestions(a , b, c, questions){
     $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado de mayor longitud de un Triángulo Rectángulo. <br> ');
     $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo.');
 
-    //words to the first context
-
-    //Context 1 =  Having a and b but need to find c
-    // var questionsContext1 = [
-
-    // /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver el lado más largo,  los valores que sabes son los de los lados mas cortos, el valor del lado corto A es: ' + a + ' y del lado corto B es: ' + b + ' . Cuánto es que mide la hipotenusa?'
-    // ,
-
-    // /*1 */'Con los lados cortos A: ' + a + ' y B:' + b + ' Cuánto mide el lado más largo (C) de un Triángulo Rectángulo con estos valores dados?'
-    // ,
-
-    // /*2 */'Dado las medidas de los catetos de un Triángulo Rectángulo: A: ' + a + ' ,B: ' + b + ' . Cuánto mide la hipotenusa de ese Triángulo Rectángulo?'
-    // ,
-    
-    // /*3*/ 'En un día soleado, Marta ve que la sombra de un edificio se proyecta perpendicularmente de un edificio con altura de ' + a + '. Ella mide que el largo de esa sombra es de ' + b + ' Marta nota que lo que ve forma un triángulo rectángulo. ¿Sabes cuánto es que recorre el rayo de luz desde que toca el borde del edificio hasta llegar a la superficie formando la sombra del edificio?'   
-    // ];
-
-    // //Words to the second context
-
-    // //Context 2 = Having a and c but need to find B
-
-    // var questionsContext2 = [
-
-    // /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver un lado corto que tiene nombre de B, los valores que disponen a ti sería La Hipotenusa C: '+ c + ' y un lado corto A: ' + a + ' .Cuánto mide el lado B en este Triángulo Rectángulo?'  
-    // ,
-
-    // /*1 */'Teniendo en cuenta de valores de un lado corto A: ' + a + ' y el valor de la Hipotenusa (C): ' + c + ' de un Triángulo Rectángulo, Cuánto equivaldría la medida del Lado Corto B?'
-    // ,
-
-    // /*2 */'Dado la medida del Cateto A: ' + a + ' y la medida de la Hipotenusa (C): ' + c + ' en un Triángulo Rectángulo, Cuánto mide el Cateto B?' 
-    // ,
-
-    // /*3*/'Franklin compra un "sandwich" en su mejor cafetería, él lo quiere compartir con su mamá, por lo que su solución es cortarlo por la mitad diagonalmente. Él mide que la mitad cortada es de ' + c + ', mientras un borde mide ' + a + '. ¿Sabes cuánto mide el borde restante del "sandwich"?'
-    // ];
-
-    // //Words to the third context
-
-    // //Context 3 = Having b and c but need to find a
-
-    // var questionsContext3 = [
-
-    //  /*0 */'Tienes un Triángulo Rectángulo en la que necesitas resolver un lado corto que tiene nombre de A, los valores que disponen a ti sería La Hipotenusa C: '+ c + ' y un lado corto B: ' + b + ' .Cuánto mide el lado A en este Triángulo Rectángulo?'  
-    // ,
-
-    // /*1 */'Teniendo en cuenta de valores de un lado corto B: ' + b + ' y el valor de la Hipotenusa (C): ' + c + ' de un Triángulo Rectángulo, Cuánto equivaldría la medida del Lado Corto A?'
-    // ,
-
-    // /*2 */'Dado la medida de la Hipotenusa (C): ' + c + ' y la medida del Cateto (B): ' + b + ' en un Triángulo Rectángulo, Cuánto mide el Cateto A?' 
-
-    // ,
-
-    // /*3*/'En una clase de matemáticas, Edgar saca su regla con forma de triángulo rectángulo. Edgar ve que en las medidas mostradas en la regla son: La del lado más largo es de ' + c + ', y un lado es de ' + b  + '. ¿Sabes cuánto mide la del lado faltante? ' 
-
-    // ];
+   
     var string;
     
     var rdn = 0;
     var questionsDescription = $('#DescriptionCustom');
     
+    //We use generate() with noNeedOfZero
+    //But when sending to stringReplaceValue we put rdn-1
+    //To substract from the rdn, to prevent matching rdn with the Array of the Question
+    //To prevent undefined, and because JS array asignations begins in 0.
 
     if (pythagorasSideCheck == 1) {
 
-      rdn = generate(questionsContext1.length, true);
-      string = stringReplaceValue(a,b,c,questionsContext1[rdn]);
+      rdn = generate(questionsContext1.length, false);
       
+      string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
+      console.log("arrLength" + questionsContext1.length +'rdn' + (rdn-1));
       questionsDescription.text(string);
 
     }else if (pythagorasSideCheck == 2) {
 
-      rdn = generate(questionsContext2.length, true);
-      string = stringReplaceValue(a,b,c,questionsContext2[rdn]);
+      rdn = generate(questionsContext2.length, false);
       
+      string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
+      console.log("arrLength" + questionsContext2.length +'rdn' + (rdn-1));
       questionsDescription.text(string);
 
     }else if (pythagorasSideCheck == 3) {
 
-      rdn = generate(questionsContext3.length, true);
-      string = stringReplaceValue(a,b,c,questionsContext3[rdn]);
+      rdn = generate(questionsContext3.length, false);
       
+      string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
+      console.log("arrLength" + questionsContext3.length +'rdn' + (rdn-1));
       questionsDescription.text(string);
       
 
     }
-    
+      
      $('#NProblem').text('#' + timesPRep);
-
+     string = "";
 
     
 
@@ -703,6 +655,7 @@ function showResults(){
   }
   
   $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de 10!');
+  $('#DescriptionCustom').append("<br>");
   $('#ResultAndGo').css('display','none');
   $('#divAnswerCustom').css('display', 'none');
   $('#MainTitleCustom').css('display', 'none');
@@ -804,10 +757,12 @@ function questionIdentification(question){//function to see which context
 function stringReplaceValue(a,b,c,question){
 
 
-
+  console.log(a);
+  console.log(b);
+  console.log(c);
 
   if (a != 0 || typeof a =='undefined'){
-    
+  console.log("True");  
   question = question.replace('valorA', a);
 
   }
@@ -830,6 +785,7 @@ function stringReplaceValue(a,b,c,question){
 
   return question;
 }
+
 
 //Javascript//////////////////////////Javascript/////Inputs / Browser
 
