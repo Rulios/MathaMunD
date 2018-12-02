@@ -11,8 +11,7 @@
    pointer-events: none;
 }
 body{
-	margin: 0px;
-	display: table;
+	
 	height: 100%;
 	width: 100%;
 }
@@ -25,9 +24,9 @@ body{
 footer{
 	bottom:0;
 	left:0;
-	position:absolute;
+	position:relative;
 	width: 100%;	
-	
+	margin-top:120px;
 	
 	height: 1px;
 }
@@ -81,7 +80,21 @@ footer{
 	height: 60px;
 	width: 60px;
 }
-#IconToHover:hover, #SCIconToHover:hover{
+#SCIconToHover:hover{
+	/*Animation of the Social Media Icons!*/
+	-webkit-transform:scale(1.25) ; /* Safari and Chrome */
+    -moz-transform:scale(1.25) ; /* Firefox */
+    -ms-transform:scale(1.25) ; /* IE 9 */
+    -o-transform:scale(1.25) ; /* Opera */
+     transform:scale(1.25) ;
+
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition:transform 0.3s ease-in-out;
+    -ms-transition:transform 0.3s ease-in-out;
+    
+
+}
+#IconToHover:hover{
 	/*Animation of the Social Media Icons!*/
 	-webkit-transform:scale(1.25) ; /* Safari and Chrome */
     -moz-transform:scale(1.25) ; /* Firefox */
@@ -114,6 +127,7 @@ footer{
 	margin-bottom: 40px;
 	width:auto;
 	height: auto;
+	padding:6px;
 
 }
 .button_style2{
@@ -212,7 +226,7 @@ footer{
 	font-size: 20px;
 	background-color: transparent;
 	font-family: 'Bungee', cursive;
-	display:inline-block;
+	
 }
 .button_styleFilter{
 	text-decoration: none;
@@ -229,7 +243,7 @@ footer{
 	text-align: center;
 	text-decoration: none;
 	background-color: transparent;
-	border: 0px solid ;
+	border: 0px solid;
 	border: 3px solid;
 	font-family: 'Bungee', cursive;
 	font-size: 40px;
@@ -238,44 +252,61 @@ footer{
 	width:auto;
 	height: auto;
 }
-/*#indexB{
-	background-color: #BFBFBFFF;
-} */
-#filter{
-	display:inline-block;
-}
-
 #Jugar{
 	font-size: 35px;
 	text-decoration:none;
 	font-family: 'Bungee', cursive;
-
-}
-
-
-#mforum * {
 	
-	margin:20px;
+
 }
 
+#forumNavBar{
+	width: 100%;
+	height: auto;
+	margin-top:20px;
+	display:table;
+}
+#forumNavBar > *{
+	display:table-cell;
 
-#ask{
+}
+/*#forumNavBar h5, #filter{
+	text-align:center;
+}*/
+.center{
+	margin:auto;
+	text-align:center;
+}
+
+#forumNavBar #IconToHover{
+	float:left;
+}
+#forumNavBar button{
 	float:right;
-	margin-top:40px;
-	margin-right: 80px;
+	position:relative;
+	margin-right: 20px;
 }
-
-#mforum h5{
+#forumNavBar #sLogo{
+	height: auto;
+	width:100%;
+	
+}
+#forumNavBar h5{
 	font-family: 'Bungee', cursive;
 	font-size: 30px;
+}
+/*
+#forumNavBar :not(#IconToHover){ Excludes the Icon
+	margin:20px;
 	display:inline-block;
 }
-
+*/
 #selectFilter{
 	font-family: 'Bungee', cursive;
 	width:170px;
 	border-radius: 5px;
 	font-size: 16px;
+	margin:20px;
 }
 /*Form to insert data or question  MODAL BOX*/
 #modal{
@@ -503,7 +534,7 @@ div[name="divItem"]{
 	font-size: 60px;
 	margin-top: 10px;
 }
-#FormStyle h3{
+#FeedBackBox h3{
 	font-family: 'Bungee', cursive;
 	font-size: 20px;
 	color:#7F7F7F;
@@ -551,7 +582,7 @@ div[name="divItem"]{
 
 #divAnswerCustom{
 	margin-top: 50px;
-	
+	margin-bottom: 50px;
 }
 
 #inputCustom{
@@ -729,9 +760,6 @@ div[name="divItem"]{
 	/* ---------------------------------------- */
 	/*FeedBack Part*/
 
-	#FormStyle{
-		margin-top: 40px;
-	}
 
 	#h1OfFeedBack{
 		font-size: 30px;
@@ -740,6 +768,7 @@ div[name="divItem"]{
 	}
 
 	#FeedBackBox{
+		margin-top:40px;
 		margin-right: 5px;
 		margin-bottom: 40px;
 	}
@@ -754,15 +783,23 @@ div[name="divItem"]{
 	}
 
 	/* -------------------------- */
-	#filter{
-		display: block;
+	#forumNavBar > *	{
+		display:block;
 	}
 
-	.button_stylefrmAsk{
-		display:block;
+	#forumNavBar #Jugar{
+		float:right;
+		
+	}
+	#forumNavBar div{
+		white-space: pre;
+	}
+	#forumNavBar button{
+		float:none;
+		margin:auto;
+		position: relative;
 		font-size: 16px;
 		width: 150px;
-
 	}
 
 	#sLogo{
@@ -771,12 +808,6 @@ div[name="divItem"]{
 
 	#selectFilter{
 		font-size: 12px;
-		
-	}
-
-	#frmToAsk {
-		
-		float:center;
 		
 	}
 	#slctArea{
@@ -788,7 +819,7 @@ div[name="divItem"]{
 		width: 70%;
 	}
 	#mforum h5{
-		display: block;
+	display: block;
 	font-size: 25px;
 	}
 
@@ -796,9 +827,7 @@ div[name="divItem"]{
 		font-size: 32px;
 		float:right;
 	}
-	#ask{
-		margin-right: 120px;
-	}
+	
 	form[name="commentFrm"]{
 		margin-top: 10px;
 	}

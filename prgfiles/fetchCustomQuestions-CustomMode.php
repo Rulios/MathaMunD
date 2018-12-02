@@ -5,7 +5,7 @@ $user = "root";
 $pw = "getrekt123";
 $db = "mathaforum";
 
-$mode = "Teorema de Pitagoras";//$_GET['mode'];
+$mode = $_GET['mode'];
 
 
 $conn = mysql_connect($host, $user) or $conn = mysql_connect($host, $user, $db) or die ("Problemas al Conectar");

@@ -5,12 +5,10 @@ var perCheck;
 var timesPRep = 0; //Times in which users clicks #Arrow2
 var usrAnswer = 0; //Times the user answered correctly
 
-//Obligatory variables; These variables made the code more flexible
-var pythagorasSideCheck = 0; //is the Context "Situation in which it is randomly decided to solve"
-
 ///// Questions Variable /////////////
 var pythagorasQuestions = [];
 var perAQuestions = [];
+var UserState = false; //Variable to detech if user has first entered
 
 $(document).ready(function(){
 
@@ -42,13 +40,13 @@ $(document).ready(function(){
   //Hide ModalBox
      $('#modal').css('display', 'none');
   // Hide all 'play' Selection page 
-      $('#allPlayPage').slideUp(2000);    
-      $('#allPlayPage').hide(2000);
-
+      //$('#allPlayPage').slideUp(2000);    
+      //$('#allPlayPage').hide(2000);
+      $('#allPlayPage').css('display', 'none');
   // Shows all 'custom' page    
 
       $('#title').text('Personalizada');
-      $('#allCustom').slideUp(1000);
+      //$('#allCustom').slideUp(1000);
       $('#allCustom').css('display', 'block');
 
         var range = 0;
@@ -141,7 +139,7 @@ function randomizeCustomModes(context){
   timesPRep += 1;
 
 //Initialize the generate
-  if (context == 'all') {
+if (context == 'all') {
 
     //I don't know I've got to put 3 as parameter, it seems on only an
     //possibility of generating _context 1. But having 3 it solves this problem
@@ -151,16 +149,18 @@ function randomizeCustomModes(context){
     if (context == '1') {
       generatePythagoras();
     }else if (context == '2') {
-      areaAndPerimeter();
+      //areaAndPerimeter();
+      generateQuestionsAreaAndPerimeter();
     }
 
-  }else if (context == '1') { //Pythagoras
+    }else if (context == '1') { //Pythagoras
 
-    generatePythagoras();
+      generatePythagoras();
 
-  }else if (context == '2') { //Area And Perimeter
+    }else if (context == '2') { //Area And Perimeter
 
-    areaAndPerimeter();
+      //areaAndPerimeter();
+      generateQuestionsAreaAndPerimeter();
 
   }
 
@@ -210,7 +210,7 @@ function checkSelectedModes(arrSelected , requester){
 
 
 
-function generatePythagoras(){
+function generatePythagoras(context){
 //Function to random get some questions
 
 //Initialize values of the sides
@@ -222,11 +222,7 @@ var c = 0;
 
 //Randomize the type, so it can have to A, To B, To C
 
-
- pythagorasSideCheck = generate(3, false);
-
-
-   if (pythagorasSideCheck == 1) { //Having a and b but need to solve C
+   if (context == 1) { //Having a and b but need to solve C
 
   
         do{
@@ -260,7 +256,7 @@ var c = 0;
     actualTotalCorrectResult = Math.sqrt(Math.pow(a,2) + Math.pow(b,2));
     //generatePythagorasQuestions(1, a, b, 0);
 ////////////////////////////////////////////////////////////////////
-   }else if(pythagorasSideCheck == 2){//having a and c but need to solve B
+   }else if(context == 2){//having a and c but need to solve B
 
     do{
 
@@ -300,7 +296,7 @@ var c = 0;
     //generatePythagorasQuestions(2, a, 0 , c);
 
 
-   }else if(pythagorasSideCheck == 3){//having b and c but need to solve a
+   }else if(context == 3){//having b and c but need to solve a
 
     do{
 
@@ -344,13 +340,11 @@ var c = 0;
 
     //See structure//
     //It Ajax's the questions from the DB, to then direct to the 
-    //HTML convertion
-    fetchCustomQuestions(a, b,c, "Teorema de Pitagoras");
-    
+    //HTML conversion
 
+    return [a,b,c];
 
-
- }
+}
 
 
 
@@ -393,41 +387,9 @@ function changeToPositive(n){
 
 }
 
-function generatePythagorasQuestions(a , b, c, questions){
-    
-    var questionsContext1 = [];
-    var questionsContext2 = [];
-    var questionsContext3 = [];
-    pythagorasQuestions = StrToArraySeparation(questions);
-    console.log(pythagorasQuestions);
-    var x = 0;
-    for(i = 0; i < pythagorasQuestions.length; i++){
-      
-      x = (questionIdentification(pythagorasQuestions[i]));
-      
-      switch(x){
+function generatePythagorasQuestions(){
 
-        case 1:
 
-            questionsContext1.push(pythagorasQuestions[i]);
-            
-            break;
-
-        case 2:
-            questionsContext2.push(pythagorasQuestions[i]);
-           
-            break;
-
-        case 3:
-            questionsContext3.push(pythagorasQuestions[i]);
-            
-            break;    
-      }
-
-    }
-
-    //Context means the side to solve it
-     
     $('#keyWords').text('');
     $('#MainTitleCustom').text('Teorema de Pitágoras');
 
@@ -435,10 +397,82 @@ function generatePythagorasQuestions(a , b, c, questions){
     $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado de mayor longitud de un Triángulo Rectángulo. <br> ');
     $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo.');
 
-   
-    var string;
-    
+    if (UserState == false) { //Means that first loaded state
+
+      UserState = true;
+
+       //Callback - Fetch Questions
+       fetchCustomQuestions("TPYTHG",function(questions){
+
+        var questionsContext1 = [];
+        var questionsContext2 = [];
+        var questionsContext3 = [];
+        pythagorasQuestions = StrToArraySeparation(questions);
+        console.log(pythagorasQuestions);
+        var x = 0;
+        for(i = 0; i < pythagorasQuestions.length; i++){
+
+          x = (questionIdentification(pythagorasQuestions[i], "TPYTHG"));
+
+          switch(x){
+
+            case 1:
+
+            questionsContext1.push(pythagorasQuestions[i]);
+
+            break;
+
+            case 2:
+            questionsContext2.push(pythagorasQuestions[i]);
+
+            break;
+
+            case 3:
+            questionsContext3.push(pythagorasQuestions[i]);
+
+            break;    
+          }
+        }
+      });
+    }
+
     var rdn = 0;
+    var context = 0;
+    var string;
+    var values = [];
+    context = generate(3,false); //Get the context
+    switch(context){
+
+      case 1: 
+
+      rdn = generate(questionsContext1.length, false);
+      values = generatePythagoras(context);
+      string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
+
+      break;
+
+      case 2:
+
+      rdn = generate(questionsContext2.length, false);
+      values = generatePythagoras(context);
+      string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
+
+      break;
+
+      case 3:
+
+      rdn = generate(questionsContext3.length, false);
+      values = generatePythagoras(context);
+      string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
+
+      break;
+    }
+    
+    //Context means the side to solve it
+
+    
+    
+    
     var questionsDescription = $('#DescriptionCustom');
     
     //We use generate() with noNeedOfZero
@@ -506,7 +540,7 @@ function areaAndPerimeter(){
         generateQuestionsAreaAndPerimeter("AreaRectangle", a, b);
       }
 
-   }else if  (rnd ==2){ //PERIMETER OF SQUARE OR RECTANGLE
+   }else if  (rnd == 2){ //PERIMETER OF SQUARE OR RECTANGLE
 
       var i = generate(2, false);
 
@@ -530,10 +564,16 @@ function areaAndPerimeter(){
 
    }
 
+  var c = undefined; //this is just to fill parameters
+
+  
 }
 
-function generateQuestionsAreaAndPerimeter(context, a , b){
-  
+function generateQuestionsAreaAndPerimeter(/*context, a , b*/){
+  alert("hola");
+
+  fetchCustomQuestions(undefined,undefined,undefined, "A&PSR");
+  alert(perAQuestions);
 
   $('#FormulaDescriptionCustom').text('');
   $('#keyWords').text('');
@@ -541,37 +581,7 @@ function generateQuestionsAreaAndPerimeter(context, a , b){
 
   var questionsDescription = $('#DescriptionCustom');
 
-  var questionContext1 = [ // For area of squares 
-  'Tienes un cuadrado en la que el lado A es ' + a + ', Calcula su Área.'
-  ,
-  'Tienes un cuadrado en la que el lado B es ' + b + ', Calcula su Área.'
-  ,
-  'Juan se encuentra con una baldosa que por un lado mide ' + a + ' en lo que él muestra interés por saber el área, te lo agradecería si le ayudas.'
-  ]
-
-  var questionsContext2 = [ //For area of rectangles
-  'En un rectángulo, el lado A es de ' + a + ' y el lado B es de ' + b +' , Calcula su Área.'
-  ,
-  'En un rectángulo, el lado B es de ' + b + ' y el lado A es de ' + a + ' , Calcula su Área.'
-  ,
-  'Cada tarde Rodrigo sale a jugar fútbol en una cancha cercana, un día se da cuenta de que su cancha no es igual a las otras, por lo que empieza a medirla. El primer lado le da ' + a + ' , mientras el otro lado le da ' + b + ' , entonces sabes cuál es el área de la cancha?'
-  ]
-
-  var questionContext3 = [ // For perimeter of squares 
-  'Tienes un cuadrado en la que el lado A es ' + a + ', Calcula su Perímetro.'
-  ,
-  'Tienes un cuadrado en la que el lado B es ' + b + ', Calcula su Perímetro.'
-  ,
-  'En la granja de Pedro hay una casa en la que Pedro se interesa mucho, debido a que sus lados son exactamente iguales, por lo que el concluye que para sacar su perímetro, solo es necesario medir un lado. Al medirlo le da ' + a + ' , y con esta medición Pedro concluye que puede hallar el perímetro.'
-  ]
-
-  var questionsContext4 = [ //For perimeter of rectangles
-  'En un rectángulo, el lado A es de' + a + ' y el lado B es de' + b +' , Calcula su Perímetro.'
-  ,
-  'En un rectángulo, el lado B es de' + b + ' y el lado A es de' + a + ' , Calcula su Perímetro.'
-  ,
-  'Jose es un arquitecto muy reconocido, en el que tiene que calcular el perímetro de una sección rectangular de su obra, a él le dan valores de dos lados, el primero es de ' + a + ' y el otro lado es de ' + b +  ' , sabes de cuanto es el perímetro de la sección?' 
-  ]
+  
 
   var rdn = generate(3,false);
 
@@ -663,11 +673,11 @@ function showResults(){
 
 }
 //Javascript///////////////////////////fetch with AJAX
-function fetchCustomQuestions(a, b,c,mode){ //This is used to get the questions from the DB
+function fetchCustomQuestions(mode, callback){ //This is used to get the questions from the DB
 
 var mode = mode;
+var data = [];
 var row = [];
-
 
       $.ajax({
         url: 'prgfiles/fetchCustomQuestions-CustomMode.php',
@@ -675,50 +685,13 @@ var row = [];
         data: {mode: mode},
         datatype:'json',
 
-        success: function(data){
-          //row =  JSON.parse(JSON.stringify(data));
-          
-          switch(mode){
-
-            case "Teorema de Pitagoras" : 
-                
-
-                generatePythagorasQuestions(a,b,c, data);
-
-                break;
-
-            case "Area y Perimetro" : 
-
-              
-
-                break;
-
-          }
-          
-
-        }
-
-          
-      })
-
-      .done(function() {
-        //console.log("success");
-      })
-
-      .fail(function() {
-        //console.log("error");
-      })
-
-      .always(function() {
-        //console.log("complete");
-        
-      });
-
-          
+      }).done(function(done){}, callback);
 }
+
+
 function StrToArraySeparation(strData){
   
-
+  
   var text;
 
   text = strData.split("-*-");
@@ -731,24 +704,38 @@ function StrToArraySeparation(strData){
 
 }
 //Function to see what context means
-function questionIdentification(question){//function to see which context
+function questionIdentification(question, mode){//function to see which context
 //Pythagoras
   var context;
-
   var aFound, bFound, cFound;
 
-  aFound = question.search("valorA");
-  bFound = question.search("valorB");
-  cFound = question.search("valorC");
+  if (mode == "TPYTHG") { //Pythagora's Theorem
 
-  if ((aFound >= 0) && (bFound >= 0)) {
-    context = 1;
-  }else if ((aFound >= 0) && (cFound >= 0)) {
-    context = 2;
-  }else if ((bFound >= 0) && (cFound >= 0)) {
-    context = 3;
+    aFound = question.search("valorA");
+    bFound = question.search("valorB");
+    cFound = question.search("valorC");
+
+    if ((aFound >= 0) && (bFound >= 0)) {
+      context = 1;
+    }else if ((aFound >= 0) && (cFound >= 0)) {
+      context = 2;
+    }else if ((bFound >= 0) && (cFound >= 0)) {
+      context = 3;
+    }
+
+
+  }else if (mode == "A&PSR"){ //Area and perimeter of squares and rectangles
+    var x = question.includes("área") || question.includes("Área");
+
+    if (x == true) {
+     
+    }
+
+
+
   }
 
+  
 
   return context;
 

@@ -31,7 +31,7 @@
 
 </head>
 <body id="forum" >
-
+<!-- 
 <div class="container-fluid">
 
 <div class="row">
@@ -62,7 +62,7 @@
 
 		</select>
 		</form>
-	</center>
+	
 	</span>
 	
 	<img src="imgs/MathaMunD.png" id="sLogo" height="120" width="180">	
@@ -70,13 +70,43 @@
 	
 	
 	<button  class="  button_stylefrmAsk hvr-grow " id="ask">Preguntar</button>	
-
+	</center>
 	
 	
 	</div>		
 
- </div>
+ </div> -->
 
+<div id="forumNavBar" >
+
+	<a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px;  margin-left:20px;" >	</a>
+
+	<a href="Jugar.html"  id="Jugar"> Jugar</a>
+
+	
+	<div class="center" >
+	<h5>Filtrar:</h5>
+	<span id="filter">
+		
+		<form action="prgfiles/filterAct.php" method="GET" name="filterSlct">
+		<select  id="selectFilter" name="filter">
+		
+		<option value="All">Feed</option>	
+		<option value="Mixto">Mixto</option>
+		<option value="Aritmetica">Aritmética</option>
+		<option value="Algebra">Álgebra</option>
+		<option value="Geometria">Geometría</option>
+
+		</select>
+		</form>
+	</span>
+	</div>
+	
+	
+	<button  class="  button_stylefrmAsk hvr-grow " id="ask">Preguntar</button>	
+
+
+</div>
 
 
 <div   class="roboto_letra" id="modal" >
@@ -86,8 +116,7 @@
 <span class="close">&times;</span>
 <div class="modal-header"><h2>Pregunta!</h2></div>	
 
-	<center>
-	<form  action="prgfiles/insertar.php" method="POST" name="frmForum" style="background-color: transparent;"  >
+	<form  class="center" action="prgfiles/insertar.php" method="POST" name="frmForum" style="background-color: transparent;"  >
 	
 	<b>Nombre:</b> 
 	<input type="text" required placeholder="Nombre..." id="name" name="name" maxlength="20"> 
@@ -103,35 +132,24 @@
 	<option value="Aritmetica">Aritmética</option>
 	<option value="Algebra">Álgebra</option>
 	<option value="Geometria">Geometría</option>
-
 	</select>
-
-
 	<br>
 	<br>
-
 	<b> Problema del Post:</b> <br>
 	<textarea required placeholder="Problema..." rows="4" cols="100" maxlength="140" id="postP" name="postP"></textarea>
 	
-
 	<br>
 	<br>
-
 	<b>Posdata:</b> <br>
 	<input type="text"  placeholder="Posdata..." rows="4" cols="100" name="postD" id="postD" maxlength="140">
-
 	<br>
 	<br>
-
 	<input type="submit" name="submit"class="modalSendBtn" id="frmAskBtn" value="Enviar">
 	
-
 </form>
-</center>
-</div>
 
 </div>
-
+</div>
 
 	<div class="container" id="ForumSection" >
 		<div id="content" >
@@ -140,46 +158,28 @@
 	</div>
 
 <footer class=" animated fadeInDown retrasoDeAnimacion_1 text-center" id="forumFooter" style=" margin-top: 20px;" >
-
-
 		<div style="background-color: #A0B0A4FF; display:inline-block; "  class="wrapper">
-
 			
-
 				<div id="ICDiv">
 							
 					<h4 class="oswald_letra " style="font-size: 15px; "> Síguenos en nuestras redes sociales!</h4>
-
-
-
 					<a target="_blank" href="https://www.instagram.com/mathamund"><img id="SCIconToHover" src="imgs/social-media-icons/instagram.png "  ></a>	
 				
-
 								
 					<a target="_blank" href="https://www.facebook.com/mathamund"><img id="SCIconToHover" src="imgs/social-media-icons/facebook.png" ></a>
 	
 				</div>
 			
 			<div id="CPDiv">
-
 				© 2017 MathaMunD Todos los derechos reservados 
 				<br>
 				Icons made by <a target="_blank" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
-
 			</div>
-
-
 		
 		</div>
 			
 		
-
 			
 	</footer>
-
-
-
-
-
 </body>
 </html>
