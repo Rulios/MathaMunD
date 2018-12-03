@@ -10,6 +10,12 @@ var pythagorasQuestions = [];
 var perAQuestions = [];
 var UserState = false; //Variable to detech if user has first entered
 
+//These variables can be added more if need more context
+
+var questionsContext1 = [];
+var questionsContext2 = [];
+var questionsContext3 = [];  
+
 $(document).ready(function(){
 
 	$('#startCustom').click(function(e){
@@ -147,7 +153,7 @@ if (context == 'all') {
     context = generate(3 ,false);
 
     if (context == '1') {
-      generatePythagoras();
+      generatePythagorasQuestions();
     }else if (context == '2') {
       //areaAndPerimeter();
       generateQuestionsAreaAndPerimeter();
@@ -155,7 +161,7 @@ if (context == 'all') {
 
     }else if (context == '1') { //Pythagoras
 
-      generatePythagoras();
+      generatePythagorasQuestions();
 
     }else if (context == '2') { //Area And Perimeter
 
@@ -227,8 +233,8 @@ var c = 0;
   
         do{
 
-      a = generate(15);
-      b = generate(15);
+      a = generate(20);
+      b = generate(20);
 
       var notDecimal = false;//This variable is to check if 
                 //the result is going decimal
@@ -262,8 +268,8 @@ var c = 0;
 
         do{//To check if Hypotenuse is bigger than legs
 
-          a = generate(15);
-          c = generate(15);
+          a = generate(20);
+          c = generate(20);
 
         }while(c <= a);
 
@@ -302,8 +308,8 @@ var c = 0;
 
         do{//To check if Hypotenuse is bigger than longest
 
-          b = generate(15);
-          c = generate(15);
+          b = generate(20);
+          c = generate(20);
 
         }while(c <= b);
 
@@ -389,13 +395,9 @@ function changeToPositive(n){
 
 function generatePythagorasQuestions(){
 
-
+    
     $('#keyWords').text('');
     $('#MainTitleCustom').text('Teorema de Pitágoras');
-
-
-    $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado de mayor longitud de un Triángulo Rectángulo. <br> ');
-    $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo.');
 
     if (UserState == false) { //Means that first loaded state
 
@@ -404,9 +406,16 @@ function generatePythagorasQuestions(){
        //Callback - Fetch Questions
        fetchCustomQuestions("TPYTHG",function(questions){
 
-        var questionsContext1 = [];
-        var questionsContext2 = [];
-        var questionsContext3 = [];
+        
+
+        var rdn = 0;
+        var context = 0;
+        var string;
+        var values = [];
+        var a = 0;
+        var b = 0;
+        var c = 0;
+
         pythagorasQuestions = StrToArraySeparation(questions);
         console.log(pythagorasQuestions);
         var x = 0;
@@ -433,80 +442,113 @@ function generatePythagorasQuestions(){
             break;    
           }
         }
+
+        ///
+        context = generate(3,false); //Get the context
+        switch(context){
+
+          //Context means the side to solve it
+          //We use generate() with noNeedOfZero
+          //But when sending to stringReplaceValue we put rdn-1
+          //To substract from the rdn, to prevent matching rdn with the Array of the Question
+          //To prevent undefined, and because JS array asignations begins in 0.
+          case 1: 
+
+          rdn = generate(questionsContext1.length, false);
+          values = generatePythagoras(context);
+          a = values[0];
+          b = values[1];
+          c = values[2];
+          string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
+
+          break;
+
+          case 2:
+
+          rdn = generate(questionsContext2.length, false);
+          values = generatePythagoras(context);
+          a = values[0];
+          b = values[1];
+          c = values[2];
+          string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
+
+          break;
+
+          case 3:
+
+          rdn = generate(questionsContext3.length, false);
+          values = generatePythagoras(context);
+          a = values[0];
+          b = values[1];
+          c = values[2];
+          string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
+
+          break;
+          
+        }
+
+        var questionsDescription = $('#DescriptionCustom');
+        questionsDescription.text(string);   
       });
-    }
 
-    var rdn = 0;
-    var context = 0;
-    var string;
-    var values = [];
-    context = generate(3,false); //Get the context
-    switch(context){
 
-      case 1: 
+    }else{
 
-      rdn = generate(questionsContext1.length, false);
-      values = generatePythagoras(context);
-      string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
+        context = generate(3,false); //Get the context
 
-      break;
+        switch(context){
 
-      case 2:
+          //Context means the side to solve it
+          //We use generate() with noNeedOfZero
+          //But when sending to stringReplaceValue we put rdn-1
+          //To substract from the rdn, to prevent matching rdn with the Array of the Question
+          //To prevent undefined, and because JS array asignations begins in 0.
+          case 1: 
 
-      rdn = generate(questionsContext2.length, false);
-      values = generatePythagoras(context);
-      string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
+          rdn = generate(questionsContext1.length, false);
+          values = generatePythagoras(context);
+          a = values[0];
+          b = values[1];
+          c = values[2];
+          string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
 
-      break;
+          break;
 
-      case 3:
+          case 2:
 
-      rdn = generate(questionsContext3.length, false);
-      values = generatePythagoras(context);
-      string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
+          rdn = generate(questionsContext2.length, false);
+          values = generatePythagoras(context);
+          a = values[0];
+          b = values[1];
+          c = values[2];
+          string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
 
-      break;
-    }
-    
-    //Context means the side to solve it
+          break;
 
-    
-    
-    
-    var questionsDescription = $('#DescriptionCustom');
-    
-    //We use generate() with noNeedOfZero
-    //But when sending to stringReplaceValue we put rdn-1
-    //To substract from the rdn, to prevent matching rdn with the Array of the Question
-    //To prevent undefined, and because JS array asignations begins in 0.
+          case 3:
 
-    if (pythagorasSideCheck == 1) {
+          rdn = generate(questionsContext3.length, false);
+          values = generatePythagoras(context);
+          a = values[0];
+          b = values[1];
+          c = values[2];
+          string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
 
-      rdn = generate(questionsContext1.length, false);
-      
-      string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
-      console.log("arrLength" + questionsContext1.length +'rdn' + (rdn-1));
-      questionsDescription.text(string);
+          break;
+          alert(values);
+        }
 
-    }else if (pythagorasSideCheck == 2) {
+        var questionsDescription = $('#DescriptionCustom');
+        questionsDescription.text(string);   
 
-      rdn = generate(questionsContext2.length, false);
-      
-      string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
-      console.log("arrLength" + questionsContext2.length +'rdn' + (rdn-1));
-      questionsDescription.text(string);
-
-    }else if (pythagorasSideCheck == 3) {
-
-      rdn = generate(questionsContext3.length, false);
-      
-      string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
-      console.log("arrLength" + questionsContext3.length +'rdn' + (rdn-1));
-      questionsDescription.text(string);
-      
 
     }
-      
+
+    $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado de mayor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ');
+    $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°.');
+    
+
+
      $('#NProblem').text('#' + timesPRep);
      string = "";
 
@@ -642,8 +684,7 @@ function showTags(state, action){
 
 function showResults(){
   
-
-
+  
   if (usrAnswer <= 4) {
     $('#DescriptionCustom').css('color', 'red');
     
@@ -657,15 +698,13 @@ function showResults(){
     
   }
   
-  //Evaluate if the user is on Pc or Mobile, so it shows other description
-  if (screen.width <= 768) {
-    $('#DescriptionCustom').css('text-align' , 'center').css('font-size','40px');
-  }else{
-    $('#DescriptionCustom').css('text-align' , 'center').css('font-size','60px');
-  }
   
+  $('#DescriptionCustom').css('text-align', 'center');
   $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de 10!');
   $('#DescriptionCustom').append("<br>");
+  $('#DescriptionCustom').append("No importa el resultado, lo importante es que hayas aprendido!");
+  $('#keyWords').css('font-size', '40px');
+  $('#keyWords').text("LOS CAMPEONES SIGUEN JUGANDO HASTA QUE LO HACEN BIEN - Billie Jean King");
   $('#ResultAndGo').css('display','none');
   $('#divAnswerCustom').css('display', 'none');
   $('#MainTitleCustom').css('display', 'none');
