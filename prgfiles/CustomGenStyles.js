@@ -5,16 +5,24 @@ var perCheck;
 var timesPRep = 0; //Times in which users clicks #Arrow2
 var usrAnswer = 0; //Times the user answered correctly
 
-///// Questions Variable /////////////
-var pythagorasQuestions = [];
-var perAQuestions = [];
+
 var UserState = false; //Variable to detech if user has first entered
 
 //These variables can be added more if need more context
 
-var questionsContext1 = [];
-var questionsContext2 = [];
-var questionsContext3 = [];  
+//TPYTHG - Pythagora's Theorem
+var questionsContext1TPYTHG = [];
+var questionsContext2TPYTHG = [];
+var questionsContext3TPYTHG = [];  
+
+//A&PSR - Area and Perimeter of square and rectangles
+//& is a reserved character, so we replaced it by Y.
+var questionsContext1AYPSR = []; //Area of Square
+var questionsContext2AYPSR = []; //Area of Rectangles
+var questionsContext3AYPSR = []; //Perimeter of Square
+var questionsContext4AYPSR = []; //Perimeter of Rectangles
+
+
 
 $(document).ready(function(){
 
@@ -395,7 +403,8 @@ function changeToPositive(n){
 
 function generatePythagorasQuestions(){
 
-    
+    var pythagorasQuestions = [];
+
     $('#keyWords').text('');
     $('#MainTitleCustom').text('Teorema de Pitágoras');
 
@@ -427,17 +436,17 @@ function generatePythagorasQuestions(){
 
             case 1:
 
-            questionsContext1.push(pythagorasQuestions[i]);
+            questionsContext1TPYTHG.push(pythagorasQuestions[i]);
 
             break;
 
             case 2:
-            questionsContext2.push(pythagorasQuestions[i]);
+            questionsContext2TPYTHG.push(pythagorasQuestions[i]);
 
             break;
 
             case 3:
-            questionsContext3.push(pythagorasQuestions[i]);
+            questionsContext3TPYTHG.push(pythagorasQuestions[i]);
 
             break;    
           }
@@ -454,34 +463,34 @@ function generatePythagorasQuestions(){
           //To prevent undefined, and because JS array asignations begins in 0.
           case 1: 
 
-          rdn = generate(questionsContext1.length, false);
+          rdn = generate(questionsContext1TPYTHG.length, false);
           values = generatePythagoras(context);
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext1TPYTHG[(rdn - 1)]);
 
           break;
 
           case 2:
 
-          rdn = generate(questionsContext2.length, false);
+          rdn = generate(questionsContext2TPYTHG.length, false);
           values = generatePythagoras(context);
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext2TPYTHG[(rdn - 1)]);
 
           break;
 
           case 3:
 
-          rdn = generate(questionsContext3.length, false);
+          rdn = generate(questionsContext3TPYTHG.length, false);
           values = generatePythagoras(context);
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)]);
 
           break;
           
@@ -505,34 +514,34 @@ function generatePythagorasQuestions(){
           //To prevent undefined, and because JS array asignations begins in 0.
           case 1: 
 
-          rdn = generate(questionsContext1.length, false);
+          rdn = generate(questionsContext1TPYTHG.length, false);
           values = generatePythagoras(context);
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue(a,b,c,questionsContext1[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext1TPYTHG[(rdn - 1)]);
 
           break;
 
           case 2:
 
-          rdn = generate(questionsContext2.length, false);
+          rdn = generate(questionsContext2TPYTHG.length, false);
           values = generatePythagoras(context);
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue(a,b,c,questionsContext2[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext2TPYTHG[(rdn - 1)]);
 
           break;
 
           case 3:
 
-          rdn = generate(questionsContext3.length, false);
+          rdn = generate(questionsContext3TPYTHG.length, false);
           values = generatePythagoras(context);
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue(a,b,c,questionsContext3[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)]);
 
           break;
           alert(values);
@@ -556,97 +565,161 @@ function generatePythagorasQuestions(){
 
 }
 
-function areaAndPerimeter(){
+function generateAYPSR(context){
    console.log('AR');
-   var rnd = generate(2, false);
-   var a,b ;
+   var a,b;
+
+   if (context == 1) { //AREA OF Square
 
   
-   // 1 = Area
-   // 2 = Perimeter
+      a = generate(20,false);
+      b = a;
+      actualTotalCorrectResult = a * b;
 
-   if (rnd == 1) { //AREA OF Square or Rectangle
+   }else if  (context == 2){ //AREA of Rectangle
 
-  
+      a = generate(20,false);
+      b = generate(20,false);
+      actualTotalCorrectResult = a * b;  
+
+   }else if (context == 3){ //Perimeter of Squares
+
+    
+      a = generate(20,false);
+      b = a;
+      actualTotalCorrectResult = a + b;
+    
+      
+   }else if (context == 4){ //Perimeter of Rectangles
       a = generate(20, false);
       b = generate(20, false);
-   
-      if (a == b) {
-        
-        actualTotalCorrectResult = a * b;
-        generateQuestionsAreaAndPerimeter("AreaSquare", a, b);
-
-      }else {
-       
-        actualTotalCorrectResult = a * b;
-        generateQuestionsAreaAndPerimeter("AreaRectangle", a, b);
-      }
-
-   }else if  (rnd == 2){ //PERIMETER OF SQUARE OR RECTANGLE
-
-      var i = generate(2, false);
-
-      if (i == 1) { // Perimter of Square
-
-        do{
-          a = generate(20, false);
-          b = generate(20, false);
-        }while (a =! b);
-        actualTotalCorrectResult = a + b;
-        generateQuestionsAreaAndPerimeter("PerimeterSquare", a, b);
-      
-
-      } else if (i == 2 ){ //Perimeter of Rectangle
-          a = generate(20, false);
-          b = generate(20, false);
-         
-          actualTotalCorrectResult = a + b;
-        generateQuestionsAreaAndPerimeter("PerimeterRectangle", a, b);  
-      } 
-
+      actualTotalCorrectResult = a + b;
    }
 
-  var c = undefined; //this is just to fill parameters
+    return [a,b];
 
-  
 }
 
-function generateQuestionsAreaAndPerimeter(/*context, a , b*/){
-  alert("hola");
-
-  fetchCustomQuestions(undefined,undefined,undefined, "A&PSR");
-  alert(perAQuestions);
+function generateQuestionsAreaAndPerimeter(){
+  var perAQuestions = [];
+  
+  
 
   $('#FormulaDescriptionCustom').text('');
   $('#keyWords').text('');
   $('#imgPythagoras').css('display' , 'none');
 
-  var questionsDescription = $('#DescriptionCustom');
+  fetchCustomQuestions("A&PSR",function(question){
+
+        var rdn = 0;
+        var context = 0;
+        var string;
+        var values = [];
+        var a = 0;
+        var b = 0;
+
+    perAQuestions = StrToArraySeparation(question);   
+    var x = 0;
+        for(i = 0; i < perAQuestions.length; i++){
+
+          x = (questionIdentification(perAQuestions[i], "A&PSR"));
+
+          switch(x){
+
+            case 1:
+
+            questionsContext1AYPSR.push(perAQuestions[i]);
+
+            break;
+
+            case 2:
+            questionsContext2AYPSR.push(perAQuestions[i]);
+
+            break;
+
+            case 3:
+            questionsContext3AYPSR.push(perAQuestions[i]);
+
+            break;
+            
+            case 4:
+            questionsContext4AYPSR.push(perAQuestions[i]);
+          } 
+        }
+
+
+        context = generate(4,false); //Get the context
+
+        alert(context);
+        switch(context){
+
+          //Context means the side to solve it
+          //We use generate() with noNeedOfZero
+          //But when sending to stringReplaceValue we put rdn-1
+          //To substract from the rdn, to prevent matching rdn with the Array of the Question
+          //To prevent undefined, and because JS array asignations begins in 0.
+          case 1: 
+
+          rdn = generate(questionsContext1AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          
+          string = stringReplaceValue([a,b],questionsContext1AYPSR[(rdn - 1)]);
+
+          break;
+
+          case 2:
+
+          rdn = generate(questionsContext2AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          string = stringReplaceValue([a,b],questionsContext2AYPSR[(rdn - 1)]);
+
+          break;
+
+          case 3:
+
+          rdn = generate(questionsContext3AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          
+          string = stringReplaceValue([a,b],questionsContext3AYPSR[(rdn - 1)]);
+
+          break;
+
+          case 4:
+
+          rdn = generate(questionsContext4AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          
+          string = stringReplaceValue([a,b],questionsContext4AYPSR[(rdn - 1)]);
+
+          break;
+          
+        }
+       
+     if (context == 1) {
+      $('#MainTitleCustom').text('Área de un Cuadrado');
+    }else if (context == 2){
+      $('#MainTitleCustom').text('Área de un Rectángulo');
+    }else if (context == 3) {
+      $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+    }else if (context == 4) {
+      $('#MainTitleCustom').text('Perímetro de un Rectángulo');
+    }   
+
+    var questionsDescription = $('#DescriptionCustom');
+    questionsDescription.text(string);
+    
+  });
+
 
   
-
-  var rdn = generate(3,false);
-
-    if (context == 'AreaSquare') {
-
-      questionsDescription.html(questionsContext1[rdn]);
-      $('#MainTitleCustom').text('Área de un Cuadrado');
-
-    }else if (context == 'AreaRectangle'){
-
-      questionsDescription.html(questionsContext2[rdn]);
-      $('#MainTitleCustom').text('Área de un Rectángulo');
-
-    }else if (context == 'PerimeterSquare') {
-
-      questionsDescription.html(questionsContext3[rdn]);
-      $('#MainTitleCustom').text('Perímetro de un Cuadrado');
-
-    }else if (context == 'PerimeterRectangle') {
-
-      questionsDescription.html(questionsContext4[rdn]);
-      $('#MainTitleCustom').text('Perímetro de un Rectángulo');
-    }
 
     $('#NProblem').text('#' + timesPRep);
 }
@@ -765,12 +838,31 @@ function questionIdentification(question, mode){//function to see which context
 
   }else if (mode == "A&PSR"){ //Area and perimeter of squares and rectangles
     var x = question.includes("área") || question.includes("Área");
+    var y = question.includes("Perímetro") || question.includes("perímetro");
+    
+    aFound = question.search("valorA");
+    bFound = question.search("valorB");
 
-    if (x == true) {
+    if (x == true) { // ARea
+      
+      if ((aFound >= 0) && (bFound >= 0)) {
+        context = 2; //Area of Rectangles
+      }else if ((aFound >= 0) || (bFound = 0)){
+        context = 1; // Area of Squares
+      }
      
     }
 
 
+    if (y == true){ // Perimeter
+      
+      if ((aFound >= 0) && (bFound >= 0)) {
+        context = 4; //Area of Rectangles
+      }else if ((aFound >= 0) || (bFound = 0)){
+        context = 3; // Area of Squares
+      }
+
+    }
 
   }
 
@@ -780,15 +872,15 @@ function questionIdentification(question, mode){//function to see which context
 
 }
 
-function stringReplaceValue(a,b,c,question){
+function stringReplaceValue(arr,question){
 
-
-  console.log(a);
-  console.log(b);
-  console.log(c);
+  alert(question);
+  var a = arr[0];
+  var b = arr[1];
+  var c = arr[2];
 
   if (a != 0 || typeof a =='undefined'){
-  console.log("True");  
+   
   question = question.replace('valorA', a);
 
   }
@@ -802,11 +894,6 @@ function stringReplaceValue(a,b,c,question){
   question = question.replace('valorC', c);
     
   }
-
- 
-
-
-
   
 
   return question;
