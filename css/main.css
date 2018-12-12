@@ -128,6 +128,7 @@ footer{
 	width:auto;
 	height: auto;
 	padding:6px;
+	font-size:27px;
 
 }
 .button_style2{
@@ -296,7 +297,7 @@ footer{
 	font-size: 30px;
 }
 /*
-#forumNavBar :not(#IconToHover){ Excludes the Icon
+#forumNavBar :noFt(#IconToHover){ Excludes the Icon
 	margin:20px;
 	display:inline-block;
 }
@@ -709,9 +710,9 @@ div[name="divItem"]{
 
 	/* ---------------------------------------- */
 	.button_style1{
-		border-radius:4px;
-		padding-bottom: 30px;
+		font-size:25px;
 		border: 5px solid #7F7F7FFF;
+		vertical-align: center;
 
 	}
 	.button_style2, .button_style3, .button_style4{
@@ -791,8 +792,8 @@ div[name="divItem"]{
 		float:right;
 		
 	}
-	#forumNavBar div{
-		white-space: pre;
+	#forumNavBar form{
+		margin-top: 60px;
 	}
 	#forumNavBar button{
 		float:none;
@@ -832,9 +833,13 @@ div[name="divItem"]{
 		margin-top: 10px;
 	}
 
+	form[name="commentFrm"] input[name="name"]{
+		width:95%;
+	}
+
 	form[name="commentFrm"] input[name="comment"]{
 
-	width: 200px;
+	width: 95%;
 	}
 
 	form[name="commentFrm"] label{

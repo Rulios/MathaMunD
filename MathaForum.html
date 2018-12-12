@@ -79,16 +79,18 @@
 
 <div id="forumNavBar" >
 
+	
+
 	<a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px;  margin-left:20px;" >	</a>
 
 	<a href="Jugar.html"  id="Jugar"> Jugar</a>
-
 	
-	<div class="center" >
-	<h5>Filtrar:</h5>
-	<span id="filter">
-		
-		<form action="prgfiles/filterAct.php" method="GET" name="filterSlct">
+	<!-- <div class="center" > -->
+
+		<form action="prgfiles/filterAct.php" class="center" method="GET" name="filterSlct">
+
+		<h5>Filtrar:</h5>	
+
 		<select  id="selectFilter" name="filter">
 		
 		<option value="All">Feed</option>	
@@ -98,9 +100,11 @@
 		<option value="Geometria">Geometría</option>
 
 		</select>
-		</form>
-	</span>
-	</div>
+		</form>		
+		
+<!-- 	</div> -->
+
+	
 	
 	
 	<button  class="  button_stylefrmAsk hvr-grow " id="ask">Preguntar</button>	

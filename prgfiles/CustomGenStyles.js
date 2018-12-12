@@ -6,7 +6,8 @@ var timesPRep = 0; //Times in which users clicks #Arrow2
 var usrAnswer = 0; //Times the user answered correctly
 
 
-var UserState = false; //Variable to detech if user has first entered
+var UserStatePYTHG = false; //Variable to detech if user has first entered
+var UserStateAYPSR = false;
 
 //These variables can be added more if need more context
 
@@ -158,8 +159,8 @@ if (context == 'all') {
     //I don't know I've got to put 3 as parameter, it seems on only an
     //possibility of generating _context 1. But having 3 it solves this problem
     //and generates  _context 2.
-    context = generate(3 ,false);
-
+    context = generate(2 ,false);
+ 
     if (context == '1') {
       generatePythagorasQuestions();
     }else if (context == '2') {
@@ -408,9 +409,9 @@ function generatePythagorasQuestions(){
     $('#keyWords').text('');
     $('#MainTitleCustom').text('Teorema de Pitágoras');
 
-    if (UserState == false) { //Means that first loaded state
+    if (UserStatePYTHG == false) { //Means that first loaded state
 
-      UserState = true;
+      UserStatePYTHG = true;
 
        //Callback - Fetch Questions
        fetchCustomQuestions("TPYTHG",function(questions){
@@ -609,6 +610,9 @@ function generateQuestionsAreaAndPerimeter(){
   $('#keyWords').text('');
   $('#imgPythagoras').css('display' , 'none');
 
+if (UserStateAYPSR == false) {
+  UserStateAYPSR = true;
+
   fetchCustomQuestions("A&PSR",function(question){
 
         var rdn = 0;
@@ -650,7 +654,7 @@ function generateQuestionsAreaAndPerimeter(){
 
         context = generate(4,false); //Get the context
 
-        alert(context);
+        
         switch(context){
 
           //Context means the side to solve it
@@ -705,12 +709,16 @@ function generateQuestionsAreaAndPerimeter(){
        
      if (context == 1) {
       $('#MainTitleCustom').text('Área de un Cuadrado');
+      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
     }else if (context == 2){
       $('#MainTitleCustom').text('Área de un Rectángulo');
+      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
     }else if (context == 3) {
       $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
     }else if (context == 4) {
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
+      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
     }   
 
     var questionsDescription = $('#DescriptionCustom');
@@ -719,7 +727,82 @@ function generateQuestionsAreaAndPerimeter(){
   });
 
 
-  
+
+}else{
+
+   context = generate(4,false); //Get the context
+
+        
+        switch(context){
+
+          //Context means the side to solve it
+          //We use generate() with noNeedOfZero
+          //But when sending to stringReplaceValue we put rdn-1
+          //To substract from the rdn, to prevent matching rdn with the Array of the Question
+          //To prevent undefined, and because JS array asignations begins in 0.
+          case 1: 
+
+          rdn = generate(questionsContext1AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          
+          string = stringReplaceValue([a,b],questionsContext1AYPSR[(rdn - 1)]);
+
+          break;
+
+          case 2:
+
+          rdn = generate(questionsContext2AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          string = stringReplaceValue([a,b],questionsContext2AYPSR[(rdn - 1)]);
+
+          break;
+
+          case 3:
+
+          rdn = generate(questionsContext3AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          
+          string = stringReplaceValue([a,b],questionsContext3AYPSR[(rdn - 1)]);
+
+          break;
+
+          case 4:
+
+          rdn = generate(questionsContext4AYPSR.length, false);
+          values = generateAYPSR(context);
+          a = values[0];
+          b = values[1];
+          
+          string = stringReplaceValue([a,b],questionsContext4AYPSR[(rdn - 1)]);
+
+          break;
+          
+        }
+       
+     if (context == 1) {
+      $('#MainTitleCustom').text('Área de un Cuadrado');
+       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+    }else if (context == 2){
+      $('#MainTitleCustom').text('Área de un Rectángulo');
+       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+    }else if (context == 3) {
+      $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
+    }else if (context == 4) {
+      $('#MainTitleCustom').text('Perímetro de un Rectángulo');
+      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
+    }   
+
+    var questionsDescription = $('#DescriptionCustom');
+    questionsDescription.text(string);
+
+}
 
     $('#NProblem').text('#' + timesPRep);
 }
@@ -874,7 +957,7 @@ function questionIdentification(question, mode){//function to see which context
 
 function stringReplaceValue(arr,question){
 
-  alert(question);
+  
   var a = arr[0];
   var b = arr[1];
   var c = arr[2];
