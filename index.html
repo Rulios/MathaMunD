@@ -12,13 +12,16 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script  src="prgfiles/details.js"></script>
+
+
 	<link href="https://fonts.googleapis.com/css?family=Bungee|Oswald" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	<link rel="stylesheet" type="text/css" href="css/hover.css">
 	
 	
-	<script  src="prgfiles/details.js"></script>
+	
 	
 
 	<link rel="shortcut icon" href="favicon.ico"/>
@@ -29,12 +32,26 @@
 
 		<div id="MathaMunD">
 
-		<center>
-
-		<img src="imgs/MathaMund.png" class=" animated fadeInDown img-change"  alt="MathaMunD">
-		</center>
+		<img src="imgs/MathaMund.png" class=" animated fadeInDown img-change" style="display:block;margin-left: auto; margin-right: auto;" alt="MathaMunD">
 
 		</div>	
+		
+
+		<center>
+		<div class="text-center roboto_letra" id="quoteDiv">
+
+			
+			<form action="prgfiles/fetchQuote.php" method="GET" name="fetchQuotefrm"></form>
+
+			<h3 id="quote">:)</h3>
+
+			<br>
+
+			<i><h4 id="quoteAuthor" style="float:right;">:)</h4></i>
+
+		</div>
+		</center>
+
 
 		<div class="animated fadeInDown retrasoDeAnimacion_1 row">
 
@@ -71,7 +88,7 @@
 		<div style="background-color: #A0B0A4FF; display:inline-block; "  class="wrapper">
 				<div id="ICDiv">
 							
-					<h4 class="oswald_letra " style="font-size: 15px; "> Síguenos en nuestras redes sociales!</h4>
+					<h4 style="font-size: 15px; "> Síguenos en nuestras redes sociales!</h4>
 
 
 

@@ -1,9 +1,56 @@
-$(document).ready(function(){
+$(document).ready(function(e){
 
 	
 	
 	var commentDiv;
+	//index.html to fetch quotes
+	$('form[name=fetchQuotefrm').ready(function(e) {
 		
+		$('form[name=fetchQuotefrm').submit();
+
+	});
+
+	$('form[name=fetchQuotefrm').submit(function(e){
+
+		e.preventDefault();
+		
+
+		var lang = 'es';
+		
+		$.ajax({
+			url: 'prgfiles/fetchQuote.php',
+			type: 'GET',
+			data: {a: lang},
+
+			success: function(data){
+				
+				data = JSON.parse(data); //JSON string to JS object
+				var i = generate(data.length, true);
+				
+				var quote = data[i].quote;
+				var author = data[i].author;
+				$('#quote').text(quote);
+				$('#quoteAuthor').text(author);
+				
+					
+			
+			}
+		}, 
+
+		)
+		.done(function() {
+			
+		})
+		.fail(function() {
+			
+		})
+		.always(function() {
+			
+		});
+		
+	});
+	//////////////////////////////////////////////	
+
 
 	$('button').focus(function(){
 			$('button').blur();
@@ -43,6 +90,13 @@ $(document).ready(function(){
 
 
 ///////////////////////AJAX///////////////////////////////////
+	//index.html to fetch quotes
+	
+
+
+
+
+	
 			
 	//La parte de e.preventDefault() sirve 
 			//para prevenir de que el action del form
@@ -71,17 +125,10 @@ $(document).ready(function(){
 				
 
 				success: function(respond){
-				
-
-
-
-					
-
-				
+		
 				},
 
 				error: function(jqXHR, status, error){
-
 					
 					$('#sent').html('No enviado');
 
@@ -92,9 +139,6 @@ $(document).ready(function(){
 					$('#frmAskBtn').css("background-color", "#727272FF");
 					$('#frmAskBtn').val("ENVIADO!");
 					$('#modal').css('display', 'none');
-					
-
-
 					
 				},
 
@@ -225,7 +269,6 @@ $(document).ready(function(){
 	});
 
 
-	
 
 
 	$('#content').on('submit', 'form[name=commentFrm]', function(e){
@@ -298,7 +341,7 @@ $(document).ready(function(){
 				var name  = row[1];
 				var comment = row[2];
 
-				var strToDisplay = '<b>'+ name+ '</b>' + ': ' + comment + '<br>';
+				var strToDisplay = '<b>'+ name + '</b>' + ': ' + comment + '<br>';
 				var txtOfDivToMatch = $('div[value="'+ row[0] + '"][name=divItem]').html();
 				var strToMatch =  strToDisplay;
 				
@@ -335,11 +378,7 @@ $(document).ready(function(){
 
 repeatCheckOverlapping();
 
-
-
-	
 });
-
 
 
 
@@ -552,6 +591,31 @@ function loadAjaxForum(event){
 		
 }
 
+
+
+function generate(range ,needZero){
+
+  var n ;
+  //range += 1; //add 1, Don't know why, but it fix some accuracy problems
+
+  if (needZero == true) {
+
+     n = Math.floor(Math.random() * range);
+
+  }else if(typeof needZero == 'undefined' || needZero == false){
+
+      do{
+
+         n = Math.floor(Math.random() * range);
+ 
+      }while(n == 0)
+
+  }
+
+  return n; 
+  
+
+}
 
 //This only works on Mathaforum.html!
 var checker;

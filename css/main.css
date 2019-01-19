@@ -260,7 +260,10 @@ footer{
 	
 
 }
-
+#quoteDiv{
+	margin-bottom: 100px; 
+	width: 50%;
+}
 #forumNavBar{
 	width: 100%;
 	height: auto;
@@ -525,10 +528,10 @@ div[name="divItem"]{
 }
 .img-change{
 	width: 800px;
-	height: 430px;
+	height: 438px;
 }
 #DescMath{
-	font-size: 49px;
+	font-size: 40px;
 }
 #h1OfFeedBack{
 	color:#BD330B;;
@@ -642,7 +645,7 @@ div[name="divItem"]{
 	.img-change{
 		width: 340px;
 		height: 200px;
-		margin-bottom: 40px;
+		margin-bottom: 30px;
 	}
 
 	#GameNavigationBar ul li{
@@ -656,6 +659,17 @@ div[name="divItem"]{
 
 	#GameNavigationBar h5{
 		font-size: 25px;
+	}
+
+	#quoteDiv{
+		width:80%;
+	}
+
+	#quote{ /*change size of quote if phone*/
+		font-size:18px;
+	}
+	#quoteAuthor{
+		font-size:16px;
 	}
 
 	/* ---------------------------------------- */
