@@ -5,6 +5,7 @@ $user = "root";
 $pw = "getrekt123";
 $db = "mathaforum";
 
+
 $mode = $_GET['mode'];
 
 
@@ -24,12 +25,13 @@ while ($row = mysql_fetch_array($registro)) {
 	 $data[] = $row;
 }
 
-$arrlength = count($data);
+//Convert codification
 
+$arrlength = count($data);
 for ($i=0; $i < $arrlength; $i++) { 
 
-	
-	$texto = $data[$i]["question"];
+	//the property should be replaced for the Data Type
+	$texto = $data[$i]["question"]; 
 	
 	$strLength = strlen($texto) ;
 	
@@ -49,9 +51,6 @@ for ($i=0; $i < $arrlength; $i++) {
 	//$data[] = $texto;
 
 }
-
-
-
 
 echo json_encode($data);
 

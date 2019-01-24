@@ -1,3 +1,5 @@
+var lang = 'es';
+
 //Initialize the global scope variables
 var actualTotalCorrectResult;
 var pythagorasCheck;
@@ -8,6 +10,10 @@ var usrAnswer = 0; //Times the user answered correctly
 
 var UserStatePYTHG = false; //Variable to detech if user has first entered
 var UserStateAYPSR = false;
+
+//All names that are fetched from DB are sorted in these two arrays.
+var femaleNames = [];
+var maleNames = [];
 
 //These variables can be added more if need more context
 
@@ -26,6 +32,8 @@ var questionsContext4AYPSR = []; //Perimeter of Rectangles
 
 
 $(document).ready(function(){
+ 
+  fetchNames();
 
 	$('#startCustom').click(function(e){
 
@@ -554,7 +562,8 @@ function generatePythagorasQuestions(){
 
     }
 
-    $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado de mayor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ');
+    $('#keyWords').append('El teorema de pitágoras establece que en un triángulo rectángulo, el cuadrado del lado más largo es igual a la suma de sus dos lados más cortos al cuadrado. <br> <br> ')
+    $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado más largo de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ');
     $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°.');
     
 
@@ -868,6 +877,52 @@ function showResults(){
 
 }
 //Javascript///////////////////////////fetch with AJAX
+function fetchNames(){
+
+    $.ajax({
+      url: 'prgfiles/fetchNames.php',
+      type: 'GET',
+      data: {lang: lang},
+      datatype:'json',
+
+      success: function(data){
+        
+        data = JSON.parse(data); //JSON string to JS object
+        console.log(data);
+
+
+        for(var i = 0; i < data.length; i++){
+          
+          if(data[i].genre == "female"){
+            femaleNames.push(data[i].name);
+          }else if (data[i].genre == "male") {
+            maleNames.push(data[i].name);
+          }
+        }
+        
+        alert(femaleNames);
+        alert(maleNames);
+        
+        
+          
+      
+      }
+    }, 
+
+    )
+    .done(function() {
+      
+    })
+    .fail(function() {
+      
+    })
+    .always(function() {
+      
+    });
+    
+
+}
+
 function fetchCustomQuestions(mode, callback){ //This is used to get the questions from the DB
 
 var mode = mode;

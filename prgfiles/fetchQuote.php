@@ -5,7 +5,7 @@ $user = "root";
 $pw = "getrekt123";
 $db = "mathaforum";
 
-$language = 'es';
+$language = $_GET['lang'];
 
 
 $con = mysql_connect($host, $user) or die ('Problemas al conectar con el servidor');

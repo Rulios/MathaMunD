@@ -20,7 +20,7 @@ $(document).ready(function(e){
 		$.ajax({
 			url: 'prgfiles/fetchQuote.php',
 			type: 'GET',
-			data: {a: lang},
+			data: {lang: lang},
 
 			success: function(data){
 				
@@ -297,11 +297,13 @@ $(document).ready(function(e){
 			success: function(){
 
 				$('form[name=setComments]').submit();
-				
+
 			}
 		})
 			.done(function() {
 				//console.log("success");
+				$('input[id="'+ id + '"]').val('');
+				$('input[name="comment"][id="'+ id + '"]').val('');
 			})
 
 			.fail(function() {
@@ -401,6 +403,13 @@ function loadAjaxForum(event){
 
 					if (data == "") {
 						$('#forumFooter').css("position", "absolute");
+
+						var title = document.createElement('h3');
+						title.setAttribute('class', 'bungee_letra center');
+						title.setAttribute('id', 'nullTitle');
+						
+						$('#content').append(title);
+						$('#nullTitle').html(':( <br> No hay preguntas, pero puedes ser el primero en preguntar! ;)');
 					}else{
 
 					var row = [];

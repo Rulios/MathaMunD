@@ -264,6 +264,10 @@ footer{
 	margin-bottom: 100px; 
 	width: 50%;
 }
+#nullTitle{
+	font-size:40px;
+	margin-top: 40px;
+}
 #forumNavBar{
 	width: 100%;
 	height: auto;
@@ -313,6 +317,7 @@ footer{
 	margin:20px;
 }
 /*Form to insert data or question  MODAL BOX*/
+
 #modal{
 	display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -325,6 +330,7 @@ footer{
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     padding-top: 10em;
+
 }
 .modal-content {
 	

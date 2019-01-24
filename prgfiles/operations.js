@@ -405,8 +405,7 @@ function displayResults(){
 	}
 	document.getElementById('all').style.display = 'none';
 	document.getElementById('ShowFinish').style.display = 'block';
-	console.log('ABRIO!');
-	document.getElementById('Results').innerHTML = "Respondistes " + CorrectAnswer + " de 10 problemas."
+	document.getElementById('Results').innerHTML =  CorrectAnswer + " de 10 problemas."
 	
 
 }
