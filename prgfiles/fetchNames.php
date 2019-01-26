@@ -15,7 +15,7 @@ $con = mysql_connect($host, $user) or die ('Problemas al conectar con el servido
 
 mysql_select_db($db, $con) or die ('Problemas al conectar la base de datos');
 
- $registro = mysql_query("SELECT genre, name FROM names WHERE lang = '".$language. "'") or die ('Problemas en la consulta: '.mysql_error());
+ $registro = mysql_query("SELECT genre, name FROM names WHERE lang = '".$language. "'") or die ('Problemas en la consulta: '.mysql_error());	
 
 
 $data = array();

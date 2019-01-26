@@ -378,7 +378,7 @@ var c = 0;
 function generate(range ,needZero){
 
   var n ;
-  range += 1; //add 1, Don't know why, but it fix some accuracy problems
+  //range += 1; //add 1, Don't know why, but it fix some accuracy problems
 
   if (needZero == true) {
 
@@ -436,7 +436,7 @@ function generatePythagorasQuestions(){
         var c = 0;
 
         pythagorasQuestions = StrToArraySeparation(questions);
-        console.log(pythagorasQuestions);
+        
         var x = 0;
         for(i = 0; i < pythagorasQuestions.length; i++){
 
@@ -507,6 +507,7 @@ function generatePythagorasQuestions(){
         }
 
         var questionsDescription = $('#DescriptionCustom');
+        string = checkIfName(string);
         questionsDescription.text(string);   
       });
 
@@ -812,6 +813,7 @@ if (UserStateAYPSR == false) {
     }   
 
     var questionsDescription = $('#DescriptionCustom');
+    string = checkIfName(string);
     questionsDescription.text(string);
 
 }
@@ -901,7 +903,9 @@ function fetchNames(){
           }else if (data[i].genre == "male") {
             maleNames.push(data[i].name);
           }
+
         }      
+        
       }
     });
 }
@@ -920,7 +924,7 @@ function randomizeName(genre){
 
   }
 
-
+  
   return name;
 
 }
@@ -943,33 +947,41 @@ function checkIfName(string){
     if (foundF >= 0) {
 
       var name = randomizeName('F');
-
+      alert('Femenino');
       for(var x = 0; x < selectedNames.length; x++){
         while (name == selectedNames[x]) {
           name = randomizeName('F');
         }
       }
-
-
-      string = string.replace("nombreF" + i/g, name);
+      alert(name);
+      selectedNames.push(name);
+      do{
+        string = string.replace('nombreF' + i, name);
+      }while(string.search('nombreF' + i) >= 0)
     }
+
+
 
     if (foundM >= 0) {
-
-    for(var x = 0; x < selectedNames.length; x++){ //check if has the same coincidence
-      while (name == selectedNames[x]) {
-        name = randomizeName('M');
+      var name = randomizeName('M');
+      alert("Masculino");
+      for(var x = 0; x < selectedNames.length; x++){ //check if has the same coincidence
+        while (name == selectedNames[x]) {
+          name = randomizeName('M');
+        }
       }
-    }
+      alert(name);
+      selectedNames.push(name);
+      do{
+      string = string.replace('nombreM' + i, name);
+      }while(string.search('nombreM' + i) >= 0)
 
-    var name = randomizeName('M');
-    string = string.replace("nombreM" + i/g, name);
-  }
+    }
 }
 
- }
+}
 
-  return string;
+return string;
 
 }
 
