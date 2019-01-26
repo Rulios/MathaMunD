@@ -15,6 +15,7 @@ var UserStateAYPSR = false;
 var femaleNames = [];
 var maleNames = [];
 
+
 //These variables can be added more if need more context
 
 //TPYTHG - Pythagora's Theorem
@@ -557,6 +558,7 @@ function generatePythagorasQuestions(){
         }
 
         var questionsDescription = $('#DescriptionCustom');
+        string = checkIfName(string);
         questionsDescription.text(string);   
 
 
@@ -731,6 +733,7 @@ if (UserStateAYPSR == false) {
     }   
 
     var questionsDescription = $('#DescriptionCustom');
+    string = checkIfName(string);
     questionsDescription.text(string);
     
   });
@@ -898,28 +901,75 @@ function fetchNames(){
           }else if (data[i].genre == "male") {
             maleNames.push(data[i].name);
           }
-        }
-        
-        alert(femaleNames);
-        alert(maleNames);
-        
-        
-          
-      
+        }      
       }
-    }, 
-
-    )
-    .done(function() {
-      
-    })
-    .fail(function() {
-      
-    })
-    .always(function() {
-      
     });
-    
+}
+
+function randomizeName(genre){
+
+  var name = "";
+
+  if (genre == "M") {
+
+    name = maleNames[generate(maleNames.length, true)];
+
+  }else if (genre == "F"){
+
+    name = femaleNames[generate(femaleNames.length, true)];
+
+  }
+
+
+  return name;
+
+}
+
+function checkIfName(string){
+ //to check if the question has a name and need to replace it
+ //Available to 10 names. (Means that nombreF or nombreM will go until ...
+ // nombreF10 or nombreM10)
+ var selectedNames = [];
+ var foundF = string.search('nombreF1');
+ var foundM = string.search('nombreM1');
+
+ if ((foundF >= 0) || (foundM >= 0)) {
+
+  for (var i = 0; i < 10; i++){
+
+    foundF = string.search('nombreF' + i);
+    foundM = string.search('nombreM' + i);
+
+    if (foundF >= 0) {
+
+      var name = randomizeName('F');
+
+      for(var x = 0; x < selectedNames.length; x++){
+        while (name == selectedNames[x]) {
+          name = randomizeName('F');
+        }
+      }
+
+
+      string = string.replace("nombreF" + i/g, name);
+    }
+
+    if (foundM >= 0) {
+
+    for(var x = 0; x < selectedNames.length; x++){ //check if has the same coincidence
+      while (name == selectedNames[x]) {
+        name = randomizeName('M');
+      }
+    }
+
+    var name = randomizeName('M');
+    string = string.replace("nombreM" + i/g, name);
+  }
+}
+
+ }
+
+  return string;
 
 }
 
