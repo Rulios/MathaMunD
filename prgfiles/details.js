@@ -25,13 +25,16 @@ $(document).ready(function(e){
 			success: function(data){
 				
 				data = JSON.parse(data); //JSON string to JS object
+
 				var i = generate(data.length, true);
 				
 				var quote = data[i].quote;
 				var author = data[i].author;
+				var authorBio = data[i].authorbio;
+
 				$('#quote').text(quote);
 				$('#quoteAuthor').text(author);
-				
+				$('a[name=authorBio]').attr('href', authorBio);
 					
 			
 			}
