@@ -1,4 +1,3 @@
-
 #play{
 	background-image: url('ma1.jpg');
 	
@@ -27,8 +26,21 @@ footer{
 	position:relative;
 	width: 100%;	
 	margin-top:120px;
-	
-	height: 1px;
+	height: auto;
+
+}
+ul{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+
+}
+ul > *{
+	margin:inherit;
+}
+li{
+	display:inline;
+
 }
 
 .bungee_letra{
@@ -82,29 +94,95 @@ footer{
 }
 #SCIconToHover:hover{
 	/*Animation of the Social Media Icons!*/
-	-webkit-transform:scale(1.25) ; /* Safari and Chrome */
-    -moz-transform:scale(1.25) ; /* Firefox */
-    -ms-transform:scale(1.25) ; /* IE 9 */
-    -o-transform:scale(1.25) ; /* Opera */
-     transform:scale(1.25) ;
+	-webkit-transform:scale(1.1,1.1) ; /* Safari and Chrome */
+    -moz-transform:scale(1.1,1.1) ; /* Firefox */
+    -ms-transform:scale(1.1,1.1) ; /* IE 9 */
+    -o-transform:scale(1.1,1.1) ; /* Opera */
+     transform:scale(1.1,1.1) ;
 
     -webkit-transition: transform 0.3s ease-in-out;
     -moz-transition:transform 0.3s ease-in-out;
     -ms-transition:transform 0.3s ease-in-out;
     
-
 }
 #IconToHover:hover{
 	/*Animation of the Social Media Icons!*/
-	-webkit-transform:scale(1.25) ; /* Safari and Chrome */
-    -moz-transform:scale(1.25) ; /* Firefox */
-    -ms-transform:scale(1.25) ; /* IE 9 */
-    -o-transform:scale(1.25) ; /* Opera */
-     transform:scale(1.25) ;
+	-webkit-transform:scale(1.1) ; /* Safari and Chrome */
+    -moz-transform:scale(1.1) ; /* Firefox */
+    -ms-transform:scale(1.1) ; /* IE 9 */
+    -o-transform:scale(1.1) ; /* Opera */
+     transform:scale(1.1) ;
 
     -webkit-transition: transform 0.3s ease-in-out;
     -moz-transition:transform 0.3s ease-in-out;
     -ms-transition:transform 0.3s ease-in-out;
+}
+#buttonSet{
+	position:relative;
+	width:100%;
+	content: "";
+    clear: both;
+    display: table;
+}
+#buttonSet > *{
+	float:left;
+}
+.stick2Bottom button{
+	position:fixed;
+	border-radius: 20px;
+	border: 5px solid #572183;
+	height: 100px;
+	width: 250px;
+	font-size: 30px;
+	background-color:white;
+	margin:30px;
+	font-family: 'Bungee', cursive;
+	bottom:10px;
+	right:10px;
+	z-index:1;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.stick2Bottom:hover button{
+	color:#0E7FA4FF;
+	background-color:#00FF79FF;
+}
+#HiddenText{
+	display:none;
+	text-align:center;
+}
+.showText{
+	width:100%;
+}
+.showText:hover #HiddenText{
+	display:block;
+}
+.showText:hover #Title{
+	color:#356BC9FF;
+	text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.showText:hover {
+	overflow:hidden;
+	height:auto;
+	-webkit-transform:scale(1.1) ; /* Safari and Chrome */
+    -moz-transform:scale(1.1) ; /* Firefox */
+    -ms-transform:scale(1.1) ; /* IE 9 */
+    -o-transform:scale(1.1) ; /* Opera */
+     transform:scale(1.1) ;
+
+    -webkit-transition: transform 0.7s ease-in-out;
+    -moz-transition:transform 0.7s ease-in-out;
+    -ms-transition:transform 0.7s ease-in-out;
+	
+}
+.middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
 }
 .retrasoDeAnimacion_1{
 
@@ -112,12 +190,21 @@ footer{
 	-moz-animation-delay:1s;
 	animation-delay: 1s;
 }
+
+.retrasoDeAnimacion_1-5{
+
+	-webkit-animation-delay:1.5s;
+	-moz-animation-delay:1.5s;
+	animation-delay: 1.5s;
+}
+
 .retrasoDeAnimacion_2{
 
 	-webkit-animation-delay:2s;
 	-moz-animation-delay:2s;
 	animation-delay: 2s;
 }
+
 .button_style1{
 	text-decoration: none;
 	border-radius: 35px;
@@ -135,7 +222,7 @@ footer{
 	text-decoration: none;
 	border-radius: 20px;
 	border: 3px solid #23E726;
-	height: 100px;
+	height:100px;
 	width: 250px;
 	font-size: 20px;
 	background-color: transparent;
@@ -143,6 +230,7 @@ footer{
 	margin-left: 70px;
 	font-family: 'Bungee', cursive;
 	color: #3E3D40;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .button_style3{
 	text-decoration: none;
@@ -155,18 +243,23 @@ footer{
 	margin:70px;
 	font-family: 'Bungee', cursive;
 	color: #3E3D40;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .button_style4{
 	text-decoration: none;
 	border-radius: 20px;
 	border: 3px solid #B60832;
 	height: 100px;
-	width: 250px;
+	width:auto;
+	/*width: 250px;*/
 	font-size: 20px;
+	word-wrap: break-word;
 	background-color: transparent;
 	margin:70px;
 	font-family: 'Bungee', cursive;
 	color: #3E3D40;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
+
 }
 /*Button_style5 is for the Game modes, changer of gamemode*/
 .button_style5{
@@ -199,12 +292,14 @@ footer{
 	border-radius: 20px;
 	border: 3px solid #7F7F7F;
 	height: 100px;
-	width: 250px;
+	width:auto;
+	/*width: 250px;*/
 	font-size: 20px;
 	background-color: transparent;
 	margin:30px;
 	font-family: 'Bungee', cursive;
 	color: #3E3D40;
+	box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .button_style7{
 
@@ -213,7 +308,7 @@ footer{
 	height: 100px;
 	width: 250px;
 	font-size: 17px;
-	background-color: transparent;
+	background-color:white;
 	margin:30px;
 	font-family: 'Bungee', cursive;
 
@@ -294,7 +389,7 @@ footer{
 	position:relative;
 	margin-right: 20px;
 }
-#forumNavBar #sLogo{
+#forumNavBar{
 	height: auto;
 	width:100%;
 	
@@ -434,19 +529,10 @@ div[name="divItem"]{
 	bottom:0;
 }
 
-
-#GameNavigationBar{
-	margin-top: 30px;
-}
-#GameNavigationBar ul li {
-
-	display:inline-block;
-	margin:15px;
-}
 #GameNavigationBar h5{
 	font-family: 'Righteous', cursive;
-	font-size: 30px;
-	color: #41D628;	
+	font-size: 17px;
+	color:#5F5E68 ;
 
 }
 #Arrow2{
@@ -542,7 +628,7 @@ div[name="divItem"]{
 #h1OfFeedBack{
 	color:#BD330B;;
 	font-size: 60px;
-	margin-top: 10px;
+	
 }
 #FeedBackBox h3{
 	font-family: 'Bungee', cursive;
@@ -630,6 +716,22 @@ div[name="divItem"]{
 	background-size: cover;
 	
 }
+.hvr-fade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+}
+.hvr-fade:hover{
+  background-color: #2098D1;
+  color: white;
+}
 
 @media only screen and (max-width: 768px){
 
@@ -637,6 +739,14 @@ div[name="divItem"]{
 
 	#IconToHover{
 		margin-bottom: 15px;
+	}
+
+	#SCIconToHover{
+	-webkit-transform:scale(0.82) ; /* Safari and Chrome */
+    -moz-transform:scale(0.82) ; /* Firefox */
+    -ms-transform:scale(0.82) ; /* IE 9 */
+    -o-transform:scale(0.82) ; /* Opera */
+     transform:scale(0.82) ;
 	}
 
 
@@ -652,11 +762,6 @@ div[name="divItem"]{
 		width: 340px;
 		height: 200px;
 		margin-bottom: 30px;
-	}
-
-	#GameNavigationBar ul li{
-		margin: 5px;
-		margin-bottom: 20px;
 	}
 
 	#GameNavigationBar img{
@@ -688,11 +793,7 @@ div[name="divItem"]{
 	}
 		
 
-	.button_style5{
-		font-size: 20px;
-		width: 140px;
-		height:35px ;
-	}
+	
 
 
 	/* ---------------------------------------- */
@@ -729,15 +830,22 @@ div[name="divItem"]{
 	}	
 
 	/* ---------------------------------------- */
-	.button_style1{
-		font-size:25px;
-		border: 5px solid #7F7F7FFF;
-		vertical-align: center;
-
+	#buttonSet > *{
+		width: 100%;
+		text-align:center;	
 	}
-	.button_style2, .button_style3, .button_style4{
-		height: 60px;
+	.stick2Bottom button{
+		font-size:20px;
+		height:100px;
+		width: 150px;
+		right:0;
+	}
+	.button_style2, .button_style3, .button_style4, .button_style6{
+		height: auto;
+		padding-top: 15px;
+		padding-bottom: 15px;
 		margin:  10px;
+		width:90%;
 	}
 	.button_MathaForum{
 		margin: 30px;
@@ -808,7 +916,7 @@ div[name="divItem"]{
 		display:block;
 	}
 
-	#forumNavBar #Jugar{
+	#forumNavBar{
 		float:right;
 		
 	}
@@ -847,6 +955,7 @@ div[name="divItem"]{
 	#Jugar{
 		font-size: 32px;
 		float:right;
+		
 	}
 	
 	form[name="commentFrm"]{

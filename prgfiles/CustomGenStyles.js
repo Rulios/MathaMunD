@@ -69,7 +69,7 @@ $(document).ready(function(){
       $('#allPlayPage').css('display', 'none');
   // Shows all 'custom' page    
 
-      $('#title').text('Personalizada');
+      $('#windowTitle').text('Personalizada');
       //$('#allCustom').slideUp(1000);
       $('#allCustom').css('display', 'block');
 

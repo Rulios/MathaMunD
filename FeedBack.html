@@ -12,7 +12,6 @@
 
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">	
-	<link rel="stylesheet" type="text/css" href="css/hover.css">
 
 	<link rel="shortcut icon" href="favicon.ico"/>
 	<script  src="prgfiles/details.js"></script>
@@ -74,43 +73,46 @@
 
 
 
-	<div style="display:inline-block; width: 100%;" class="animated slideInDown">
+	<ul style="margin:10px;" class="animated slideInDown retrasoDeAnimacion_1">
 	
+		<li><a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" height="40px" width="40px">
+			</a></li>
+
+		<li><a href="Jugar.html" style="vertical-align: sub;" class="bungee_letra" id="Jugar">
+			Jugar</a></li>	
+
+		<li><img src="imgs/MathaMunD.png" style="float:right;"id="sLogo"  height="120" width="200"></li>	
+
+	</ul>
+
 	
-	<a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px; margin:20px;"></a>
 
-	<a href="Jugar.html" id="Jugar" style="margin-top: 25px;">Jugar</a>
+	
+		
+	<div style="padding-top:35px;" class="center animated fadeIn retrasoDeAnimacion_1-5 " >
+		
+		<h1 class="bungee_letra" id="h1OfFeedBack">Nos interesan tus opiniones y sugerencias!</h1>
 
-	<img src="imgs/MathaMunD.png" id="sLogo" style="float:right; margin-right: 20px;" height="120" width="200">
+		<form action="prgfiles/formSuggestion.php" method="POST" id="frmSugg">
+
+				<div  id="FeedBackBox" >
+					<center>
+					<h3 style="color:#21727F;">Tus comentarios o sugerencias:</h3> <br>
+					<textarea  name="comments" id="comments" rows="6" cols="70" placeholder="Comentario..." required></textarea>
+
+					<br>
+					<br>
+
+					<input type="submit" class="hvr-grow" id="buttonToSubmit" value="Enviar">
+					</center>
+				</div>
+
+			</form>
+		
 
 	</div>
 
-	<div class="container">
-		
-		<div class="text-center animated slideInDown " >
-
-			<h1 class="bungee_letra" id="h1OfFeedBack">Nos interesan tus opiniones y sugerencias!</h1>
-
-			<form action="prgfiles/formSuggestion.php" method="POST" id="frmSugg">
-
-					<div  id="FeedBackBox" >
-						<center>
-						<h3 style="color:#21727F;">Tus comentarios o sugerencias:</h3> <br>
-						<textarea  name="comments" id="comments" rows="6" cols="70" placeholder="Comentario..." required></textarea>
-
-						<br>
-						<br>
-
-						<input type="submit" class="hvr-grow" id="buttonToSubmit" value="Enviar">
-						</center>
-					</div>
 	
-				</form>
-			
-
-		</div>
-
-	</div>	
 	<br>
 	<br>
 

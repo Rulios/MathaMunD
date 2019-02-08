@@ -1,57 +1,40 @@
-$(document).ready(function(e){
+//For strictly initial operations 	
+$(document).ready(function(){
+
+	if (window.location.pathname == "/MathaMunD/" || window.location.pathname == "/MathaMunD/index.html") {
+		//Callback
+
+		fetchQuote(function(data){
+			data = JSON.parse(data); //JSON string to JS object
+
+			var i = generate(data.length, true);
+			
+			var quote = data[i].quote;
+			var author = data[i].author;
+			var authorBio = data[i].authorbio;
+
+			$('#quote').text(quote);
+			$('#quoteAuthor').text(author);
+			$('a[name=authorBio]').attr('href', authorBio);
+						
+		});
+	}
+		
+		
+
+	
+
+});
+
+
+$(window).bind('load', function(e){
 
 	
 	
 	var commentDiv;
+
 	//index.html to fetch quotes
-	$('form[name=fetchQuotefrm').ready(function(e) {
-		
-		$('form[name=fetchQuotefrm').submit();
-
-	});
-
-	$('form[name=fetchQuotefrm').submit(function(e){
-
-		e.preventDefault();
-		
-
-		var lang = 'es';
-		
-		$.ajax({
-			url: 'prgfiles/fetchQuote.php',
-			type: 'GET',
-			data: {lang: lang},
-
-			success: function(data){
-				
-				data = JSON.parse(data); //JSON string to JS object
-
-				var i = generate(data.length, true);
-				
-				var quote = data[i].quote;
-				var author = data[i].author;
-				var authorBio = data[i].authorbio;
-
-				$('#quote').text(quote);
-				$('#quoteAuthor').text(author);
-				$('a[name=authorBio]').attr('href', authorBio);
-					
-			
-			}
-		}, 
-
-		)
-		.done(function() {
-			
-		})
-		.fail(function() {
-			
-		})
-		.always(function() {
-			
-		});
-		
-	});
+	// 	
 	//////////////////////////////////////////////	
 
 
@@ -604,6 +587,17 @@ function loadAjaxForum(event){
 }
 
 
+function fetchQuote(callback){
+
+	var lang = 'es';
+		
+		$.ajax({
+			url: 'prgfiles/fetchQuote.php',
+			type: 'GET',
+			data: {lang: lang},
+		}).done(function(done){}, callback);
+
+}
 
 function generate(range ,needZero){
 
@@ -632,7 +626,10 @@ function generate(range ,needZero){
 //This only works on Mathaforum.html!
 var checker;
 function repeatCheckOverlapping(){
-	checker = setInterval(collidesWith, 1000);
+	if (window.location.pathname == "/MathaMunD/Mathaforum.html" || window.location.pathname == "/MathaMunD/Jugar.html") {
+		checker = setInterval(collidesWith, 1000);
+	}
+	
 }
 
 //If content overlaps the footer
