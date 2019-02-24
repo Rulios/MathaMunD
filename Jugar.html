@@ -91,7 +91,8 @@
 		<div id="buttonSet">
 			
 			<div>
-				<button class="button_style2 showText">
+				<button class="button_style2 showText" name="ToSelectMode" value="BAOP">
+					<div id="selectedSign">Seleccionado!</div>
 					<div id="Title">Operaciones Aritméticas</div>
 					<div id="HiddenText">
 						-Suma 
@@ -107,7 +108,8 @@
 			</div>
 
 			<div>
-				<button class="button_style3 showText">
+				<button class="button_style3 showText" name="ToSelectMode" value="FRCT">
+					<div id="selectedSign">Seleccionado!</div>
 					<div id="Title">Fracciones</div>
 					<div id="HiddenText">
 						-Suma y Resta de Fracciones.
@@ -122,13 +124,41 @@
 			 	</button>
 			</div>
 
+			<div>
+				<button class="button_style4 showText" name="ToSelectMode" value="ARPSR">
+					<div id="selectedSign">Seleccionado!</div>
+					<div id="Title">Área y Perímetro</div>
+					<div id="HiddenText">
+						-Área de Rectángulos y Cuadrados.
+						<br>
+						-Perímetro de Rectángulos y Cuadrados.
+						<br>
+						-Área de Triángulos.
+						<br>
+						-Área y circumferencia de Círculos.
+					</div>
 
-			
-			
+			 	</button>
+			</div>
+
+			<div>
+				<div></div>
+				<button class="button_style2 showText" name="ToSelectMode" value="TPYTHG">
+					<div id="selectedSign">Seleccionado!</div>
+					<div id="Title">Teorema de Pitágoras</div>
+					<div id="HiddenText">
+						-Aplicaciones del Teorema de Pitágoras.
+						<br>
+					</div>
+
+			 	</button>
+			</div>
 		</div>
 
-		<div class="stick2Bottom"  >
-			<button>INICIAR!</button>
+		<div class="stick2Bottom">
+			<input onkeypress="return justNumbers(event);"  type="text" class="inputCustom bungee_letra" placeholder="..."name="timesQuest">
+			<button name="btnStartCustom">INICIAR!</button>
+			
 		</div>
 
 
@@ -163,7 +193,6 @@
 				Iniciar Práctica!</button>
 				
 			</div>
-
 		</div>
 
 	</div>
@@ -191,13 +220,11 @@
 		<br>
 
 		<div class="  text-center bungee_letra" >
-			<h3 id="DescriptionCustom" >
-				
-			</h3>
+			<h3 id="DescriptionCustom" ></h3>
 
-			<h5 id="FormulaDescriptionCustom" >Fórmula: </h5>
+			<h5 id="FormulaDescriptionCustom" ></h5>
 
-			<img src="imgs/formulaPythagoras.png" style="width:200px; height: 50;" id="imgPythagoras">
+			<img src="imgs/formulaPythagoras.png" class="center" style="width:200px; height: 50;" id="imgPythagoras">
 
 			<br>
 			
@@ -213,7 +240,7 @@
 			<center>
 			<label style="color:#606060; margin-right: 30px; font-size:30px;">Tu Respuesta: </label>
 
-			<input onkeypress="return justNumbers(event);" type="text" name="inputCustom" id="inputCustom">
+			<input onkeypress="return justNumbers(event);" type="text" class="inputCustom" name="inputCustom" id="inputCustom">
 
 			<br id="brInResponsive">
 

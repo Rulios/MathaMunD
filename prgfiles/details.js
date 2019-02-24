@@ -626,7 +626,7 @@ function generate(range ,needZero){
 //This only works on Mathaforum.html!
 var checker;
 function repeatCheckOverlapping(){
-	if (window.location.pathname == "/MathaMunD/Mathaforum.html" || window.location.pathname == "/MathaMunD/Jugar.html") {
+	if (window.location.pathname == "/MathaMunD/Mathaforum.html") {
 		checker = setInterval(collidesWith, 1000);
 	}
 	

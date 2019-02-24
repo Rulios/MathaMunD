@@ -23,7 +23,7 @@ var questionsContext1TPYTHG = [];
 var questionsContext2TPYTHG = [];
 var questionsContext3TPYTHG = [];  
 
-//A&PSR - Area and Perimeter of square and rectangles
+//ARPSR - Area and Perimeter of square and rectangles
 //& is a reserved character, so we replaced it by Y.
 var questionsContext1AYPSR = []; //Area of Square
 var questionsContext2AYPSR = []; //Area of Rectangles
@@ -32,160 +32,212 @@ var questionsContext4AYPSR = []; //Perimeter of Rectangles
 
 
 
+var times; //To get the amount of practices
+var selectedModes = []; //To get Selected Modes at buttonSet
+
+
 $(document).ready(function(){
- 
+  
   fetchNames();
 
-	$('#startCustom').click(function(e){
 
-    actualTotalCorrectResult = 0;
-  //Algorithm to get all the values of the Checkboxes
-	var selected_value = []; // initialize empty array 
+  $('button[name=ToSelectMode]').click(function(e){ //Works as a Checkbox
+    var textMode = this.value;
+    var t = $('.showText[value=' + textMode + '] #Title'); 
+    var sS = $('.showText[value=' + textMode + '] #selectedSign');
+    var hT = $('.showText[value=' + textMode + '] #HiddenText');
 
-   	 $("input[name=items1]:checked").each(function(){
-
-        selected_value.push($(this).val());
-       
-
-   	 });
-
-   	 //This part is to verify if modes are selected
-   	 //to get to the custom page
-   	 if (selected_value == '') {
-   	 	e.preventDefault();
-   	 	alert('SELECCIONE UNO O MÁS MODOS!');
-
-
-   	 }else{//this part is to check the modes selected
-
-    pythagorasCheck = checkSelectedModes(selected_value, 'Pythagoras');
-    perCheck = checkSelectedModes(selected_value, 'Perimeter');
+    if (selectedModes.indexOf(textMode) >= 0) {
+      selectedModes.splice(selectedModes.indexOf(textMode), 1);
+      sS.css('display', 'none');
+      hT.css('display', 'block');
+    
       
-  //Hide ModalBox
-     $('#modal').css('display', 'none');
-  // Hide all 'play' Selection page 
-      //$('#allPlayPage').slideUp(2000);    
-      //$('#allPlayPage').hide(2000);
-      $('#allPlayPage').css('display', 'none');
-  // Shows all 'custom' page    
+    }else{
+      selectedModes.push(textMode);
+      sS.css('display', 'block');
+      hT.css('display', 'none');
+ 
+    }
+  });
 
-      $('#windowTitle').text('Personalizada');
-      //$('#allCustom').slideUp(1000);
-      $('#allCustom').css('display', 'block');
 
-        var range = 0;
+
+  $('.showText').hover(function(){// mouseenter event
+    var textMode = this.value;
+    var cST = $('.showText[value=' + textMode + ']');
+    var t = $('.showText[value=' + textMode + '] #Title'); 
+    var sS = $('.showText[value=' + textMode + '] #selectedSign');
+    var hT = $('.showText[value=' + textMode + '] #HiddenText');
+
+    if (sS.css('display') == 'none') {
+
+      hT.css('display', 'block');
+      cST.css('overflow', 'hidden');
+      cST.css('height', 'auto');
+      cST.css('min-height', '100px');
+      cST.css('-webkit-transform', 'scale(1.1)');
+      cST.css('-moz-transform', 'scale(1.1)');
+      cST.css('-o-transform', 'scale(1.1)');
+      cST.css('transform', 'scale(1.1)');
+
+      cST.css('-webkit-transition', 'transform 1s ease-in-out');
+      cST.css('-moz-transition', 'transform 1s ease-in-out');
+      cST.css('-ms-transition', 'transform 1s ease-in-out');
+
+    }
+
+    t.css('color' , '#356BC9FF');
+    t.css('text-shadow', '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black');
+  }, function(){ // mouseleave event
+    var textMode = this.value;
+    var t = $('.showText[value=' + textMode + '] #Title'); 
+    var sS = $('.showText[value=' + textMode + '] #selectedSign');
+    var hT = $('.showText[value=' + textMode + '] #HiddenText');
+
+    if (sS.css('display') == 'none') {
+
+      hT.css('display', 'none');
+
+    }
+    t.css('color', '#3E3D40');
+    t.css('text-shadow' , 'initial');
+
+  });
+
+
+
+
+  // $('.showText').mouseleave(function(){
+  //   var textMode = this.value;
+  //   var t = $('.showText[value=' + textMode + '] #Title'); 
+  //   var hT = $('.showText[value=' + textMode + '] #HiddenText');
+  //   var sS = $('.showText[value=' + textMode + '] #selectedSign');
+
+  //   if (t.css('display') == 'none') {
+  //     sS.css('opacity', '1');
+  //     t.css('display', 'none');
+  //   }else{
+  //     hT.css('display', 'none');
+  //   }
+
+  // });
+
+
+  $('button[name=btnStartCustom]').click(function(e){
+    
+    if (selectedModes.length == 0) {
+      alert('SELECCIONE UNO O MÁS MODOS!');
+    }else{
+
+      if ($('input[name="timesQuest"]').val() == '') {
+        alert("Introduzca la cantidad de preguntas!");
+        $('input[name="timesQuest"]').focus();
+      }else{
+        console.log(selectedModes);
         
-        $('#inputCustom').focus();
-        
-        if (pythagorasCheck == true && perCheck == true) {
-          randomizeCustomModes('all');//All means all selected modes
+        times = $('input[name="timesQuest"]').val();
+        while(times <= selectedModes.length){
+          times = Math.round(times * 1.5);
 
-        }else if (pythagorasCheck == true) {
-          randomizeCustomModes('1'); //1 means theory of Pythagoras
-
-        }else if(perCheck == true){
-          randomizeCustomModes('2'); //2 means area and perimeter
-          
         }
+        timesPRep += 1;
+        randomizeCustomModes();
+        $('#allPlayPage').css('display', 'none');
+        $('#allCustom').css('display', 'block');
+        
 
-     }
+        
+      }
 
-	});
+    }
 
-	$('#inputCustom').focus();
+  });
+
 
 
   $('#btnAnswer').click(function(){
 
     var userValue = $('#inputCustom').val();
+    ans = true;
    
     if (userValue == 0 ) {  //Check if user entered a value
 
       alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
 
     }else{
-
-
       if (userValue == actualTotalCorrectResult) { //check if the value is corect
       usrAnswer += 1;  
       showTags ('Right', 'Show')
 
       }else{
-        
         showTags('Wrong', 'Show');
-
       }
-
       $("#btnAnswer").addClass('disable');
       $('#Arrow2').css('display', 'inline-block');
-
     }
-
-
   });
 
+
+
+	$('#inputCustom').focus();
 
 /*----------------- Repetition of the problem and randomization ---------*/
 $('#Arrow2Container').click(function() {
 
- if (timesPRep < 10) {
-  showTags('none', 'Hide');
+    timesPRep += 1;
+   
+    if (timesPRep <= times) {
 
-  if (pythagorasCheck == true && perCheck == true) {
-          randomizeCustomModes('all');//All means all selected modes
-
-        }else if (pythagorasCheck == true) {
-          randomizeCustomModes('1'); //1 means theory of Pythagoras
-
-        }else if(perCheck == true){
-          randomizeCustomModes('2'); //2 means area and perimeter
-          
-        }
-
-      }else{
-
-        showResults();
-      } 
+      randomizeCustomModes();
+      showTags('none', 'Hide');
+    
+     }else{
+       showResults();
+     }
 
 
-
-    });
+   });
 
 });
 
 
 
-function randomizeCustomModes(context){
+function randomizeCustomModes(){
 
-  var randomMode;
   
+  var y;
+  var x;
 
-  timesPRep += 1;
+  if (selectedModes.length == 1) {
+    y = 0;
+  }else{
+    y = generate(selectedModes.length - 1, true); //-1 to prevent getting the actual length value
+  }
 
-//Initialize the generate
-if (context == 'all') {
+  x = selectedModes[y];
 
-    //I don't know I've got to put 3 as parameter, it seems on only an
-    //possibility of generating _context 1. But having 3 it solves this problem
-    //and generates  _context 2.
-    context = generate(2 ,false);
- 
-    if (context == '1') {
-      generatePythagorasQuestions();
-    }else if (context == '2') {
-      //areaAndPerimeter();
-      generateQuestionsAreaAndPerimeter();
-    }
+  switch(x){
 
-    }else if (context == '1') { //Pythagoras
+    case 'BAOP':
+    generateBasicArithmeticsOperationsQuestions();
+    break;
 
-      generatePythagorasQuestions();
+    case 'FRCT':
 
-    }else if (context == '2') { //Area And Perimeter
+    break;
 
-      //areaAndPerimeter();
-      generateQuestionsAreaAndPerimeter();
+    case 'ARPSR':
+    console.log("A");
+    generateQuestionsAreaAndPerimeter();
 
+    break;
+
+    case 'TPYTHG':
+    console.log('D');
+    generatePythagorasQuestions();
+
+    break;
   }
 
 }
@@ -378,7 +430,7 @@ var c = 0;
 function generate(range ,needZero){
 
   var n ;
-  //range += 1; //add 1, Don't know why, but it fix some accuracy problems
+  range += 1; //add 1, Don't know why, but it fix some accuracy problems
 
   if (needZero == true) {
 
@@ -555,7 +607,7 @@ function generatePythagorasQuestions(){
           string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)]);
 
           break;
-          alert(values);
+          
         }
 
         var questionsDescription = $('#DescriptionCustom');
@@ -565,13 +617,19 @@ function generatePythagorasQuestions(){
 
     }
 
+    $('#FormulaDescriptionCustom').text('');
+    $('#FormulaDescriptionCustom').append('Fórmula:');
+    $('#FormulaDescriptionCustom').append('<br>');
+    $('#FormulaDescriptionCustom').append('<br>');
+    $('#imgPythagoras').css('display', 'block');
+
     $('#keyWords').append('El teorema de pitágoras establece que en un triángulo rectángulo, el cuadrado del lado más largo es igual a la suma de sus dos lados más cortos al cuadrado. <br> <br> ')
     $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado más largo de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ');
     $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°.');
     
 
 
-     $('#NProblem').text('#' + timesPRep);
+     showCurrentState();
      string = "";
 
     
@@ -600,13 +658,13 @@ function generateAYPSR(context){
     
       a = generate(20,false);
       b = a;
-      actualTotalCorrectResult = a + b;
+      actualTotalCorrectResult = 2 * (a + b);
     
       
    }else if (context == 4){ //Perimeter of Rectangles
       a = generate(20, false);
       b = generate(20, false);
-      actualTotalCorrectResult = a + b;
+      actualTotalCorrectResult = 2 * (a + b);
    }
 
     return [a,b];
@@ -625,7 +683,7 @@ function generateQuestionsAreaAndPerimeter(){
 if (UserStateAYPSR == false) {
   UserStateAYPSR = true;
 
-  fetchCustomQuestions("A&PSR",function(question){
+  fetchCustomQuestions("ARPSR",function(question){
 
         var rdn = 0;
         var context = 0;
@@ -638,7 +696,7 @@ if (UserStateAYPSR == false) {
     var x = 0;
         for(i = 0; i < perAQuestions.length; i++){
 
-          x = (questionIdentification(perAQuestions[i], "A&PSR"));
+          x = (questionIdentification(perAQuestions[i], "ARPSR"));
 
           switch(x){
 
@@ -721,16 +779,46 @@ if (UserStateAYPSR == false) {
        
      if (context == 1) {
       $('#MainTitleCustom').text('Área de un Cuadrado');
+
       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+      $('#keyWords').append('<br>');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Área de un Cuadrado = Lado1 ^ 2');
     }else if (context == 2){
+
       $('#MainTitleCustom').text('Área de un Rectángulo');
+
       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+      $('#keyWords').append('<br>');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Área de un Rectángulo = LadoA * LadoB');
     }else if (context == 3) {
+
       $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+
       $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
+      $('#keyWords').append('<br>');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Perímetro de un Cuadrado = LadoA * 4');
     }else if (context == 4) {
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
-      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Perímetro de un Rectángulo = 2 * (LadoA + LadoB)');
+      
+      $('#keyWords').append('<br>');
+      $('#keyWords').append('Perímetro: distancia alrededor de una figura.');
     }   
 
     var questionsDescription = $('#DescriptionCustom');
@@ -800,16 +888,44 @@ if (UserStateAYPSR == false) {
        
      if (context == 1) {
       $('#MainTitleCustom').text('Área de un Cuadrado');
-       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+
+      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+      $('#keyWords').append('<br>');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Área de un Cuadrado = Lado1 ^ 2');
     }else if (context == 2){
       $('#MainTitleCustom').text('Área de un Rectángulo');
-       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+
+      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
+      $('#keyWords').append('<br>');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Área de un Rectángulo = LadoA * LadoB');
     }else if (context == 3) {
       $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+
       $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
+      $('#keyWords').append('<br>');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('Perímetro de un Cuadrado = LadoA * 4');
     }else if (context == 4) {
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
-      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
+
+      $('#FormulaDescriptionCustom').append('Fórmula:');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').append('<br>');
+      $('#FormulaDescriptionCustom').text('Perímetro de un Rectánguo = 2 * (LadoA + LadoB)');
+
+      $('#keyWords').append('<br>');
+      $('#keyWords').append('Perímetro: distancia alrededor de una figura.');
     }   
 
     var questionsDescription = $('#DescriptionCustom');
@@ -818,8 +934,168 @@ if (UserStateAYPSR == false) {
 
 }
 
-    $('#NProblem').text('#' + timesPRep);
+    showCurrentState();
 }
+
+function generateBasicArithmeticsOperationsQuestions(){
+  var n1;
+  var n2;
+  var mode;
+  var tMode; //This goes for title
+  var xy = generate(4,false);
+
+
+  switch(xy){
+
+    case 1: //Add
+    mode = 'Add';
+    tMode = 'Suma';
+    break;
+
+    case 2: //Substract
+    mode = 'Substract';
+    tMode = 'Resta';
+    break;
+
+    case 3: //Multiplication
+    mode = 'Multiplication';
+    tMode = 'Multiplicación';
+    break;
+
+    case 4: //Division
+    mode = 'Division';
+    tMode = 'División';
+    break;
+  }
+
+  
+
+  n1 = generate(100, true);
+  n2 = generate(100, true);
+
+  while(n1 == 0 || n1 <= 10){
+    n1 = generate(100, true);
+  }
+
+  while(n2 == 0){
+    n2 = generate(100, true);
+  }
+
+
+  //Esta parte representa que pues como 
+  //No se puede insertar signos tales como
+  //el negativo, entonces creará un BUG
+  //Entonces esta parte funciona para que 
+  //El primer numero, en este caso n1, sea mayor
+  //a n2, y que el resultado no sea negativo
+  if (mode == 'Substract') {
+
+    if (n1 < n2) {
+      //Creates a variable named 'temporary'
+      //to hold n2 value
+      //so with that n1 can have the Not changed
+      //value of variable n2
+      var temporary;
+
+      temporary = n2;
+      n2 = n1;
+      n1 = temporary;
+    }
+    
+  }else if (mode == 'Multiplication') {
+
+
+    n1 = generate(25,true);
+    n2 = generate(10,true);
+    
+  }else if (mode == 'Division') {
+
+
+    var totalTemporaryDiv = 0 ;
+
+    do{ //This DO is to run once time the code
+
+      //Maybe this can be unnecessary , but I'm just randoming on lower numbers
+      //by the difficulty, and randoming again if the number I get is 
+      //equal to 1 or 0, because that is just too easy
+
+      n1 = generate(50,true);
+      n2 = generate(25,true);
+    
+      while(n1 == 0 | n1 == 1){
+        n1 = generate(50, true);
+      }
+
+      while(n2 == 0 | n2 == 1){
+        n2 = generate(25, true);
+      }
+
+      if (n2 > n1) {
+
+      //Creates a variable named 'temporary'
+      //to hold n2 value
+      //so with that n1 can have the Not changed
+      //value of variable n2
+      var temporary;
+
+      temporary = n2;
+      n2 = n1;
+      n1 = temporary;
+
+      }
+
+      //check if the division has remains ,if not
+      //the numbers should be displayed, else
+      //random it again or do the process again
+
+      totalTemporaryDiv = n1 % n2;
+      totalTemporaryDiv = Math.floor(totalTemporaryDiv);
+      
+    }while(totalTemporaryDiv != 0);
+    
+  }
+
+     var string = "";
+     switch(mode){
+
+      case 'Add':
+      actualTotalCorrectResult = n1 + n2;
+      string = '¿' + n1 + ' + ' + n2 + '?';
+
+      break;
+
+      case 'Substract':
+      actualTotalCorrectResult = n1 - n2;
+      string = '¿' + n1 + ' - ' + n2 + '?';
+
+      break;
+
+      case 'Multiplication':
+      actualTotalCorrectResult = n1 * n2;
+      string = '¿' + n1 + ' * ' + n2 + '?';
+
+      break;
+
+      case 'Division':
+      actualTotalCorrectResult = n1 / n2;
+      string = '¿' + n1 + ' / ' + n2 + '?';
+
+      break;    
+
+    }
+
+  console.log(mode);
+  console.log(string);
+  var questionsDescription = $('#DescriptionCustom');
+  questionsDescription.css('text-align', 'center');
+  questionsDescription.text(string);
+
+  $('#FormulaDescriptionCustom').css('display', 'none');
+  $('#imgPythagoras').css('display', 'none');
+  
+  $('#MainTitleCustom').text(tMode);
+}
+
 
 function showTags(state, action){
 
@@ -870,7 +1146,7 @@ function showResults(){
   
   
   $('#DescriptionCustom').css('text-align', 'center');
-  $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de 10!');
+  $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de ' + times + '!');
   $('#DescriptionCustom').append("<br>");
   $('#DescriptionCustom').append("No importa el resultado, lo importante es que hayas aprendido!");
   $('#keyWords').css('font-size', '40px');
@@ -916,11 +1192,11 @@ function randomizeName(genre){
 
   if (genre == "M") {
 
-    name = maleNames[generate(maleNames.length, true)];
+    name = maleNames[generate(maleNames.length -1, true)];
 
   }else if (genre == "F"){
 
-    name = femaleNames[generate(femaleNames.length, true)];
+    name = femaleNames[generate(femaleNames.length -1, true)];
 
   }
 
@@ -947,13 +1223,13 @@ function checkIfName(string){
     if (foundF >= 0) {
 
       var name = randomizeName('F');
-      alert('Femenino');
+      
       for(var x = 0; x < selectedNames.length; x++){
         while (name == selectedNames[x]) {
           name = randomizeName('F');
         }
       }
-      alert(name);
+      
       selectedNames.push(name);
       do{
         string = string.replace('nombreF' + i, name);
@@ -964,13 +1240,13 @@ function checkIfName(string){
 
     if (foundM >= 0) {
       var name = randomizeName('M');
-      alert("Masculino");
+      
       for(var x = 0; x < selectedNames.length; x++){ //check if has the same coincidence
         while (name == selectedNames[x]) {
           name = randomizeName('M');
         }
       }
-      alert(name);
+      
       selectedNames.push(name);
       do{
       string = string.replace('nombreM' + i, name);
@@ -984,7 +1260,11 @@ function checkIfName(string){
 return string;
 
 }
+function showCurrentState(){
 
+  $('#NProblem').text('#' + timesPRep + '/' + times );
+
+}
 function fetchCustomQuestions(mode, callback){ //This is used to get the questions from the DB
 
 var mode = mode;
@@ -1036,7 +1316,7 @@ function questionIdentification(question, mode){//function to see which context
     }
 
 
-  }else if (mode == "A&PSR"){ //Area and perimeter of squares and rectangles
+  }else if (mode == "ARPSR"){ //Area and perimeter of squares and rectangles
     var x = question.includes("área") || question.includes("Área");
     var y = question.includes("Perímetro") || question.includes("perímetro");
     
@@ -1098,10 +1378,7 @@ function stringReplaceValue(arr,question){
 
   return question;
 }
-
-
 //Javascript//////////////////////////Javascript/////Inputs / Browser
-
 function onLeaveAction(){
 	window.onbeforeunload = function() {
 
