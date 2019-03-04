@@ -493,7 +493,21 @@ input[name="timesQuest"]{
 .modalSendBtn:hover{
 	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
-
+span[name="spnTakeDeep"]{
+	font-size:40px; 
+	text-align: justify; 
+	padding:40px;
+}
+span[name="spnDirections"]{
+	text-align:center;
+	font-size:20px; 
+	padding:40px;
+}
+span[name="spnPreventWorry"]{
+	
+	font-size:20px; 
+	padding:40px;
+}
 #reportBtn{
 	float:right;
 	margin-left: 10px;
@@ -855,6 +869,18 @@ div[name="divItem"]{
 	}	
 
 	/* ---------------------------------------- */
+	span[name="spnTakeDeep"]{
+	padding:10px;	
+	font-size:20px;
+	}
+	span[name="spnDirections"]{
+	padding:10px;
+	font-size:15px;	
+	}
+	span[name="spnPreventWorry"]{
+	padding:10px;
+	font-size:15px;	
+	}
 	#buttonSet > *{
 		width: 100%;
 		text-align:center;

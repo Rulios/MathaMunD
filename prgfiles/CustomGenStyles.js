@@ -1,7 +1,7 @@
 var lang = 'es';
 
 //Initialize the global scope variables
-var actualTotalCorrectResult;
+var actualTotalCorrectResult;//Only for Answers in one line.
 var pythagorasCheck;
 var perCheck;
 var timesPRep = 0; //Times in which users clicks #Arrow2
@@ -30,8 +30,12 @@ var questionsContext2AYPSR = []; //Area of Rectangles
 var questionsContext3AYPSR = []; //Perimeter of Square
 var questionsContext4AYPSR = []; //Perimeter of Rectangles
 
+//FRCT - Variables for the Fractions
+var actualNumeratorResult = 0; //Result for Numerator
+var actualDenominatorResult = 0; //Result for Denominator
 
 
+var usrInteracted; //To check if the user has interacted with the modes
 var times; //To get the amount of practices
 var selectedModes = []; //To get Selected Modes at buttonSet
 
@@ -75,11 +79,17 @@ $(document).ready(function(){
       hT.css('display', 'block');
       cST.css('overflow', 'hidden');
       cST.css('height', 'auto');
-      cST.css('min-height', '100px');
-      cST.css('-webkit-transform', 'scale(1.1)');
-      cST.css('-moz-transform', 'scale(1.1)');
-      cST.css('-o-transform', 'scale(1.1)');
-      cST.css('transform', 'scale(1.1)');
+
+      if ($(window).width() >= 768) {
+        cST.css('min-height', '100px');
+      }else{
+        cST.css('min-height', 'auto');
+      }
+      
+      // cST.css('-webkit-transform', 'scale(1.1)');
+      // cST.css('-moz-transform', 'scale(1.1)');
+      // cST.css('-o-transform', 'scale(1.1)');
+      // cST.css('transform', 'scale(1.1)');
 
       cST.css('-webkit-transition', 'transform 1s ease-in-out');
       cST.css('-moz-transition', 'transform 1s ease-in-out');
@@ -141,27 +151,29 @@ $(document).ready(function(){
           times = Math.round(times * 1.5);
 
         }
-        timesPRep += 1;
-        randomizeCustomModes();
-        $('#allPlayPage').css('display', 'none');
-        $('#allCustom').css('display', 'block');
-        
 
-        
+        $('#modal').css('display', 'block');
+  
       }
 
     }
 
   });
 
-
+$('#btnacceptedTips').click(function(){
+        $('#modal').css('display', 'none');
+        timesPRep += 1;
+        randomizeCustomModes();
+        $('#allPlayPage').css('display', 'none');
+        $('#allCustom').css('display', 'block');
+});
 
   $('#btnAnswer').click(function(){
 
     var userValue = $('#inputCustom').val();
     ans = true;
-   
-    if (userValue == 0 ) {  //Check if user entered a value
+       
+    if (typeof usrInteracted == 'undefined' || usrInteracted == false) {  //Check if user entered a value
 
       alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
 
@@ -177,14 +189,20 @@ $(document).ready(function(){
       $('#Arrow2').css('display', 'inline-block');
     }
   });
+//To check if the user has entered some value
+$('#inputCustom').bind('input',function(){
 
-
+  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+    usrInteracted = true;
+  }
+  
+});
 
 	$('#inputCustom').focus();
 
 /*----------------- Repetition of the problem and randomization ---------*/
 $('#Arrow2Container').click(function() {
-
+    usrInteracted = false;
     timesPRep += 1;
    
     if (timesPRep <= times) {
@@ -224,17 +242,16 @@ function randomizeCustomModes(){
     break;
 
     case 'FRCT':
-
+    generateFractionsQuestions();
     break;
 
     case 'ARPSR':
-    console.log("A");
     generateQuestionsAreaAndPerimeter();
 
     break;
 
     case 'TPYTHG':
-    console.log('D');
+    
     generatePythagorasQuestions();
 
     break;
@@ -1096,7 +1113,237 @@ function generateBasicArithmeticsOperationsQuestions(){
   $('#MainTitleCustom').text(tMode);
 }
 
+function generateFractions(quantityOfFractions, needSameDenominators){
 
+  var numerators = [];
+  var denominators = [];
+
+  var sameDenominator = generate(10, true);
+
+  for(var i = 0; i < quantityOfFractions; i++){
+    numerators.push(generate(10,false));
+
+    if (needSameDenominators == true) { //If need same denominators
+      denominators.push(sameDenominator);
+    }else{
+      denominators.push(generate(10,false));
+    }
+    
+  }
+  //return as an object
+  return {numerators: numerators, denominators: denominators}; 
+}   
+
+function generateFractionsQuestions(){
+  // var quantityOfFractions = 2;
+  // var fractions = generateFractions(quantityOfFractions, false);
+
+  // for(var i = 0; i < quantityOfFractions; i++){
+  //   console.log(fractions.numerators[i] + '/' + fractions.denominators[i]);
+  // }
+
+  var r = generate(5, false);
+  r = 2;
+  switch(r){
+    case 1: //text questions of Fractions
+
+    break;
+
+    case 2: //Addition and Substraction of Fractions
+      generateFractionsAdditionAndSubstractOfFractions();
+    break;
+
+    case 3: //Multiplication and Division of Fractions
+
+    break;
+
+    case 4: //Fraction Comparison
+
+    break;
+
+    case 5: //Fractions w/ Mixed Numbers
+
+    break;
+  }
+}
+function generateFractionsFetchQuestions(){
+  fetchCustomQuestions('FRCT',function(){
+
+  });
+}
+function generateFractionsAdditionAndSubstractOfFractions(){
+  var quantityOfFractions = 3; //This can change
+  var AorD = generate(2, false);//Decide whether Addition or Substraction
+  var r = generate(2, false); //To decide same Denominators
+  var fractionsObj;
+
+
+  r = 1;
+  AorD = 2;
+  switch(r){
+    case 1: //Different Denominators
+    fractionsObj = generateFractions(quantityOfFractions, false);
+
+      switch(AorD){
+
+        case 1: //Addition
+
+        var temporaryNumerator = 0;
+        var temporaryDenominator = 0;
+
+        //Solve Numerators and Denominators 
+        console.log(fractionsObj);
+        for(var i = 0; i < quantityOfFractions; i++){
+          
+          if (typeof fractionsObj.numerators[i + 1] != 'undefined') { 
+            //check if there is a next fraction
+
+            //Butterfly Method for solving the fraction
+            if (temporaryNumerator == 0){ //Means that it's the first calculation
+              temporaryNumerator += (fractionsObj.numerators[i] * fractionsObj.denominators[i + 1] ) + (fractionsObj.denominators[i] * fractionsObj.numerators[i + 1]);
+              temporaryDenominator = fractionsObj.denominators[i] * fractionsObj.denominators[i + 1];
+            }else{ //Means that it's nt the first calculation
+              temporaryNumerator = (temporaryNumerator * fractionsObj.denominators[i + 1] ) + (temporaryDenominator * fractionsObj.numerators[i + 1]);
+              temporaryDenominator = temporaryDenominator * fractionsObj.denominators[i + 1];
+            }
+          }
+        }
+        actualNumeratorResult = temporaryNumerator;
+        actualDenominatorResult = temporaryDenominator;
+
+        break;
+
+        case 2: //Substraction
+
+        //Sort Descending Biggest to Smallest
+        var preValues = [];
+        var copyFractionsObj = {numerators : [] ,denominators : []};
+          //Sort from biggest to smaller (Descending)
+          for(var i = 0; i < quantityOfFractions; i++){
+            var u = 0;
+            u = fractionsObj.numerators[i] / fractionsObj.denominators[i];
+            preValues.push(u);
+          }
+
+       preValues.sort(function(a,b){ return b -a});
+
+          while(preValues.length > 0 ){
+            for(var i = 0; i < quantityOfFractions; i++){
+              var p = 0;
+              p = fractionsObj.numerators[i] / fractionsObj.denominators[i];          
+
+                  if (p == preValues[0]) { //MOst Highest Number, if Found
+                    copyFractionsObj.numerators.push(fractionsObj.numerators[i]);
+                    copyFractionsObj.denominators.push(fractionsObj.denominators[i]);
+                    preValues.splice(0,1);
+                    //console.log(preValues);
+                    //console.log(copyFractionsObj);
+                  }
+                }
+              }
+        fractionsObj = copyFractionsObj;     
+        var temporaryNumerator = 0;
+        var temporaryDenominator = 0;
+
+        //Solve Numerators and Denominators 
+        console.log(fractionsObj);
+          for(var i = 0; i < quantityOfFractions; i++){
+            
+            if (typeof fractionsObj.numerators[i + 1] != 'undefined') { 
+              //check if there is a next fraction
+
+              //Butterfly Method for solving the fraction
+              if (temporaryNumerator == 0){ //Means that it's the first calculation
+                temporaryNumerator += (fractionsObj.numerators[i] * fractionsObj.denominators[i + 1] ) - (fractionsObj.denominators[i] * fractionsObj.numerators[i + 1]);
+                temporaryDenominator = fractionsObj.denominators[i] * fractionsObj.denominators[i + 1];
+              }else{ //Means that it's nt the first calculation
+                temporaryNumerator = (temporaryNumerator * fractionsObj.denominators[i + 1] ) - (temporaryDenominator * fractionsObj.numerators[i + 1]);
+                temporaryDenominator = temporaryDenominator * fractionsObj.denominators[i + 1];
+              }
+            }
+          }
+          actualNumeratorResult = temporaryNumerator;
+          actualDenominatorResult = temporaryDenominator;
+          console.log(actualNumeratorResult +'/'+ actualDenominatorResult);
+        break;
+      }
+    break;
+
+    case 2: //Same Denominators
+    fractionsObj = generateFractions(quantityOfFractions, true);
+
+      switch(AorD){
+
+      case 1: //Addition
+
+      //Solve Numerator
+      
+        for(var i  = 0; i < quantityOfFractions; i++){
+          actualNumeratorResult += fractionsObj.numerators[i];
+        }
+
+      //Solve Denominator
+        actualDenominatorResult = fractionsObj.denominators[0]; 
+        console.log(actualNumeratorResult + '/' + actualDenominatorResult); 
+      break;
+
+      case 2: //Substraction
+
+      var preValues = [];
+      var copyFractionsObj = {numerators : [] ,denominators : []};
+      //Sort from biggest to smaller (Descending)
+        for(var i = 0; i < quantityOfFractions; i++){
+          var u = 0;
+          u = fractionsObj.numerators[i] / fractionsObj.denominators[i];
+          preValues.push(u);
+        }
+        
+        preValues.sort(function(a,b){ return b -a});
+        
+          while(preValues.length > 0 ){
+            for(var i = 0; i < quantityOfFractions; i++){
+            var p = 0;
+            p = fractionsObj.numerators[i] / fractionsObj.denominators[i];          
+
+              if (p == preValues[0]) { //MOst Highest Number, if Found
+                copyFractionsObj.numerators.push(fractionsObj.numerators[i]);
+                copyFractionsObj.denominators.push(fractionsObj.denominators[i]);
+                preValues.splice(0,1);
+                //console.log(preValues);
+                //console.log(copyFractionsObj);
+              }
+            }
+          }
+       //Solve Enumerator
+       console.log(copyFractionsObj.numerators);
+       actualNumeratorResult = copyFractionsObj.numerators[0];
+        for(var i = 1; i < quantityOfFractions; i++){
+          actualNumeratorResult -= copyFractionsObj.numerators[i];
+          console.log(actualNumeratorResult);
+        }
+
+       //Solve Denominator
+       actualDenominatorResult = copyFractionsObj.denominators[0];
+       fractionsObj = copyFractionsObj;
+      break;
+      }
+        
+    break;
+
+    return fractionsObj;
+  } 
+  
+
+}
+function generateFractionsMultiplicationAndDivisionOfFractions(){
+
+}
+function generateFractionComparison(){
+
+}
+function generateFractionsWithMixedNumbers(){
+
+}
 function showTags(state, action){
 
     //The parameter of _state means if it needs to show the Right or Wrong tag
@@ -1130,19 +1377,30 @@ function showTags(state, action){
 
 function showResults(){
   
-  
-  if (usrAnswer <= 4) {
+  var f;
+
+  if (usrAnswer <= Math.round(times / 3)) {
     $('#DescriptionCustom').css('color', 'red');
-    
-
-  } else if (usrAnswer >= 5 || usrAnswer <= 7) {
+  }else if (usrAnswer <= Math.round(times * 2 / 3)){
     $('#DescriptionCustom').css('color', 'yellow');
+    $('#DescriptionCustom').css('text-shadow', '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black');
+  }else if (usrAnswer <= Math.round(times)) {
+    $('#DescriptionCustom').css('color', 'green');
+  }
+
+  
+  // if (usrAnswer <= 4) {
+  //   $('#DescriptionCustom').css('color', 'red');
     
 
-  }else if (usrAnswer >= 8) {
-    $('#DescriptionCustom').css('color', 'green');
+  // } else if (usrAnswer >= 5 || usrAnswer <= 7) {
+  //   $('#DescriptionCustom').css('color', 'yellow');
     
-  }
+
+  // }else if (usrAnswer >= 8) {
+  //   $('#DescriptionCustom').css('color', 'green');
+    
+  // }
   
   
   $('#DescriptionCustom').css('text-align', 'center');
