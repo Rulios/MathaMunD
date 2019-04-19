@@ -1143,18 +1143,22 @@ function generateFractionsQuestions(){
   // }
 
   var r = generate(5, false);
-  r = 2;
+  var fraction = [];
+  r = 1;
   switch(r){
     case 1: //text questions of Fractions
 
     break;
 
     case 2: //Addition and Substraction of Fractions
-      generateFractionsAdditionAndSubstractOfFractions();
+      fraction = generateFractionsAdditionAndSubstractOfFractions();
+      simpleFractionQuestionGeneration(fraction, 'Suma');
+
+
     break;
 
     case 3: //Multiplication and Division of Fractions
-
+      fraction = generateFractionsMultiplicationAndDivisionOfFractions();
     break;
 
     case 4: //Fraction Comparison
@@ -1165,6 +1169,13 @@ function generateFractionsQuestions(){
 
     break;
   }
+
+}
+function simpleFractionQuestionGeneration(fractionProp, mode){
+  
+  var quantity = fractionProp.quantityOfFractions;
+  
+  
 }
 function generateFractionsFetchQuestions(){
   fetchCustomQuestions('FRCT',function(){
@@ -1172,14 +1183,13 @@ function generateFractionsFetchQuestions(){
   });
 }
 function generateFractionsAdditionAndSubstractOfFractions(){
-  var quantityOfFractions = 3; //This can change
+  var quantityOfFractions = 2; //This can change
   var AorD = generate(2, false);//Decide whether Addition or Substraction
   var r = generate(2, false); //To decide same Denominators
   var fractionsObj;
 
 
-  r = 1;
-  AorD = 2;
+  
   switch(r){
     case 1: //Different Denominators
     fractionsObj = generateFractions(quantityOfFractions, false);
@@ -1315,7 +1325,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
             }
           }
        //Solve Enumerator
-       console.log(copyFractionsObj.numerators);
+       
        actualNumeratorResult = copyFractionsObj.numerators[0];
         for(var i = 1; i < quantityOfFractions; i++){
           actualNumeratorResult -= copyFractionsObj.numerators[i];
@@ -1327,21 +1337,83 @@ function generateFractionsAdditionAndSubstractOfFractions(){
        fractionsObj = copyFractionsObj;
       break;
       }
+    break;
+  } 
+
+  //Answer always in simplified
+  var fractionsSimplified = simplifyFractions(actualNumeratorResult, actualDenominatorResult);
+  actualNumeratorResult = fractionsSimplified.numerator;
+  actualDenominatorResult = fractionsSimplified.denominator;
+  fractionsObj.quantityOfFractions = quantityOfFractions;
+  return fractionsObj;
+}
+
+
+function generateFractionsMultiplicationAndDivisionOfFractions(){
+  var quantityOfFractions = 2;
+  var MorD = generate(2, false);//Decide whether Multiply or Divide
+  var fractionsObj;
+
+  switch(MorD){
+    case 1: //Multiply
+
+      fractionsObj = generateFractions(quantityOfFractions, false);
+
+      
+      actualNumeratorResult = fractionsObj.numerators[0];
+      actualDenominatorResult = fractionsObj.denominators[0];
+      for(var i = 0; i < quantityOfFractions; i++){
         
+        if ( typeof fractionsObj.numerators[i + 1 ] != "undefined") {
+        actualNumeratorResult = actualNumeratorResult * fractionsObj.numerators[i + 1];
+        actualDenominatorResult = actualDenominatorResult * fractionsObj.denominators[i + 1];
+        }
+
+      }   
     break;
 
-    return fractionsObj;
-  } 
-  
+/////////////////////////
 
-}
-function generateFractionsMultiplicationAndDivisionOfFractions(){
+    case 2: //Divide
+
+    fractionsObj = generateFractions(quantityOfFractions, false);
+
+
+      actualNumeratorResult = fractionsObj.numerators[0];
+      actualDenominatorResult = fractionsObj.denominators[0];
+      for(var i = 0; i < quantityOfFractions; i++){
+        
+        if ( typeof fractionsObj.numerators[i + 1 ] != "undefined") {
+        actualNumeratorResult = actualNumeratorResult * fractionsObj.denominators[i + 1];
+        actualDenominatorResult = actualDenominatorResult * fractionsObj.numerators[i + 1];
+        }
+      }
+
+    break;  
+  }
+
+
+  //Answer always in simplified
+  var fractionsSimplified = simplifyFractions(actualNumeratorResult, actualDenominatorResult);
+  actualNumeratorResult = fractionsSimplified.numerator;
+  actualDenominatorResult = fractionsSimplified.denominator;
+  fractionsObj.quantityOfFractions = quantityOfFractions;
+  return fractionsObj;
 
 }
 function generateFractionComparison(){
-
+ //Still working out to implement it on the answer basis
 }
 function generateFractionsWithMixedNumbers(){
+ //Still working out to implement it on the answer basis
+}
+function simplifyFractions(numerator, denominator){ //Used to simplify fractions
+
+    var gcd = function gcd(a,b){
+      return b ? gcd(b, a%b) : a;
+    };
+    gcd = gcd(numerator,denominator);
+    return {numerator:numerator/gcd, denominator:denominator/gcd};
 
 }
 function showTags(state, action){
