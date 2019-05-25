@@ -713,17 +713,43 @@ div[name="divItem"]{
 	text-align:justify;
 	padding:14px;
 }
-
+#FormulaDescriptionCustom{
+	font-size:20px;
+	font-weight:bold;
+}
 
 #divAnswerCustom{
 	margin-top: 50px;
 	margin-bottom: 50px;
+	font-size:25px;
 }
 
 .inputCustom{
 	border-radius: 3px;
 	border: 2px solid;
 }
+/*Fraction w/ Fraction with Mixed Numbers input*/
+.divInputFractionCustom{
+	position:relative;
+	clear:both;
+	display:inline-block;
+	width:auto;
+	margin-left:auto;
+	margin-right:auto;	
+	display:inline-flex;
+	flex-direction:column;
+	align-items: center;
+
+
+}
+.inputFractionCustom{
+	border-radius: 3px;
+	border: 2px solid;
+	width: 100px;
+	margin-bottom:5px;
+	
+}
+/*----------------------*/
 #brInResponsive{
 	display:none;
 }

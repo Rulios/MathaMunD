@@ -33,6 +33,7 @@ var questionsContext4AYPSR = []; //Perimeter of Rectangles
 //FRCT - Variables for the Fractions
 var actualNumeratorResult = 0; //Result for Numerator
 var actualDenominatorResult = 0; //Result for Denominator
+var actualMixedNumberResult = 0;
 
 
 var usrInteracted; //To check if the user has interacted with the modes
@@ -169,6 +170,32 @@ $('#btnacceptedTips').click(function(){
 });
 
   $('#btnAnswer').click(function(){
+
+    var m = $('#btnAnswer').val();
+
+    switch(m){
+
+      case "FRCT": //Fractions
+      var usrMixedNumberInput = $('#inputMixedNumberCustom').text()
+      var usrNumeratorInput = $('#inputNumeratorCustom')();
+      var usrDenominatorInput = $('#inputDenominatorCustom').text();
+
+      console.log(usrNumeratorInput); 
+
+      if ((usrNumeratorInput == "undefined" || usrNumeratorInput == 0) || (usrDenominatorInput == "undefined" || usrDenominatorInput == 0)) {
+        alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
+      }else if (usrMixedNumberInput == actualMixedNumberResult && usrNumeratorInput == actualNumeratorResult && usrDenominatorInput == actualDenominatorResult) {
+        usrAnswer += 1;  
+      showTags ('Right', 'Show')
+
+      }else{
+        showTags('Wrong', 'Show');
+      }
+        $("#btnAnswer").addClass('disable');
+        $('#Arrow2').css('display', 'inline-block');
+      break;
+
+    }
 
     var userValue = $('#inputCustom').val();
     ans = true;
@@ -634,11 +661,10 @@ function generatePythagorasQuestions(){
 
     }
 
-    $('#FormulaDescriptionCustom').text('');
-    $('#FormulaDescriptionCustom').append('Fórmula:');
+    $('#FormulaDescriptionCustom').text('Fórmula:' );
     $('#FormulaDescriptionCustom').append('<br>');
-    $('#FormulaDescriptionCustom').append('<br>');
-    $('#imgPythagoras').css('display', 'block');
+    $('#FormulaDescriptionCustom').append('$$hipotenus{a^2} = catet{o^2} + catet{o^2}$$');
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
 
     $('#keyWords').append('El teorema de pitágoras establece que en un triángulo rectángulo, el cuadrado del lado más largo es igual a la suma de sus dos lados más cortos al cuadrado. <br> <br> ')
     $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado más largo de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ');
@@ -803,7 +829,7 @@ if (UserStateAYPSR == false) {
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Área de un Cuadrado = Lado1 ^ 2');
+      $('#FormulaDescriptionCustom').append('$$Are{a_{cuadrado}} = Lad{o_1}^2$$');
     }else if (context == 2){
 
       $('#MainTitleCustom').text('Área de un Rectángulo');
@@ -814,7 +840,7 @@ if (UserStateAYPSR == false) {
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Área de un Rectángulo = LadoA * LadoB');
+      $('#FormulaDescriptionCustom').append('$$Are{a_{recta ngulo}} = Lad{o_A}*Lad{o_B}$$');
     }else if (context == 3) {
 
       $('#MainTitleCustom').text('Perímetro de un Cuadrado');
@@ -825,19 +851,19 @@ if (UserStateAYPSR == false) {
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Perímetro de un Cuadrado = LadoA * 4');
+      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{cuadrado}} = Lad{o_A}*4$$');
     }else if (context == 4) {
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
 
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Perímetro de un Rectángulo = 2 * (LadoA + LadoB)');
+      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{recta ngulo}} = 2*( {Lad{o_A} + Lad{o_B}})$$');
       
       $('#keyWords').append('<br>');
       $('#keyWords').append('Perímetro: distancia alrededor de una figura.');
     }   
-
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
     var questionsDescription = $('#DescriptionCustom');
     string = checkIfName(string);
     questionsDescription.text(string);
@@ -912,8 +938,9 @@ if (UserStateAYPSR == false) {
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Área de un Cuadrado = Lado1 ^ 2');
+      $('#FormulaDescriptionCustom').append('$$Are{a_{cuadrado}} = Lad{o_1}^2$$');
     }else if (context == 2){
+
       $('#MainTitleCustom').text('Área de un Rectángulo');
 
       $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
@@ -922,8 +949,9 @@ if (UserStateAYPSR == false) {
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Área de un Rectángulo = LadoA * LadoB');
+      $('#FormulaDescriptionCustom').append('$$Are{a_{recta ngulo}} = Lad{o_A}*Lad{o_B}$$');
     }else if (context == 3) {
+
       $('#MainTitleCustom').text('Perímetro de un Cuadrado');
 
       $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
@@ -932,19 +960,19 @@ if (UserStateAYPSR == false) {
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('Perímetro de un Cuadrado = LadoA * 4');
+      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{cuadrado}} = Lad{o_A}*4$$');
     }else if (context == 4) {
       $('#MainTitleCustom').text('Perímetro de un Rectángulo');
 
       $('#FormulaDescriptionCustom').append('Fórmula:');
       $('#FormulaDescriptionCustom').append('<br>');
       $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').text('Perímetro de un Rectánguo = 2 * (LadoA + LadoB)');
-
+      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{recta ngulo}} = 2*( {Lad{o_A} + Lad{o_B}})$$');
+      
       $('#keyWords').append('<br>');
       $('#keyWords').append('Perímetro: distancia alrededor de una figura.');
     }   
-
+    MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
     var questionsDescription = $('#DescriptionCustom');
     string = checkIfName(string);
     questionsDescription.text(string);
@@ -1144,7 +1172,7 @@ function generateFractionsQuestions(){
 
   var r = generate(5, false);
   var fraction = [];
-  r = 1;
+  r = 3;
   switch(r){
     case 1: //text questions of Fractions
 
@@ -1152,13 +1180,15 @@ function generateFractionsQuestions(){
 
     case 2: //Addition and Substraction of Fractions
       fraction = generateFractionsAdditionAndSubstractOfFractions();
-      simpleFractionQuestionGeneration(fraction, 'Suma');
+      simpleFractionQuestionGeneration(fraction);
 
 
     break;
 
     case 3: //Multiplication and Division of Fractions
       fraction = generateFractionsMultiplicationAndDivisionOfFractions();
+      simpleFractionQuestionGeneration(fraction);
+
     break;
 
     case 4: //Fraction Comparison
@@ -1171,11 +1201,149 @@ function generateFractionsQuestions(){
   }
 
 }
-function simpleFractionQuestionGeneration(fractionProp, mode){
-  
+function invokeAnswerFieldForFraction(wMixedNumbers){
+
+  wMixedNumbers = false;
+
+  var inputMixedNumber = document.createElement('INPUT');
+  inputMixedNumber.setAttribute('id', 'inputMixedNumberCustom');
+  inputMixedNumber.setAttribute('onkeypress', 'return justNumbers(event);');
+  inputMixedNumber.setAttribute('class', 'inputFractionCustom ');
+  inputMixedNumber.setAttribute('style', 'top:10px; position:relative;');
+
+  var inputNumerator = document.createElement('INPUT');
+  inputNumerator.setAttribute('id', 'inputNumeratorCustom');
+  inputNumerator.setAttribute('onkeypress', 'return justNumbers(event);');
+  inputNumerator.setAttribute('class', 'inputFractionCustom ');
+
+  var inputDenominator = document.createElement('INPUT');
+  inputDenominator.setAttribute('id', 'inputDenominatorCustom');
+  inputDenominator.setAttribute('onkeypress', 'return justNumbers(event);'); 
+  inputDenominator.setAttribute('class', 'inputFractionCustom '); 
+
+  var divInputFraction = document.createElement('DIV');
+  divInputFraction.setAttribute('class', 'divInputFractionCustom');
+
+  // if (wMixedNumbers == true) { //To see if there it is a mixed number fraction
+  //   divInputFraction.appendChild(inputMixedNumber);
+  //   inputMixedNumber.setAttribute('style', 'left:-5px; top:20px; position:relative;');
+  //   inputNumerator.setAttribute('style', 'bottom:10px;');
+  //   inputDenominator.setAttribute('style', 'top:10px; left:35px; position:relative;');
+      
+  // }else{
+  //   inputNumerator.setAttribute('style','left:35px;position:relative;');
+  //   inputDenominator.setAttribute('style', 'position:relative;top: 50px;left:-35px; ');  
+  // }
+
+  $('#inputCustom').css('display', 'none');
+  $('#divForCustomInputs').css('display', 'block');
+
+  if (wMixedNumbers == true) {
+    $('#divForCustomInputs').append(inputMixedNumber);
+  }
+  divInputFraction.appendChild(inputNumerator);
+  divInputFraction.appendChild(inputDenominator);
+
+  //$('#divAnswerCustom').append(divInputFraction);
+  $('#divForCustomInputs').append(divInputFraction);
+  $('#btnAnswer').val('FRCT');//Set a value to know what type of Input is
+
+} 
+
+function simpleFractionQuestionGeneration(fractionProp){
+  var tMode = ""; //Title
   var quantity = fractionProp.quantityOfFractions;
-  
-  
+  console.log(fractionProp);
+  var question = "$$"; //Starts with this experession
+  var numerator = 0;
+  var denominator = 0;
+
+  $('#keyWords').append('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+
+  //To use Backlashes it is necessary to use two.
+  switch(fractionProp.mode){
+
+    case 'Addition': //Adding of Fractions
+      tMode ="Adición de fracciones";
+      for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+
+        question += "{" +numerator + " \\over " + denominator +"}  ";
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += "+";
+        }
+        
+      }
+
+    break;
+
+    case 'Substraction':
+      tMode = "Resta de fracciones";
+      for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+
+        question += "{" +numerator + " \\over " + denominator +"}  ";
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += "-";
+        }
+        
+      }
+
+    break;
+
+    case 'Multiplication':
+      tMode = "Multiplicación de fracciones";
+      for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+
+        question += "{" +numerator + " \\over " + denominator +"}  ";
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += "*";
+        }
+        
+      }
+    break;
+
+    case 'Division':
+      tMode = "División de fracciones"
+      for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+
+        question += "{" +numerator + " \\over " + denominator +"}  ";
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += "/";
+        }
+        
+      }
+
+    break;
+
+  }
+
+  invokeAnswerFieldForFraction(false);
+  var questionsDescription = $('#DescriptionCustom');
+  questionsDescription.text(question);
+  $('#MainTitleCustom').text(tMode);
+  questionsDescription.html()
+  alert(questionsDescription.text());
+  MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
+
 }
 function generateFractionsFetchQuestions(){
   fetchCustomQuestions('FRCT',function(){
@@ -1202,7 +1370,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
         var temporaryDenominator = 0;
 
         //Solve Numerators and Denominators 
-        console.log(fractionsObj);
+        
         for(var i = 0; i < quantityOfFractions; i++){
           
           if (typeof fractionsObj.numerators[i + 1] != 'undefined') { 
@@ -1220,7 +1388,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
         }
         actualNumeratorResult = temporaryNumerator;
         actualDenominatorResult = temporaryDenominator;
-
+        fractionsObj.mode = 'Addition';
         break;
 
         case 2: //Substraction
@@ -1275,6 +1443,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
           actualNumeratorResult = temporaryNumerator;
           actualDenominatorResult = temporaryDenominator;
           console.log(actualNumeratorResult +'/'+ actualDenominatorResult);
+          fractionsObj.mode = 'Substraction';
         break;
       }
     break;
@@ -1294,7 +1463,8 @@ function generateFractionsAdditionAndSubstractOfFractions(){
 
       //Solve Denominator
         actualDenominatorResult = fractionsObj.denominators[0]; 
-        console.log(actualNumeratorResult + '/' + actualDenominatorResult); 
+        console.log(actualNumeratorResult + '/' + actualDenominatorResult);
+        fractionsObj.mode = 'Addition'; 
       break;
 
       case 2: //Substraction
@@ -1335,6 +1505,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
        //Solve Denominator
        actualDenominatorResult = copyFractionsObj.denominators[0];
        fractionsObj = copyFractionsObj;
+       fractionsObj.mode = 'Substraction';
       break;
       }
     break;
@@ -1369,7 +1540,8 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
         actualDenominatorResult = actualDenominatorResult * fractionsObj.denominators[i + 1];
         }
 
-      }   
+      }
+      fractionsObj.mode = 'Multiplication';   
     break;
 
 /////////////////////////
@@ -1388,15 +1560,17 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
         actualDenominatorResult = actualDenominatorResult * fractionsObj.numerators[i + 1];
         }
       }
-
+     fractionsObj.mode = 'Division'; 
     break;  
   }
 
 
   //Answer always in simplified
+  console.log(fractionsObj);
   var fractionsSimplified = simplifyFractions(actualNumeratorResult, actualDenominatorResult);
   actualNumeratorResult = fractionsSimplified.numerator;
   actualDenominatorResult = fractionsSimplified.denominator;
+  console.log(actualNumeratorResult + " " + actualDenominatorResult);
   fractionsObj.quantityOfFractions = quantityOfFractions;
   return fractionsObj;
 
@@ -1450,7 +1624,7 @@ function showTags(state, action){
 function showResults(){
   
   var f;
-
+  $('#FormulaDescriptionCustom').text('');
   if (usrAnswer <= Math.round(times / 3)) {
     $('#DescriptionCustom').css('color', 'red');
   }else if (usrAnswer <= Math.round(times * 2 / 3)){

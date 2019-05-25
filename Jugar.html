@@ -46,6 +46,7 @@
 	<div id="allPlayPage" >
 		
 		<h1 class=" text-center bungee_letra titles" style="color:#BD330B; ">Elige Modo de Juego</h1>
+
 <!-- 
 		<div style="margin-top: 70px;" id="buttonSet">
 		
@@ -141,7 +142,7 @@
 
 			 	</button>
 			</div>
-
+			
 			<div>
 				<div></div>
 				<button class="button_style2 showText" name="ToSelectMode" value="TPYTHG">
@@ -155,9 +156,9 @@
 			 	</button>
 			</div>
 		</div>
-
+		
 		<div class="stick2Bottom">
-			<input onkeypress="return justNumbers(event);"  type="text" class="inputCustom bungee_letra" placeholder="..."name="timesQuest">
+			<input onkeypress="return justNumbers(event);"  type="text" class="inputCustom bungee_letra" placeholder="cantidad de problemas"name="timesQuest">
 			<button name="btnStartCustom">INICIAR!</button>
 			
 		</div>
@@ -226,28 +227,27 @@
 
 		<br>
 
-		<div class="  text-center bungee_letra" >
+		<div class="bungee_letra  text-center" >
 			<h3 id="DescriptionCustom" ></h3>
 
-			<h5 id="FormulaDescriptionCustom" ></h5>
-
-			<img src="imgs/formulaPythagoras.png" class="center" style="width:200px; height: 50;" id="imgPythagoras">
+			<h5 id="FormulaDescriptionCustom"></h5>
 
 			<br>
 			
-
 			<h5 id="keyWords" style="font-size: 16px;" >Referencia: <br><br> </h5>
 		</div>
 
 	
 	
 
-		<div class=" bungee_letra sizeLetter_25 text-center" id="divAnswerCustom">
+		<div class=" bungee_letra  text-center" id="divAnswerCustom">
 
 			<center>
 			<label style="color:#606060; margin-right: 30px; font-size:30px;">Tu Respuesta: </label>
 
 			<input onkeypress="return justNumbers(event);" type="text" class="inputCustom" name="inputCustom" id="inputCustom">
+
+			<div id="divForCustomInputs" style="display:block;"></div>	
 
 			<br id="brInResponsive">
 
