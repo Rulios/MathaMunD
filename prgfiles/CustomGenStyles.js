@@ -172,50 +172,79 @@ $('#btnacceptedTips').click(function(){
   $('#btnAnswer').click(function(){
 
     var m = $('#btnAnswer').val();
+    var correct = 0;
+
+
+    /*0 = false
+    1 = true
+    2 = undefined*/
 
     switch(m){
 
       case "FRCT": //Fractions
-      var usrMixedNumberInput = $('#inputMixedNumberCustom').text()
-      var usrNumeratorInput = $('#inputNumeratorCustom')();
-      var usrDenominatorInput = $('#inputDenominatorCustom').text();
+      var usrMixedNumberInput = $('#inputMixedNumberCustom').val()
+      var usrNumeratorInput = $('#inputNumeratorCustom').val();
+      var usrDenominatorInput = $('#inputDenominatorCustom').val();
 
-      console.log(usrNumeratorInput); 
+      console.log('Mixed Input:' + usrMixedNumberInput);
 
-      if ((usrNumeratorInput == "undefined" || usrNumeratorInput == 0) || (usrDenominatorInput == "undefined" || usrDenominatorInput == 0)) {
-        alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
-      }else if (usrMixedNumberInput == actualMixedNumberResult && usrNumeratorInput == actualNumeratorResult && usrDenominatorInput == actualDenominatorResult) {
-        usrAnswer += 1;  
-      showTags ('Right', 'Show')
+      var avMixedNumberInput = usrMixedNumberInput == undefined || usrMixedNumberInput == 0;
+      var avNumeratorInput =  usrNumeratorInput == undefined || usrNumeratorInput == 0;
+      var avDenominatorInput = usrDenominatorInput == undefined || usrDenominatorInput == 0;
 
-      }else{
-        showTags('Wrong', 'Show');
-      }
-        $("#btnAnswer").addClass('disable');
-        $('#Arrow2').css('display', 'inline-block');
+      if (avMixedNumberInput == true && avNumeratorInput == true && avDenominatorInput == true){
+          correct = 2;
+      }else if(avMixedNumberInput == true && avNumeratorInput == false && avDenominatorInput == false ){
+        if (usrNumeratorInput == actualNumeratorResult && usrDenominatorInput == actualDenominatorResult) {
+          correct = 1;
+        }else{
+
+          correct = 0;
+        }
+      }else if(avMixedNumberInput == false && avNumeratorInput == false && avDenominatorInput == false){
+        if (usrMixedNumberInput == actualMixedNumberResult && usrNumeratorInput == actualNumeratorResult && usrDenominatorInput == actualDenominatorResult) {
+          correct = 1;
+        }else{
+          correct = 0;
+        }
+      }    
+  
+      
+      break;
+
+
+      case "SingleThreadAnswer": //All answers that doesn't need customized inputs
+        var userValue = $('#inputCustom').val();
+
+        if (userValue == actualTotalCorrectResult) {
+          correct = 1;
+        }else{
+          correct = 0;
+        }
       break;
 
     }
 
-    var userValue = $('#inputCustom').val();
-    ans = true;
-       
-    if (typeof usrInteracted == 'undefined' || usrInteracted == false) {  //Check if user entered a value
-
-      alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
-
-    }else{
-      if (userValue == actualTotalCorrectResult) { //check if the value is corect
+      if (correct == 1) {
       usrAnswer += 1;  
       showTags ('Right', 'Show')
+      
 
-      }else{
+      }else if (correct == 0 ){
         showTags('Wrong', 'Show');
+         
+      }else if (correct == 2){
+        alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
+
       }
       $("#btnAnswer").addClass('disable');
-      $('#Arrow2').css('display', 'inline-block');
-    }
+      $('#Arrow2').css('display', 'inline-block')
+;
+    console.log('Respuesta ' + actualNumeratorResult + '/' + actualDenominatorResult);
+    console.log('Usuario ' + usrNumeratorInput + '/' + usrDenominatorInput);
   });
+
+
 //To check if the user has entered some value
 $('#inputCustom').bind('input',function(){
 
@@ -224,6 +253,34 @@ $('#inputCustom').bind('input',function(){
   }
   
 });
+
+$('#inputMixedNumberCustom').bind('input',function(){
+
+  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+    usrInteracted = true;
+  }
+  
+});
+
+$('#inputNumeratorCustom').bind('input',function(){
+
+  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+    usrInteracted = true;
+  }
+  
+});
+
+$('#inputDenominatorCustom').bind('input',function(){
+
+  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+    usrInteracted = true;
+  }
+  
+});
+
+
+
+
 
 	$('#inputCustom').focus();
 
@@ -265,27 +322,58 @@ function randomizeCustomModes(){
   switch(x){
 
     case 'BAOP':
+    $('#btnAnswer').val('SingleThreadAnswer'); //Determines the type of input
+    subAnswerFieldCustomized();
     generateBasicArithmeticsOperationsQuestions();
     break;
 
     case 'FRCT':
+    $('#btnAnswer').val('FRCT');
+    subAnswerFieldCustomized();
     generateFractionsQuestions();
     break;
 
     case 'ARPSR':
+    $('#btnAnswer').val('SingleThreadAnswer');
+    subAnswerFieldCustomized();
     generateQuestionsAreaAndPerimeter();
 
     break;
 
     case 'TPYTHG':
-    
+    $('#btnAnswer').val('SingleThreadAnswer');
+    subAnswerFieldCustomized();
     generatePythagorasQuestions();
 
     break;
   }
 
+  
 }
+function subAnswerFieldCustomized(){ //This function goes anexed at the upper function
 
+  if ($('#btnAnswer').val() == 'SingleThreadAnswer') {
+
+    if ($('#inputCustom').css('display') == 'none') {
+      if ($('#divForCustomInputs').css('display') == 'block') {
+      //Remove textboxes
+      removeElement('divForFractionCustom');
+      }
+      $('#inputCustom').css('display', 'block');
+    }else{
+      $('#inputCustom').val('');
+    }
+
+  }else if ($('#btnAnswer').val() == 'FRCT') {
+    if ($('#divForCustomInputs').css('display') == 'block') {
+      //Remove textboxes
+      removeElement('divForFractionCustom');
+    }else{
+      $('#inputCustom').css('display', 'none');
+      $('#divForCustomInputs').css('display', 'block');
+    }
+  }
+}
 function checkSelectedModes(arrSelected , requester){
 
   //The parameter of receiver is to know what variable is requesting it
@@ -510,7 +598,7 @@ function changeToPositive(n){
 function generatePythagorasQuestions(){
 
     var pythagorasQuestions = [];
-
+    
     $('#keyWords').text('');
     $('#MainTitleCustom').text('Teorema de Pitágoras');
 
@@ -976,6 +1064,7 @@ if (UserStateAYPSR == false) {
     var questionsDescription = $('#DescriptionCustom');
     string = checkIfName(string);
     questionsDescription.text(string);
+    
 
 }
 
@@ -1139,6 +1228,7 @@ function generateBasicArithmeticsOperationsQuestions(){
   $('#imgPythagoras').css('display', 'none');
   
   $('#MainTitleCustom').text(tMode);
+  
 }
 
 function generateFractions(quantityOfFractions, needSameDenominators){
@@ -1223,6 +1313,7 @@ function invokeAnswerFieldForFraction(wMixedNumbers){
 
   var divInputFraction = document.createElement('DIV');
   divInputFraction.setAttribute('class', 'divInputFractionCustom');
+  divInputFraction.setAttribute('id', 'divForFractionCustom');
 
   // if (wMixedNumbers == true) { //To see if there it is a mixed number fraction
   //   divInputFraction.appendChild(inputMixedNumber);
@@ -1235,8 +1326,7 @@ function invokeAnswerFieldForFraction(wMixedNumbers){
   //   inputDenominator.setAttribute('style', 'position:relative;top: 50px;left:-35px; ');  
   // }
 
-  $('#inputCustom').css('display', 'none');
-  $('#divForCustomInputs').css('display', 'block');
+  
 
   if (wMixedNumbers == true) {
     $('#divForCustomInputs').append(inputMixedNumber);
@@ -1246,7 +1336,7 @@ function invokeAnswerFieldForFraction(wMixedNumbers){
 
   //$('#divAnswerCustom').append(divInputFraction);
   $('#divForCustomInputs').append(divInputFraction);
-  $('#btnAnswer').val('FRCT');//Set a value to know what type of Input is
+ 
 
 } 
 
@@ -1258,7 +1348,7 @@ function simpleFractionQuestionGeneration(fractionProp){
   var numerator = 0;
   var denominator = 0;
 
-  $('#keyWords').append('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+  $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
 
   //To use Backlashes it is necessary to use two.
   switch(fractionProp.mode){
@@ -1338,6 +1428,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
   invokeAnswerFieldForFraction(false);
   var questionsDescription = $('#DescriptionCustom');
+  $('#FormulaDescriptionCustom').text('');
   questionsDescription.text(question);
   $('#MainTitleCustom').text(tMode);
   questionsDescription.html()
@@ -1614,7 +1705,7 @@ function showTags(state, action){
       
       $('#Right').css('display', 'none');
       $('#Wrong').css('display', 'none');
-      $('#inputCustom').val('');
+      
       $('#btnAnswer').removeClass('disable');
       $('#Arrow2').css('display', 'none');
 
@@ -1881,6 +1972,10 @@ function stringReplaceValue(arr,question){
   
 
   return question;
+}
+function removeElement(id){
+    var element = document.getElementById(id);
+    element.parentNode.removeChild(element);
 }
 //Javascript//////////////////////////Javascript/////Inputs / Browser
 function onLeaveAction(){
