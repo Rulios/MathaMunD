@@ -749,6 +749,14 @@ div[name="divItem"]{
 	margin-bottom:5px;
 	
 }
+/*---------------ANSWER SELECTOR ----------*/
+.ansSelector{
+	font-family: 'Bungee', cursive;
+	width:100px;
+	border-radius: 5px;
+	font-size: 16px;
+	margin:20px;
+}
 /*----------------------*/
 #brInResponsive{
 	display:none;

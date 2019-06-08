@@ -33,7 +33,7 @@ var questionsContext4AYPSR = []; //Perimeter of Rectangles
 //FRCT - Variables for the Fractions
 var actualNumeratorResult = 0; //Result for Numerator
 var actualDenominatorResult = 0; //Result for Denominator
-var actualMixedNumberResult = 0;
+var actualMixedNumberResult = 0; //Result for the Mixed Number
 
 
 var usrInteracted; //To check if the user has interacted with the modes
@@ -223,6 +223,17 @@ $('#btnacceptedTips').click(function(){
         }
       break;
 
+      case "answerSelector":
+        var userValue = $('#iSelect').val();
+
+        if (userValue == actualTotalCorrectResult) {
+          correct = 1;
+        }else{
+          correct = 0;
+        }
+
+      break;
+
     }
 
       if (correct == 1) {
@@ -238,8 +249,7 @@ $('#btnacceptedTips').click(function(){
 
       }
       $("#btnAnswer").addClass('disable');
-      $('#Arrow2').css('display', 'inline-block')
-;
+      $('#Arrow2').css('display', 'inline-block');
     console.log('Respuesta ' + actualNumeratorResult + '/' + actualDenominatorResult);
     console.log('Usuario ' + usrNumeratorInput + '/' + usrDenominatorInput);
   });
@@ -354,20 +364,35 @@ function subAnswerFieldCustomized(){ //This function goes anexed at the upper fu
 
   if ($('#btnAnswer').val() == 'SingleThreadAnswer') {
 
-    if ($('#inputCustom').css('display') == 'none') {
-      if ($('#divForCustomInputs').css('display') == 'block') {
-      //Remove textboxes
-      removeElement('divForFractionCustom');
+      if ($('#inputCustom').css('display') == 'none') {
+        if ($('#divForCustomInputs').css('display') == 'block') {
+        //Remove textboxes
+        removeElement('divForFractionCustom');
+        }
+        $('#inputCustom').css('display', 'block');
+      }else{
+        $('#inputCustom').val('');
       }
-      $('#inputCustom').css('display', 'block');
-    }else{
-      $('#inputCustom').val('');
-    }
 
-  }else if ($('#btnAnswer').val() == 'FRCT') {
+  }else if ($('#btnAnswer').val() == 'FRCT' || $('#btnAnswer').val() == 'answerSelector') {
     if ($('#divForCustomInputs').css('display') == 'block') {
       //Remove textboxes
-      removeElement('divForFractionCustom');
+      if ($('#divForFractionCustom').length >= 1) {
+        removeElement('divForFractionCustom');;
+      }
+      
+      //Since inputMixedNumberCustom doesn't belong to divForFractionCustom it needs to be 
+      //Removed individually
+      if ($('#inputMixedNumberCustom').length >= 1) {
+        removeElement('inputMixedNumberCustom');
+      }
+
+      //Since iSelect also belongs to the FRCT, it needs to be removed
+      
+      if ($('#iSelect').length >= 1) {
+        removeElement('iSelect');
+      }
+
     }else{
       $('#inputCustom').css('display', 'none');
       $('#divForCustomInputs').css('display', 'block');
@@ -1226,15 +1251,16 @@ function generateBasicArithmeticsOperationsQuestions(){
 
   $('#FormulaDescriptionCustom').css('display', 'none');
   $('#imgPythagoras').css('display', 'none');
-  
+  $('#keyWords').text('');
   $('#MainTitleCustom').text(tMode);
   
 }
 
-function generateFractions(quantityOfFractions, needSameDenominators){
+function generateFractions(quantityOfFractions, needSameDenominators, needMixedNumber){
 
   var numerators = [];
   var denominators = [];
+  var mixedNumber = [];
 
   var sameDenominator = generate(10, true);
 
@@ -1246,10 +1272,16 @@ function generateFractions(quantityOfFractions, needSameDenominators){
     }else{
       denominators.push(generate(10,false));
     }
+
+    if (needMixedNumber == true) {
+      mixedNumber.push(generate(10,false));
+    }else if (needMixedNumber == false || needMixedNumber == undefined || needMixedNumber == '') {
+      //Don't do anything, just to prevent adding other parameters
+    }
     
   }
   //return as an object
-  return {numerators: numerators, denominators: denominators}; 
+  return {numerators: numerators, denominators: denominators, mixedNumber: mixedNumber}; 
 }   
 
 function generateFractionsQuestions(){
@@ -1262,7 +1294,7 @@ function generateFractionsQuestions(){
 
   var r = generate(5, false);
   var fraction = [];
-  r = 3;
+  r = 4;
   switch(r){
     case 1: //text questions of Fractions
 
@@ -1282,63 +1314,17 @@ function generateFractionsQuestions(){
     break;
 
     case 4: //Fraction Comparison
-
+      fraction = generateFractionsComparison();
+      simpleFractionQuestionGeneration(fraction);
     break;
 
     case 5: //Fractions w/ Mixed Numbers
-
+      fraction = generateFractionsWithMixedNumbers();
+      simpleFractionQuestionGeneration(fraction);
     break;
   }
 
 }
-function invokeAnswerFieldForFraction(wMixedNumbers){
-
-  wMixedNumbers = false;
-
-  var inputMixedNumber = document.createElement('INPUT');
-  inputMixedNumber.setAttribute('id', 'inputMixedNumberCustom');
-  inputMixedNumber.setAttribute('onkeypress', 'return justNumbers(event);');
-  inputMixedNumber.setAttribute('class', 'inputFractionCustom ');
-  inputMixedNumber.setAttribute('style', 'top:10px; position:relative;');
-
-  var inputNumerator = document.createElement('INPUT');
-  inputNumerator.setAttribute('id', 'inputNumeratorCustom');
-  inputNumerator.setAttribute('onkeypress', 'return justNumbers(event);');
-  inputNumerator.setAttribute('class', 'inputFractionCustom ');
-
-  var inputDenominator = document.createElement('INPUT');
-  inputDenominator.setAttribute('id', 'inputDenominatorCustom');
-  inputDenominator.setAttribute('onkeypress', 'return justNumbers(event);'); 
-  inputDenominator.setAttribute('class', 'inputFractionCustom '); 
-
-  var divInputFraction = document.createElement('DIV');
-  divInputFraction.setAttribute('class', 'divInputFractionCustom');
-  divInputFraction.setAttribute('id', 'divForFractionCustom');
-
-  // if (wMixedNumbers == true) { //To see if there it is a mixed number fraction
-  //   divInputFraction.appendChild(inputMixedNumber);
-  //   inputMixedNumber.setAttribute('style', 'left:-5px; top:20px; position:relative;');
-  //   inputNumerator.setAttribute('style', 'bottom:10px;');
-  //   inputDenominator.setAttribute('style', 'top:10px; left:35px; position:relative;');
-      
-  // }else{
-  //   inputNumerator.setAttribute('style','left:35px;position:relative;');
-  //   inputDenominator.setAttribute('style', 'position:relative;top: 50px;left:-35px; ');  
-  // }
-
-  
-
-  if (wMixedNumbers == true) {
-    $('#divForCustomInputs').append(inputMixedNumber);
-  }
-  divInputFraction.appendChild(inputNumerator);
-  divInputFraction.appendChild(inputDenominator);
-
-  //$('#divAnswerCustom').append(divInputFraction);
-  $('#divForCustomInputs').append(divInputFraction);
- 
-
-} 
 
 function simpleFractionQuestionGeneration(fractionProp){
   var tMode = ""; //Title
@@ -1347,8 +1333,6 @@ function simpleFractionQuestionGeneration(fractionProp){
   var question = "$$"; //Starts with this experession
   var numerator = 0;
   var denominator = 0;
-
-  $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
 
   //To use Backlashes it is necessary to use two.
   switch(fractionProp.mode){
@@ -1424,9 +1408,114 @@ function simpleFractionQuestionGeneration(fractionProp){
 
     break;
 
+    //Mixed Number Modes
+
+    case 'Mixed Number To Improper Fraction':
+      tMode = "Conversión de una fracción mixta a fracción impropia"
+      for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+        mixedNumber = fractionProp.mixedNumber[i];
+
+        question += mixedNumber +   "{" +numerator + " \\over " + denominator +"}  ";
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += "/";
+        }
+        
+      }
+
+    break;
+    
+    case 'Improper Fraction To Mixed Number':
+      tMode = "Conversión de una fracción impropia a una fracción mixta"
+      for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+        mixedNumber = fractionProp.mixedNumber[i];
+
+        question +="{" +numerator + " \\over " + denominator +"}  ";
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += "/";
+        }
+        
+      }
+    break;
+
+    /////Fraction Comparison
+    case 'Fraction Comparison':
+    tMode ="Comparación de Fracciones";
+    for(var i = 0; i < quantity; i++){
+        numerator = fractionProp.numerators[i];
+        denominator = fractionProp.denominators[i];
+        mixedNumber = fractionProp.mixedNumber[i];
+
+        if (mixedNumber == 0 || mixedNumber == 'undefined') {
+          question += "{" +numerator + " \\over " + denominator +"}  ";
+
+        }else{
+          question += mixedNumber + "{" +numerator + " \\over " + denominator +"}  ";
+        }
+
+        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+          question += "$$";
+        }else{
+          question += " ";
+        }
+        
+      }
+
+    break;
   }
 
-  invokeAnswerFieldForFraction(false);
+//To asign input fields
+  switch(fractionProp.mode){
+
+    case 'Addition': //Adding of Fractions
+      invokeAnswerFieldForFraction(false);
+       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+    break;
+
+    case 'Substraction':
+      invokeAnswerFieldForFraction(false); 
+       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+    break;
+
+    case 'Multiplication':
+      invokeAnswerFieldForFraction(false);
+       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+    break;
+
+    case 'Division':
+      invokeAnswerFieldForFraction(false);
+       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+    break;
+
+    //Mixed Number Modes
+
+    case 'Mixed Number To Improper Fraction':
+      invokeAnswerFieldForFraction(false);
+       $('#keyWords').text('');
+    break;
+    
+    case 'Improper Fraction To Mixed Number':
+      invokeAnswerFieldForFraction(true);
+       $('#keyWords').text('');
+    break;
+
+    //Fraction Comparison
+    case 'Fraction Comparison':
+    invokeAnswerSelector('sizeComparison');
+    $('#keyWords').text('Selecciona el operador correcto para su comparación');
+    break;
+  }
+
+  
   var questionsDescription = $('#DescriptionCustom');
   $('#FormulaDescriptionCustom').text('');
   questionsDescription.text(question);
@@ -1440,6 +1529,72 @@ function generateFractionsFetchQuestions(){
   fetchCustomQuestions('FRCT',function(){
 
   });
+}
+function generateFractionsComparison(){
+  var quantityOfFractions = 2; //This can change
+  var fractionsObj;
+  var r = generate(2, false); //To decide if with Mixed Numbers
+  var b = generate(2, false); //To decide if both with Mixed Numbers or not
+  var p = generate(1, true); //To decide whether of the fractions will have Mixed Numbers in case of previously of just only one.
+  var mNumber;
+
+  //We start initializing the Object without Mixed Number
+  fractionsObj = generateFractions(quantityOfFractions, false);
+
+  switch(r){
+
+    case 1 : //With Mixed Numbers 
+
+      switch(b){
+
+        case 1: //Just one fraction with Mixed Numbers
+          mNumber = generate(10,false);
+
+          if (p = 1) { //Set the position of the Mixed Number
+            fractionsObj.mixedNumber[0] = 0;
+          }
+          fractionsObj.mixedNumber[p] = mNumber;
+        break;
+
+        ///////////////////////////////////////
+
+        case 2: //With both fractions with Mixed Numbers
+          mNumber = generate(10,false);
+          fractionsObj.mixedNumber[0] = mNumber;
+
+          mNumber = generate(10,false);
+          fractionsObj.mixedNumber[1] = mNumber;
+
+        break;
+      }
+
+    case 2: //Without Mixed Numbers
+      fractionsObj.mixedNumber[0] = 0;
+      fractionsObj.mixedNumber[1] = 0;
+    break;
+  }
+
+  var frac1 = ((fractionsObj.denominators[0] * fractionsObj.mixedNumber[0]) + fractionsObj.numerators[0]) / fractionsObj.denominators[0];
+  var frac2 = ((fractionsObj.denominators[1] * fractionsObj.mixedNumber[1]) + fractionsObj.numerators[1]) / fractionsObj.denominators[1];
+
+  
+
+  if (frac1 == frac2) {
+    actualTotalCorrectResult = 'equalTo';
+  }else if (frac1 < frac2) {
+    actualTotalCorrectResult = 'lessThan';
+  }else if (frac1 > frac2) {
+    actualTotalCorrectResult = 'greaterThan';
+  }
+   console.log('Frac1 '+frac1);
+   console.log('Frac2 '+frac2) ;
+   console.log(actualTotalCorrectResult) ;
+   //Since this is one of the only modes that doesn't require
+   //fractions as answer, just selectors   
+   $('#btnAnswer').val('answerSelector');
+   fractionsObj.quantityOfFractions = quantityOfFractions; 
+   fractionsObj.mode = 'Fraction Comparison';
+  return fractionsObj;
 }
 function generateFractionsAdditionAndSubstractOfFractions(){
   var quantityOfFractions = 2; //This can change
@@ -1655,7 +1810,6 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
     break;  
   }
 
-
   //Answer always in simplified
   console.log(fractionsObj);
   var fractionsSimplified = simplifyFractions(actualNumeratorResult, actualDenominatorResult);
@@ -1666,11 +1820,66 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
   return fractionsObj;
 
 }
-function generateFractionComparison(){
- //Still working out to implement it on the answer basis
-}
 function generateFractionsWithMixedNumbers(){
  //Still working out to implement it on the answer basis
+
+  var quantityOfFractions = 1;
+  var MixedMode = generate(2, false);
+  var fractionsObj;
+  //Mixed Fractions possibilities
+  /*1 = Convert Mixed Numbers to Improper Fractions
+  2 = Convert Improper Fractions to Mixed Numbers*/
+
+  switch(MixedMode){
+
+    case 1: //Mixed Numbers to Improper Fractions
+
+      
+      var mixedNumber = generate(10, false);
+      fractionsObj = generateFractions(quantityOfFractions, false, true);
+
+      actualNumeratorResult = (fractionsObj.denominators[0] * fractionsObj.mixedNumber[0]) + fractionsObj.numerators[0];
+      actualDenominatorResult = fractionsObj.denominators[0];
+      fractionsObj.mode = 'Mixed Number To Improper Fraction';
+      console.log(fractionsObj);
+      console.log(actualNumeratorResult + " " + actualDenominatorResult);
+    break;
+
+    case 2: //Improper Fraction to Mixed Number
+
+      
+      
+      fractionsObj = generateFractions(quantityOfFractions, false, false);
+
+      while(fractionsObj.numerators[0] <= fractionsObj.denominators[0]){
+        fractionsObj.numerators[0] = fractionsObj.numerators[0] * 2;
+      }
+
+    
+
+      var u = Math.round(fractionsObj.numerators[0] / fractionsObj.denominators[0]);
+      var mod = fractionsObj.numerators[0] % fractionsObj.denominators[0];
+      var p = (u * fractionsObj.denominators[0]) + mod; //using to verify
+      console.log(u);
+
+      //To get the actual division without decimals
+      if (p < fractionsObj.numerators[0]) {
+        u += 1;
+      }else if (p > fractionsObj.numerators[0]) {
+        u -= 1;
+      }
+
+      actualMixedNumberResult = u;
+      actualNumeratorResult = mod;
+      actualDenominatorResult = fractionsObj.denominators[0];
+      fractionsObj.mode = 'Improper Fraction To Mixed Number';
+      console.log(u + ' ' + actualNumeratorResult+ '/'+ actualDenominatorResult);
+
+    break;
+  }
+
+  fractionsObj.quantityOfFractions = quantityOfFractions;
+  return fractionsObj;
 }
 function simplifyFractions(numerator, denominator){ //Used to simplify fractions
 
@@ -1724,20 +1933,6 @@ function showResults(){
   }else if (usrAnswer <= Math.round(times)) {
     $('#DescriptionCustom').css('color', 'green');
   }
-
-  
-  // if (usrAnswer <= 4) {
-  //   $('#DescriptionCustom').css('color', 'red');
-    
-
-  // } else if (usrAnswer >= 5 || usrAnswer <= 7) {
-  //   $('#DescriptionCustom').css('color', 'yellow');
-    
-
-  // }else if (usrAnswer >= 8) {
-  //   $('#DescriptionCustom').css('color', 'green');
-    
-  // }
   
   
   $('#DescriptionCustom').css('text-align', 'center');
@@ -1987,6 +2182,101 @@ function onLeaveAction(){
 	}
 }
 
+////FUNCTIONS TO INVOKE CUSTOMIZED INPUT FIELDS
+function invokeAnswerFieldForFraction(wMixedNumbers){
+
+  var inputMixedNumber = document.createElement('INPUT');
+  inputMixedNumber.setAttribute('id', 'inputMixedNumberCustom');
+  inputMixedNumber.setAttribute('onkeypress', 'return justNumbers(event);');
+  inputMixedNumber.setAttribute('class', 'inputFractionCustom ');
+  inputMixedNumber.setAttribute('style', 'top:10px; position:relative;');
+
+  var inputNumerator = document.createElement('INPUT');
+  inputNumerator.setAttribute('id', 'inputNumeratorCustom');
+  inputNumerator.setAttribute('onkeypress', 'return justNumbers(event);');
+  inputNumerator.setAttribute('class', 'inputFractionCustom ');
+
+  var inputDenominator = document.createElement('INPUT');
+  inputDenominator.setAttribute('id', 'inputDenominatorCustom');
+  inputDenominator.setAttribute('onkeypress', 'return justNumbers(event);'); 
+  inputDenominator.setAttribute('class', 'inputFractionCustom '); 
+
+  var divInputFraction = document.createElement('DIV');
+  divInputFraction.setAttribute('class', 'divInputFractionCustom');
+  divInputFraction.setAttribute('id', 'divForFractionCustom');
+
+  // if (wMixedNumbers == true) { //To see if there it is a mixed number fraction
+  //   divInputFraction.appendChild(inputMixedNumber);
+  //   inputMixedNumber.setAttribute('style', 'left:-5px; top:20px; position:relative;');
+  //   inputNumerator.setAttribute('style', 'bottom:10px;');
+  //   inputDenominator.setAttribute('style', 'top:10px; left:35px; position:relative;');
+      
+  // }else{
+  //   inputNumerator.setAttribute('style','left:35px;position:relative;');
+  //   inputDenominator.setAttribute('style', 'position:relative;top: 50px;left:-35px; ');  
+  // }
+
+  if (wMixedNumbers == true) {
+    $('#divForCustomInputs').append(inputMixedNumber);
+  }
+  divInputFraction.appendChild(inputNumerator);
+  divInputFraction.appendChild(inputDenominator);
+
+  //$('#divAnswerCustom').append(divInputFraction);
+  $('#divForCustomInputs').append(divInputFraction);
+} 
+function invokeAnswerSelector(typeOfAnswer){
+
+ /*   If a CUSTOMIZED ANSWER THEN
+    typeOfAnswer SHOULD come in as an OBJECT subjected to the next Syntax
+    {value: "what goes as the text"} --> Thiis referenced as the <option>*/
+
+   /*   If a DEFAULT ANSWER then
+      typeOfAnswer should come as plain text*/
+  var booleanAnswer = {true:'VERDADERO',false: 'FALSE'};
+
+  var sizeComparison = 
+  {equalTo:'=', 
+  greaterThan:'>', 
+  lessThan:'<', 
+  greatherThanOrEqualTo:'≥', 
+  lessThanOrEqualTo:'≤', 
+  notEqualTo:'≠'};
+
+  var obToProcess = {};
+
+  var iSelect = document.createElement('SELECT'); //Selector
+  iSelect.setAttribute('id', 'iSelect');
+  iSelect.setAttribute('class', 'ansSelector');
+
+  //Check if the variable is an object
+  if (typeof typeOfAnswer === 'object' && typeOfAnswer !== null) {
+
+    obToProcess = typeOfAnswer;
+  }else{
+    switch(typeOfAnswer){
+      case 'booleanAnswer':
+        obToProcess = booleanAnswer;
+      break;
+
+      case 'sizeComparison':
+        obToProcess = sizeComparison;
+      break;
+    }
+  }
+
+  for (var key in obToProcess) {
+      if (obToProcess.hasOwnProperty(key)) {
+
+          var optionGen = document.createElement('OPTION');
+          optionGen.setAttribute('value', key);
+          optionGen.append(obToProcess[key]);
+          iSelect.append(optionGen);
+      }
+  }
+
+$('#divForCustomInputs').append(iSelect);
+}
 function justNumbers(e){
         var keynum = window.event ? window.event.keyCode : e.which;
         if ((keynum == 8) || (keynum == 46))

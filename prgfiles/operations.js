@@ -33,7 +33,7 @@ function generate(){
 
 
 function ShowValues(mode){
-
+	
 
 
 	 contador_s = 0;
