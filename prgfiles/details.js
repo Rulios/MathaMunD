@@ -5,10 +5,9 @@ $(document).ready(function(){
 		//Callback
 
 		fetchQuote(function(data){
-			data = JSON.parse(data); //JSON string to JS object
-
-			var i = generate(data.length, true);
 			
+			data = JSON.parse(data); //JSON string to JS object
+			var i = generate(data.length, true);
 			var quote = data[i].quote;
 			var author = data[i].author;
 			var authorBio = data[i].authorbio;

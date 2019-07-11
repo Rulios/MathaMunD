@@ -7,15 +7,20 @@ $db = "mathaforum";
 
 $id = $_POST['id'];
 
-
+$pw = "";
 
 	# code...
 
-	$conn = mysql_connect($host, $user) or $conn = mysql_connect($host, $user, $db) or die ("Problemas al Conectar");
+	$conn =mysqli_connect($host, $user, $pw);
 
-	mysql_select_db($db, $conn) or die ("Problemas al Conectar Base de Datos");
+	if (!$conn) {
+	    die("Connection failed: " . mysqli_connect_error());
+	}
 
-	mysql_query("INSERT INTO reportquestions (id) VALUES ('$id') ", $conn)  or die ("Problemas al insertar");
+
+	mysqli_select_db($conn, $db) or die ('Problemas al conectar con la base de datos');	
+
+	mysqli_query($conn ,"INSERT INTO reportquestions (id) VALUES ('$id') ")  or die ("Problemas al insertar");
 
 
 

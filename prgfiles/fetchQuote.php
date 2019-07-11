@@ -5,21 +5,30 @@ $user = "root";
 $pw = "getrekt123";
 $db = "mathaforum";
 
-$language = $_GET['lang'];
+//$language = $_GET['lang'];
 $language = 'es';
 
-$con = mysql_connect($host, $user) or die ('Problemas al conectar con el servidor');
+$pw = "";
+
+$conn =mysqli_connect($host, $user, $pw);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+/*$con = mysql_connect($host, $user) or die ('Problemas al conectar con el servidor');
 
 // $con = mysql_connect($host, $user, $pw) or $con = mysql_connect($host, $user, $db) or $con = mysql_connect($host, $user) or die ('problemas al conectar server');
 
-mysql_select_db($db, $con) or die ('Problemas al conectar la base de datos');
+*/
+mysqli_select_db($conn, $db) or die ('Problemas al conectar con la base de datos');	
 
- $registro = mysql_query("SELECT quote, author, authorbio FROM quotes WHERE lang = '".$language. "'") or die ('Problemas en la consulta: '.mysql_error());
+ $registro = mysqli_query($conn, "SELECT quote, author, authorbio FROM quotes WHERE lang = '".$language. "'") or die ('Problemas en la consulta: '.mysqli_error($conn));
 
 
 $data = array();
 
-while ($row = mysql_fetch_array($registro)) {
+while ($row = mysqli_fetch_array($registro)) {
 
 	# code...
 	

@@ -7,20 +7,24 @@ $db = "mathaforum";
 
 //$language = $_GET['lang'];
 $language = 'es';
+$pw = "";
 
+$conn =mysqli_connect($host, $user, $pw);
 
-$con = mysql_connect($host, $user) or die ('Problemas al conectar con el servidor');
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-// $con = mysql_connect($host, $user, $pw) or $con = mysql_connect($host, $user, $db) or $con = mysql_connect($host, $user) or die ('problemas al conectar server');
+// $conn = mysql_connect($host, $user, $pw) or $conn = mysql_connect($host, $user, $db) or $conn = mysql_connect($host, $user) or die ('problemas al conectar server');
 
-mysql_select_db($db, $con) or die ('Problemas al conectar la base de datos');
+mysqli_select_db($conn, $db) or die ('Problemas al conectar con la base de datos');	
 
- $registro = mysql_query("SELECT genre, name FROM names WHERE lang = '".$language. "'") or die ('Problemas en la consulta: '.mysql_error());	
+ $registro = mysqli_query($conn ,"SELECT genre, name FROM names WHERE lang = '".$language. "'") or die ('Problemas en la consulta: '.mysql_error($conn));	
 
 
 $data = array();
 
-while ($row = mysql_fetch_array($registro)) {
+while ($row = mysqli_fetch_array($registro)) {
 
 	# code...
 	 $data[] = $row;

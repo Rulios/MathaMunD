@@ -9,13 +9,17 @@
 	$name = $_GET['name'];
 	$comment = $_GET['comment'];
 
+	$pw = "";
+	$conn =mysqli_connect($host, $user, $pw);
 
-	$con = mysql_connect($host, $user, $pw) or $con = mysql_connect($host, $user, $db) or $con = mysql_connect($host, $user) or die ('problemas al conectar server');
+	if (!$conn) {
+	    die("Connection failed: " . mysqli_connect_error());
+	}
 
 
-mysql_select_db($db, $con) or die ('Problemas al conectar la base de datos');
+mysqli_select_db($conn, $db) or die ('Problemas al conectar con la base de datos');	
 
-mysql_query("INSERT INTO commentsofquestions (id, name, comment) VALUES ('$id' , '$name' , '$comment') ", $con) ;
+mysqli_query($conn,"INSERT INTO commentsofquestions (id, name, comment) VALUES ('$id' , '$name' , '$comment') ") ;
 
 echo "hehco";
 

@@ -8,19 +8,22 @@ $db = "mathaforum";
 
 $data = $_GET['filter'];
 
+$pw= "";
 
+$conn =mysqli_connect($host, $user, $pw);
 
-$con = mysql_connect($host, $user) or $con = mysql_connect($host,$user,$db) or die ('problemas al conectar server');
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
 
-mysql_select_db($db, $con) or die ('Problemas al conectar la base de datos');
+mysqli_select_db($conn, $db) or die ('Problemas al conectar con la base de datos');	
 
 if ($data == "All") {
 	# code...
-	 $registro = mysql_query("SELECT * FROM questions") or die ('Problemas en la consulta: '.mysql_error());
-
+	 $registro = mysqli_query($conn, "SELECT * FROM questions") or die ('Problemas en la consulta: '.mysql_error());
 	
 }else{
-	 $registro = mysql_query("SELECT * FROM questions WHERE area='$data'") or die ('Problemas en la consulta: '.mysql_error());
+	 $registro = mysqli_query($conn, "SELECT * FROM questions WHERE area='$data'") or die ('Problemas en la consulta: '.mysql_error());
 }
 
  
@@ -28,7 +31,7 @@ if ($data == "All") {
 
 $data = array();
 
-while ($row = mysql_fetch_row($registro)) {
+while ($row = mysqli_fetch_row($registro)) {
 
 	# code...
 

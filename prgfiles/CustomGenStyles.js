@@ -15,7 +15,8 @@ var UserStateAYPSR = false;
 var femaleNames = [];
 var maleNames = [];
 
-
+//Mode
+var actMode = "";
 //These variables can be added more if need more context
 
 //TPYTHG - Pythagora's Theorem
@@ -171,7 +172,7 @@ $('#btnacceptedTips').click(function(){
 
   $('#btnAnswer').click(function(){
 
-    var m = $('#btnAnswer').val();
+    var m = actMode;
     var correct = 0;
 
 
@@ -182,16 +183,26 @@ $('#btnacceptedTips').click(function(){
     switch(m){
 
       case "FRCT": //Fractions
-      var usrMixedNumberInput = $('#inputMixedNumberCustom').val()
+      var usrMixedNumberInput = $('#inputMixedNumberCustom').val();
       var usrNumeratorInput = $('#inputNumeratorCustom').val();
       var usrDenominatorInput = $('#inputDenominatorCustom').val();
 
-      console.log('Mixed Input:' + usrMixedNumberInput);
+      console.log('Denom Input:' + usrDenominatorInput);
 
-      var avMixedNumberInput = usrMixedNumberInput == undefined || usrMixedNumberInput == 0;
-      var avNumeratorInput =  usrNumeratorInput == undefined || usrNumeratorInput == 0;
-      var avDenominatorInput = usrDenominatorInput == undefined || usrDenominatorInput == 0;
+      if (usrMixedNumberInput == undefined) {
+        usrMixedNumberInput = 0;
+      }
+      if (usrNumeratorInput == undefined) {
+        usrNumeratorInput = 0;
+      }
+      if (usrDenominatorInput == undefined) {
+        usrDenominatorInput = 0;
+      }
 
+      var avMixedNumberInput = usrMixedNumberInput == undefined;
+      var avNumeratorInput =  usrNumeratorInput == undefined;
+      var avDenominatorInput = usrDenominatorInput == undefined;
+      alert(avDenominatorInput);
       if (avMixedNumberInput == true && avNumeratorInput == true && avDenominatorInput == true){
           correct = 2;
       }else if(avMixedNumberInput == true && avNumeratorInput == false && avDenominatorInput == false ){
@@ -208,12 +219,12 @@ $('#btnacceptedTips').click(function(){
           correct = 0;
         }
       }    
-  
-      
+    
+     
       break;
 
 
-      case "SingleThreadAnswer": //All answers that doesn't need customized inputs
+      case "iSTD": //All answers that doesn't need customized inputs
         var userValue = $('#inputCustom').val();
 
         if (userValue == actualTotalCorrectResult) {
@@ -223,7 +234,7 @@ $('#btnacceptedTips').click(function(){
         }
       break;
 
-      case "answerSelector":
+      case "iSLCT":
         var userValue = $('#iSelect').val();
 
         if (userValue == actualTotalCorrectResult) {
@@ -250,8 +261,8 @@ $('#btnacceptedTips').click(function(){
       }
       $("#btnAnswer").addClass('disable');
       $('#Arrow2').css('display', 'inline-block');
-    console.log('Respuesta ' + actualNumeratorResult + '/' + actualDenominatorResult);
-    console.log('Usuario ' + usrNumeratorInput + '/' + usrDenominatorInput);
+    console.log('Respuesta '+ actualMixedNumberResult + ' ' + actualNumeratorResult + '/' + actualDenominatorResult);
+    console.log('Usuario '+actualMixedNumberResult + ' '+ + usrNumeratorInput + '/' + usrDenominatorInput);
   });
 
 
@@ -332,71 +343,21 @@ function randomizeCustomModes(){
   switch(x){
 
     case 'BAOP':
-    $('#btnAnswer').val('SingleThreadAnswer'); //Determines the type of input
-    subAnswerFieldCustomized();
     generateBasicArithmeticsOperationsQuestions();
     break;
 
     case 'FRCT':
-    $('#btnAnswer').val('FRCT');
-    subAnswerFieldCustomized();
     generateFractionsQuestions();
     break;
 
     case 'ARPSR':
-    $('#btnAnswer').val('SingleThreadAnswer');
-    subAnswerFieldCustomized();
     generateQuestionsAreaAndPerimeter();
-
     break;
 
     case 'TPYTHG':
-    $('#btnAnswer').val('SingleThreadAnswer');
-    subAnswerFieldCustomized();
     generatePythagorasQuestions();
 
     break;
-  }
-
-  
-}
-function subAnswerFieldCustomized(){ //This function goes anexed at the upper function
-
-  if ($('#btnAnswer').val() == 'SingleThreadAnswer') {
-
-      if ($('#inputCustom').css('display') == 'none') {
-        if ($('#divForCustomInputs').css('display') == 'block') {
-        //Remove textboxes
-        removeElement('divForFractionCustom');
-        }
-        $('#inputCustom').css('display', 'block');
-      }else{
-        $('#inputCustom').val('');
-      }
-
-  }else if ($('#btnAnswer').val() == 'FRCT' || $('#btnAnswer').val() == 'answerSelector') {
-    if ($('#divForCustomInputs').css('display') == 'block') {
-      //Remove textboxes
-      if ($('#divForFractionCustom').length >= 1) {
-        removeElement('divForFractionCustom');;
-      }
-      
-      //Since inputMixedNumberCustom doesn't belong to divForFractionCustom it needs to be 
-      //Removed individually
-      if ($('#inputMixedNumberCustom').length >= 1) {
-        removeElement('inputMixedNumberCustom');
-      }
-
-      //Since iSelect also belongs to the FRCT, it needs to be removed
-      
-      if ($('#iSelect').length >= 1) {
-        removeElement('iSelect');
-      }
-
-    }else{
-      $('#inputCustom').css('display', 'none');
-      $('#divForCustomInputs').css('display', 'block');
-    }
   }
 }
 function checkSelectedModes(arrSelected , requester){
@@ -632,10 +593,10 @@ function generatePythagorasQuestions(){
       UserStatePYTHG = true;
 
        //Callback - Fetch Questions
-       fetchCustomQuestions("TPYTHG",function(questions){
+       fetchCustomQuestions("TPYTHG",function(data){
 
         
-
+        
         var rdn = 0;
         var context = 0;
         var string;
@@ -644,34 +605,49 @@ function generatePythagorasQuestions(){
         var b = 0;
         var c = 0;
 
-        pythagorasQuestions = StrToArraySeparation(questions);
+        data = JSON.parse(data);
+        console.log(data);
+     
+        //pythagorasQuestions = StrToArraySeparation(questions);
         
         var x = 0;
-        for(i = 0; i < pythagorasQuestions.length; i++){
+        var pythagorasQuestions;
+        var formula;
+        var inputType;
+        for(i = 0; i < data.length; i++){
+          pythagorasQuestions = data[i].question;
+          formula = data[i].formula;
+          inputType = data[i].inputType;
 
-          x = (questionIdentification(pythagorasQuestions[i], "TPYTHG"));
+          x = (questionIdentification(pythagorasQuestions, "TPYTHG"));
 
           switch(x){
 
             case 1:
-
-            questionsContext1TPYTHG.push(pythagorasQuestions[i]);
-
+              questionsContext1TPYTHG.push({question: pythagorasQuestions,
+              formula: formula, 
+              inputType: inputType}) ;
             break;
 
             case 2:
-            questionsContext2TPYTHG.push(pythagorasQuestions[i]);
-
+              questionsContext2TPYTHG.push({question: pythagorasQuestions,
+              formula: formula, 
+              inputType: inputType}) ;
             break;
 
             case 3:
-            questionsContext3TPYTHG.push(pythagorasQuestions[i]);
+            questionsContext3TPYTHG.push({question: pythagorasQuestions,
+              formula: formula, 
+              inputType: inputType}) ;
 
             break;    
           }
         }
 
-        ///
+        console.log(questionsContext1TPYTHG);
+        console.log(questionsContext2TPYTHG);
+        console.log(questionsContext3TPYTHG);
+        
         context = generate(3,false); //Get the context
         switch(context){
 
@@ -687,7 +663,7 @@ function generatePythagorasQuestions(){
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue([a,b,c],questionsContext1TPYTHG[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext1TPYTHG[(rdn - 1)].question);
 
           break;
 
@@ -698,7 +674,7 @@ function generatePythagorasQuestions(){
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue([a,b,c],questionsContext2TPYTHG[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext2TPYTHG[(rdn - 1)].question);
 
           break;
 
@@ -709,7 +685,7 @@ function generatePythagorasQuestions(){
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)].question);
 
           break;
           
@@ -739,7 +715,7 @@ function generatePythagorasQuestions(){
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue([a,b,c],questionsContext1TPYTHG[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext1TPYTHG[(rdn - 1)].question);
 
           break;
 
@@ -750,7 +726,7 @@ function generatePythagorasQuestions(){
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue([a,b,c],questionsContext2TPYTHG[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext2TPYTHG[(rdn - 1)].question);
 
           break;
 
@@ -761,7 +737,7 @@ function generatePythagorasQuestions(){
           a = values[0];
           b = values[1];
           c = values[2];
-          string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)]);
+          string = stringReplaceValue([a,b,c],questionsContext3TPYTHG[(rdn - 1)].question);
 
           break;
           
@@ -784,7 +760,7 @@ function generatePythagorasQuestions(){
     $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°.');
     
 
-
+     appendCustomInputType('iSTD');
      showCurrentState();
      string = "";
 
@@ -811,7 +787,6 @@ function generateAYPSR(context){
 
    }else if (context == 3){ //Perimeter of Squares
 
-    
       a = generate(20,false);
       b = a;
       actualTotalCorrectResult = 2 * (a + b);
@@ -828,9 +803,7 @@ function generateAYPSR(context){
 }
 
 function generateQuestionsAreaAndPerimeter(){
-  var perAQuestions = [];
-  
-  
+ 
 
   $('#FormulaDescriptionCustom').text('');
   $('#keyWords').text('');
@@ -839,7 +812,7 @@ function generateQuestionsAreaAndPerimeter(){
 if (UserStateAYPSR == false) {
   UserStateAYPSR = true;
 
-  fetchCustomQuestions("ARPSR",function(question){
+  fetchCustomQuestions("ARPSR",function(data){
 
         var rdn = 0;
         var context = 0;
@@ -848,32 +821,50 @@ if (UserStateAYPSR == false) {
         var a = 0;
         var b = 0;
 
-    perAQuestions = StrToArraySeparation(question);   
-    var x = 0;
-        for(i = 0; i < perAQuestions.length; i++){
+        data = JSON.parse(data);
+        console.log(data);
 
-          x = (questionIdentification(perAQuestions[i], "ARPSR"));
+
+    //perAQuestions = StrToArraySeparation(question);   
+        var x = 0;
+        var perAQuestions;
+        var formula;
+        var inputType;
+        for(i = 0; i < data.length; i++){
+          perAQuestions = data[i].question;
+          formula = data[i].formula;
+          inputType = data[i].inputType;
+
+          x = (questionIdentification(perAQuestions, "ARPSR"));
 
           switch(x){
 
             case 1:
 
-            questionsContext1AYPSR.push(perAQuestions[i]);
+            questionsContext1AYPSR.push({question: perAQuestions,
+              formula:formula,
+              inputType: inputType});
 
             break;
 
             case 2:
-            questionsContext2AYPSR.push(perAQuestions[i]);
+            questionsContext2AYPSR.push({question: perAQuestions,
+              formula:formula,
+              inputType: inputType});
 
             break;
 
             case 3:
-            questionsContext3AYPSR.push(perAQuestions[i]);
+            questionsContext3AYPSR.push({question: perAQuestions,
+              formula:formula,
+              inputType: inputType});
 
             break;
             
             case 4:
-            questionsContext4AYPSR.push(perAQuestions[i]);
+            questionsContext4AYPSR.push({question: perAQuestions,
+              formula:formula,
+              inputType: inputType});
           } 
         }
 
@@ -895,7 +886,7 @@ if (UserStateAYPSR == false) {
           a = values[0];
           b = values[1];
           
-          string = stringReplaceValue([a,b],questionsContext1AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext1AYPSR[(rdn - 1)].question);
 
           break;
 
@@ -905,7 +896,7 @@ if (UserStateAYPSR == false) {
           values = generateAYPSR(context);
           a = values[0];
           b = values[1];
-          string = stringReplaceValue([a,b],questionsContext2AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext2AYPSR[(rdn - 1)].question);
 
           break;
 
@@ -916,7 +907,7 @@ if (UserStateAYPSR == false) {
           a = values[0];
           b = values[1];
           
-          string = stringReplaceValue([a,b],questionsContext3AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext3AYPSR[(rdn - 1)].question);
 
           break;
 
@@ -927,7 +918,7 @@ if (UserStateAYPSR == false) {
           a = values[0];
           b = values[1];
           
-          string = stringReplaceValue([a,b],questionsContext4AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext4AYPSR[(rdn - 1)].question);
 
           break;
           
@@ -1004,7 +995,7 @@ if (UserStateAYPSR == false) {
           a = values[0];
           b = values[1];
           
-          string = stringReplaceValue([a,b],questionsContext1AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext1AYPSR[(rdn - 1)].question);
 
           break;
 
@@ -1014,7 +1005,7 @@ if (UserStateAYPSR == false) {
           values = generateAYPSR(context);
           a = values[0];
           b = values[1];
-          string = stringReplaceValue([a,b],questionsContext2AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext2AYPSR[(rdn - 1)].question);
 
           break;
 
@@ -1025,7 +1016,7 @@ if (UserStateAYPSR == false) {
           a = values[0];
           b = values[1];
           
-          string = stringReplaceValue([a,b],questionsContext3AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext3AYPSR[(rdn - 1)].question);
 
           break;
 
@@ -1036,7 +1027,7 @@ if (UserStateAYPSR == false) {
           a = values[0];
           b = values[1];
           
-          string = stringReplaceValue([a,b],questionsContext4AYPSR[(rdn - 1)]);
+          string = stringReplaceValue([a,b],questionsContext4AYPSR[(rdn - 1)].question);
 
           break;
           
@@ -1092,7 +1083,7 @@ if (UserStateAYPSR == false) {
     
 
 }
-
+    appendCustomInputType('iSTD');
     showCurrentState();
 }
 
@@ -1248,6 +1239,7 @@ function generateBasicArithmeticsOperationsQuestions(){
   var questionsDescription = $('#DescriptionCustom');
   questionsDescription.css('text-align', 'center');
   questionsDescription.text(string);
+  appendCustomInputType('iSTD');
 
   $('#FormulaDescriptionCustom').css('display', 'none');
   $('#imgPythagoras').css('display', 'none');
@@ -1292,35 +1284,46 @@ function generateFractionsQuestions(){
   //   console.log(fractions.numerators[i] + '/' + fractions.denominators[i]);
   // }
 
+
+  //Reboot variables
+  actualNumeratorResult = 0;
+  actualDenominatorResult = 0;
+  actualMixedNumberResult = 0;
+
   var r = generate(5, false);
   var fraction = [];
-  r = 4;
+  
+  r = 2;
   switch(r){
     case 1: //text questions of Fractions
-
+    generateFractionsQuestions();
+    appendCustomInputType(fraction.inputType);
     break;
 
     case 2: //Addition and Substraction of Fractions
       fraction = generateFractionsAdditionAndSubstractOfFractions();
       simpleFractionQuestionGeneration(fraction);
-
+      appendCustomInputType('FRCT');
 
     break;
 
     case 3: //Multiplication and Division of Fractions
       fraction = generateFractionsMultiplicationAndDivisionOfFractions();
       simpleFractionQuestionGeneration(fraction);
+      appendCustomInputType('FRCT');
 
     break;
 
     case 4: //Fraction Comparison
       fraction = generateFractionsComparison();
       simpleFractionQuestionGeneration(fraction);
+      appendCustomInputType('iSLCT');
     break;
 
     case 5: //Fractions w/ Mixed Numbers
       fraction = generateFractionsWithMixedNumbers();
       simpleFractionQuestionGeneration(fraction);
+      appendCustomInputType('FRCT');
     break;
   }
 
@@ -1590,8 +1593,8 @@ function generateFractionsComparison(){
    console.log('Frac2 '+frac2) ;
    console.log(actualTotalCorrectResult) ;
    //Since this is one of the only modes that doesn't require
-   //fractions as answer, just selectors   
-   $('#btnAnswer').val('answerSelector');
+   //fractions as answer, just selectors
+
    fractionsObj.quantityOfFractions = quantityOfFractions; 
    fractionsObj.mode = 'Fraction Comparison';
   return fractionsObj;
@@ -1602,8 +1605,6 @@ function generateFractionsAdditionAndSubstractOfFractions(){
   var r = generate(2, false); //To decide same Denominators
   var fractionsObj;
 
-
-  
   switch(r){
     case 1: //Different Denominators
     fractionsObj = generateFractions(quantityOfFractions, false);
@@ -1829,7 +1830,7 @@ function generateFractionsWithMixedNumbers(){
   //Mixed Fractions possibilities
   /*1 = Convert Mixed Numbers to Improper Fractions
   2 = Convert Improper Fractions to Mixed Numbers*/
-
+MixedMode = 2;
   switch(MixedMode){
 
     case 1: //Mixed Numbers to Improper Fractions
@@ -1856,7 +1857,8 @@ function generateFractionsWithMixedNumbers(){
       }
 
     
-
+      fractionsObj.numerators[0] = 18;
+      fractionsObj.denominators[0] = 9;
       var u = Math.round(fractionsObj.numerators[0] / fractionsObj.denominators[0]);
       var mod = fractionsObj.numerators[0] % fractionsObj.denominators[0];
       var p = (u * fractionsObj.denominators[0]) + mod; //using to verify
@@ -1871,7 +1873,14 @@ function generateFractionsWithMixedNumbers(){
 
       actualMixedNumberResult = u;
       actualNumeratorResult = mod;
-      actualDenominatorResult = fractionsObj.denominators[0];
+
+      //In cases when there is a perfect Mixed Number
+      if (actualNumeratorResult == 0) { 
+        actualDenominatorResult = 0;
+      }else{
+        actualDenominatorResult = fractionsObj.denominators[0];
+      }
+      
       fractionsObj.mode = 'Improper Fraction To Mixed Number';
       console.log(u + ' ' + actualNumeratorResult+ '/'+ actualDenominatorResult);
 
@@ -1888,6 +1897,55 @@ function simplifyFractions(numerator, denominator){ //Used to simplify fractions
     };
     gcd = gcd(numerator,denominator);
     return {numerator:numerator/gcd, denominator:denominator/gcd};
+
+}
+function appendCustomInputType(inputType){
+
+   if (inputType == 'iSTD') {
+    actMode = 'iSTD';
+
+      if ($('#inputCustom').css('display') == 'none') {
+        if ($('#divForCustomInputs').css('display') == 'block') {
+        //Remove textboxes
+        removeElement('divForFractionCustom');
+        }
+        $('#inputCustom').css('display', 'block');
+      }else{
+        $('#inputCustom').val('');
+      }
+
+  }else if (inputType == 'FRCT' || inputType == 'iSLCT') {
+    if (inputType == 'FRCT') {
+      actMode = 'FRCT';
+    }
+
+    if (inputType == 'iSLCT') {
+      actMode = 'iSLCT'
+    }
+    if ($('#divForCustomInputs').css('display') == 'block') {
+      //Remove textboxes
+      if ($('#divForFractionCustom').length >= 1) {
+        removeElement('divForFractionCustom');;
+      }
+      
+      //Since inputMixedNumberCustom doesn't belong to divForFractionCustom it needs to be 
+      //Removed individually
+      if ($('#inputMixedNumberCustom').length >= 1) {
+        removeElement('inputMixedNumberCustom');
+      }
+
+      //Since iSelect also belongs to the FRCT, it needs to be removed
+      
+      if ($('#iSelect').length >= 1) {
+        removeElement('iSelect');
+      }
+
+    }else{
+      $('#inputCustom').val('');
+      $('#inputCustom').css('display', 'none');
+      $('#divForCustomInputs').css('display', 'block');
+    }
+  }
 
 }
 function showTags(state, action){
@@ -2149,6 +2207,7 @@ function stringReplaceValue(arr,question){
   var b = arr[1];
   var c = arr[2];
 
+
   if (a != 0 || typeof a =='undefined'){
    
   question = question.replace('valorA', a);
@@ -2190,16 +2249,19 @@ function invokeAnswerFieldForFraction(wMixedNumbers){
   inputMixedNumber.setAttribute('onkeypress', 'return justNumbers(event);');
   inputMixedNumber.setAttribute('class', 'inputFractionCustom ');
   inputMixedNumber.setAttribute('style', 'top:10px; position:relative;');
+ 
 
   var inputNumerator = document.createElement('INPUT');
   inputNumerator.setAttribute('id', 'inputNumeratorCustom');
   inputNumerator.setAttribute('onkeypress', 'return justNumbers(event);');
   inputNumerator.setAttribute('class', 'inputFractionCustom ');
+  
 
   var inputDenominator = document.createElement('INPUT');
   inputDenominator.setAttribute('id', 'inputDenominatorCustom');
   inputDenominator.setAttribute('onkeypress', 'return justNumbers(event);'); 
-  inputDenominator.setAttribute('class', 'inputFractionCustom '); 
+  inputDenominator.setAttribute('class', 'inputFractionCustom ');
+
 
   var divInputFraction = document.createElement('DIV');
   divInputFraction.setAttribute('class', 'divInputFractionCustom');
