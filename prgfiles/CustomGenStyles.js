@@ -41,11 +41,19 @@ var usrInteracted; //To check if the user has interacted with the modes
 var times; //To get the amount of practices
 var selectedModes = []; //To get Selected Modes at buttonSet
 
+var objToSelectIssue = {};
+var objIssueText = {};
+var arrPropToDelete = []; //Array to delete properties
+var arrWObj = []; // array with  OBJ
 
 $(document).ready(function(){
   
   fetchNames();
 
+
+  readTxtFiles();
+  
+ 
 
   $('button[name=ToSelectMode]').click(function(e){ //Works as a Checkbox
     var textMode = this.value;
@@ -142,7 +150,7 @@ $(document).ready(function(){
       alert('SELECCIONE UNO O MÁS MODOS!');
     }else{
 
-      if ($('input[name="timesQuest"]').val() == '') {
+      if ($('input[name="timesQuest"]').val() == '' || $('input[name="timesQuest"]').val() == 0) {
         alert("Introduzca la cantidad de preguntas!");
         $('input[name="timesQuest"]').focus();
       }else{
@@ -169,6 +177,17 @@ $('#btnacceptedTips').click(function(){
         $('#allPlayPage').css('display', 'none');
         $('#allCustom').css('display', 'block');
 });
+
+$('#getItBtn').click(function(){
+        $('#modalQuestions').css('display', 'none');
+      
+});
+
+  $('#helpBtn').click(function(){
+
+    $('#modalQuestions').css('display', 'block');
+
+  });
 
   $('#btnAnswer').click(function(){
 
@@ -202,7 +221,7 @@ $('#btnacceptedTips').click(function(){
       var avMixedNumberInput = usrMixedNumberInput == undefined;
       var avNumeratorInput =  usrNumeratorInput == undefined;
       var avDenominatorInput = usrDenominatorInput == undefined;
-      alert(avDenominatorInput);
+      
       if (avMixedNumberInput == true && avNumeratorInput == true && avDenominatorInput == true){
           correct = 2;
       }else if(avMixedNumberInput == true && avNumeratorInput == false && avDenominatorInput == false ){
@@ -303,7 +322,7 @@ $('#inputDenominatorCustom').bind('input',function(){
 
 
 
-	$('#inputCustom').focus();
+  $('#inputCustom').focus();
 
 /*----------------- Repetition of the problem and randomization ---------*/
 $('#Arrow2Container').click(function() {
@@ -581,6 +600,7 @@ function changeToPositive(n){
 
 }
 
+
 function generatePythagorasQuestions(){
 
     var pythagorasQuestions = [];
@@ -604,9 +624,9 @@ function generatePythagorasQuestions(){
         var a = 0;
         var b = 0;
         var c = 0;
-
+        //console.log(data);
         data = JSON.parse(data);
-        console.log(data);
+        //console.log(data);
      
         //pythagorasQuestions = StrToArraySeparation(questions);
         
@@ -644,9 +664,7 @@ function generatePythagorasQuestions(){
           }
         }
 
-        console.log(questionsContext1TPYTHG);
-        console.log(questionsContext2TPYTHG);
-        console.log(questionsContext3TPYTHG);
+       
         
         context = generate(3,false); //Get the context
         switch(context){
@@ -822,7 +840,7 @@ if (UserStateAYPSR == false) {
         var b = 0;
 
         data = JSON.parse(data);
-        console.log(data);
+        
 
 
     //perAQuestions = StrToArraySeparation(question);   
@@ -1482,6 +1500,7 @@ function simpleFractionQuestionGeneration(fractionProp){
     case 'Addition': //Adding of Fractions
       invokeAnswerFieldForFraction(false);
        $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+       
     break;
 
     case 'Substraction':
@@ -1524,7 +1543,7 @@ function simpleFractionQuestionGeneration(fractionProp){
   questionsDescription.text(question);
   $('#MainTitleCustom').text(tMode);
   questionsDescription.html()
-  alert(questionsDescription.text());
+  //alert(questionsDescription.text());
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
 
 }
@@ -1589,8 +1608,7 @@ function generateFractionsComparison(){
   }else if (frac1 > frac2) {
     actualTotalCorrectResult = 'greaterThan';
   }
-   console.log('Frac1 '+frac1);
-   console.log('Frac2 '+frac2) ;
+   
    console.log(actualTotalCorrectResult) ;
    //Since this is one of the only modes that doesn't require
    //fractions as answer, just selectors
@@ -1661,8 +1679,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
                     copyFractionsObj.numerators.push(fractionsObj.numerators[i]);
                     copyFractionsObj.denominators.push(fractionsObj.denominators[i]);
                     preValues.splice(0,1);
-                    //console.log(preValues);
-                    //console.log(copyFractionsObj);
+                 
                   }
                 }
               }
@@ -1671,7 +1688,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
         var temporaryDenominator = 0;
 
         //Solve Numerators and Denominators 
-        console.log(fractionsObj);
+        
           for(var i = 0; i < quantityOfFractions; i++){
             
             if (typeof fractionsObj.numerators[i + 1] != 'undefined') { 
@@ -1736,8 +1753,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
                 copyFractionsObj.numerators.push(fractionsObj.numerators[i]);
                 copyFractionsObj.denominators.push(fractionsObj.denominators[i]);
                 preValues.splice(0,1);
-                //console.log(preValues);
-                //console.log(copyFractionsObj);
+                
               }
             }
           }
@@ -1746,7 +1762,6 @@ function generateFractionsAdditionAndSubstractOfFractions(){
        actualNumeratorResult = copyFractionsObj.numerators[0];
         for(var i = 1; i < quantityOfFractions; i++){
           actualNumeratorResult -= copyFractionsObj.numerators[i];
-          console.log(actualNumeratorResult);
         }
 
        //Solve Denominator
@@ -1812,7 +1827,7 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
   }
 
   //Answer always in simplified
-  console.log(fractionsObj);
+  
   var fractionsSimplified = simplifyFractions(actualNumeratorResult, actualDenominatorResult);
   actualNumeratorResult = fractionsSimplified.numerator;
   actualDenominatorResult = fractionsSimplified.denominator;
@@ -1842,7 +1857,7 @@ MixedMode = 2;
       actualNumeratorResult = (fractionsObj.denominators[0] * fractionsObj.mixedNumber[0]) + fractionsObj.numerators[0];
       actualDenominatorResult = fractionsObj.denominators[0];
       fractionsObj.mode = 'Mixed Number To Improper Fraction';
-      console.log(fractionsObj);
+      
       console.log(actualNumeratorResult + " " + actualDenominatorResult);
     break;
 
@@ -1862,7 +1877,7 @@ MixedMode = 2;
       var u = Math.round(fractionsObj.numerators[0] / fractionsObj.denominators[0]);
       var mod = fractionsObj.numerators[0] % fractionsObj.denominators[0];
       var p = (u * fractionsObj.denominators[0]) + mod; //using to verify
-      console.log(u);
+     
 
       //To get the actual division without decimals
       if (p < fractionsObj.numerators[0]) {
@@ -2233,12 +2248,12 @@ function removeElement(id){
 }
 //Javascript//////////////////////////Javascript/////Inputs / Browser
 function onLeaveAction(){
-	window.onbeforeunload = function() {
+  window.onbeforeunload = function() {
 
    return "Do you really want to leave our brilliant application?";
    //if we return nothing here (just calling return;) then there will be no pop-up question at all
    //return;
-	}
+  }
 }
 
 ////FUNCTIONS TO INVOKE CUSTOMIZED INPUT FIELDS
@@ -2347,3 +2362,145 @@ function justNumbers(e){
         return /\d/.test(String.fromCharCode(keynum));
        
  }
+
+ ///////////////For Processing Text Files w/images/////
+function issueSelector(topic,issue){
+
+//iterate if the object has the Topic as a property
+
+var objToSelectIssueProperties = Object.keys(objToSelectIssue);
+
+
+
+  if (objToSelectIssueProperties.length == 0 ) {
+
+    objToSelectIssue[topic] = [];
+    objToSelectIssue[topic].push(issue);
+    arrPropToDelete.push(topic);
+  }else{
+
+    var match = false;
+
+    for(var i = 0; i < objToSelectIssueProperties.length; i++){
+      //Operation to prevent duplicates
+        if (objToSelectIssueProperties[i] != topic) {
+         match = false;
+        }else{
+          match=true;
+        }
+    }
+
+      if (match == true) {
+        //insert issue as value for the array property
+        objToSelectIssue[topic].push(issue);
+      }else{
+         //insert the topic as an obj property
+        objToSelectIssue[topic] = [];
+        objToSelectIssue[topic].push(issue);
+      }
+  }
+ 
+  
+}
+
+function readTxtFiles(){
+
+  var objToSelectIssueProperties = Object.keys(objToSelectIssue);
+  var topic = "";
+  var issue = "";
+  var url = "";
+  var propToDel = ""; //Property to delete
+
+  
+  for(var i = 0; i < objToSelectIssueProperties.length; i++){
+    //loop through the properties of the Object
+
+    for(var u = 0; u < objToSelectIssue[objToSelectIssueProperties[i]].length; u++){
+      //loop through the arrays of the properties
+     
+
+      topic = objToSelectIssueProperties[i];
+      issue = objToSelectIssue[topic][u];
+
+      url = 'metacontent/'+ topic + '/' + issue + '.txt';
+      
+
+      $.get(url, function(data) {
+
+        var markS = getTitle(data);
+
+        title = markS.title;
+        content = markS.content;
+       
+        // arrWObj.push({
+        //     title: markS.title,
+        //   content: markS.content
+        //     });
+
+        arrangetoModal(title, content)
+        imageAdjust();
+      }, "text");
+
+    }
+  }
+  
+}
+function getTitle(text){
+
+  //The title at the .txt file will be recognized with the tag
+  // <titleI> at the end of the DEFINED Title
+  //Example: MathaMunD<titleI>
+
+var arrText = text.split("<titleI>");
+arrText[1].replace("<titleI>", "");
+
+
+  var objToReturn = {
+    title: arrText[0],
+    content: arrText[1]
+  }
+
+  return objToReturn;
+}
+function deletePropertiesFromObj(){
+
+  for(var i = 0; i < arrPropToDelete.length; i++){
+    delete objToSelectIssue["'" + arrPropToDelete[i] + "'"];
+  }
+
+}
+
+var m = 0;
+function arrangetoModal(title, content){
+    m += 1;
+    var h2Title = document.createElement('H2');
+    var texth2 = document.createTextNode(title);
+    h2Title.appendChild(texth2);
+  
+    var divTitle = document.createElement('DIV');
+    divTitle.setAttribute('class', 'modal-header');
+    divTitle.setAttribute('id', 'modal-Title');
+    divTitle.append(h2Title);
+
+    var name = 'spnContent' + title;
+    var textspn = document.createTextNode(content);
+    var spnContent = document.createElement('SPAN');
+    spnContent.setAttribute('class', 'bungee_letra');
+    spnContent.setAttribute('style', ' font-size:16px;');
+    spnContent.setAttribute('id', m);
+  
+    spnContent.innerHTML = content; //use native JS
+   
+
+    $('#divAppendHere').append(divTitle);
+    $('#divAppendHere').append('<center style="margin:30px;">');
+    $('#divAppendHere').append(spnContent);
+    $('#divAppendHere').append('</center>');
+
+}
+function imageAdjust(){
+  $('#divAppendHere img').attr('class', 'img-adjust');
+}
+
+
+

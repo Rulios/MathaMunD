@@ -8,6 +8,7 @@
 	<meta name="description" content="Math">
 	<meta name="description" content="MathaForum">
 	<meta name="description" content="mathamund">
+	<meta  name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 	<link rel="shortcut icon" href="icon.jpg"/>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -26,9 +27,10 @@
 
 </head>
 <body id="play">
-
-	<div>
+	
+	<!-- <div id="JugarNavBar">
 		<center>
+
 		<a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px; margin:40px; float:left;">
 		</a>
 		
@@ -41,9 +43,30 @@
 
 		<form method="GET" action="prgfiles/fetchName.php" name="fetchNames"></form>
 		</center>
+	</div> -->
+	
+
+	<div>
+		<nav>
+		<ul class="flexNavigationBar" >
+			<li><a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px; margin:40px; ">
+			</a></li>
+
+			<li><img src="imgs/MathaMunD.png" id="sLogo"  height="120" width="200"></li>
+
+			<li><a href="MathaForum.html"><button class="  button_MathaForum" id="IconToHover" >MathaForum</button></a>
+			</li>
+		</ul>
+		
+		</nav>
+		<form method="GET" action="prgfiles/fetchName.php" name="fetchNames"></form>
+		
+
 	</div>
 
+
 	<div id="allPlayPage" >
+
 		
 		<h1 class=" text-center bungee_letra titles" style="color:#BD330B; ">Elige Modo de Juego</h1>
 
@@ -158,7 +181,7 @@
 		</div>
 		
 		<div class="stick2Bottom">
-			<input onkeypress="return justNumbers(event);"  type="text" class="inputCustom bungee_letra" placeholder="cantidad de problemas"name="timesQuest">
+			<input onkeypress="return justNumbers(event);"  type="number" class="inputCustom bungee_letra" placeholder="cantidad de problemas"name="timesQuest">
 			<button name="btnStartCustom">INICIAR!</button>
 			
 		</div>
@@ -168,10 +191,11 @@
 
 		
 
-		<div id="modal">
+		<div id="modal" >
 			<div class="modal-content">
 				<span class="close">&times;</span>
-				<div class="modal-header"><h2>Antes de Comenzar...</h2></div>		
+
+				<div class="modal-header" id="modal-Title"><h2>Antes de Comenzar...</h2></div>		
 					
 					<center>
 					<span class="bungee_letra" name="spnTakeDeep">
@@ -194,6 +218,7 @@
 						No importa si no puedes resolver los problemas, sólo importa lo que puedas aprender de ello.
 						</span>
 
+
 					</center>
 						
 					
@@ -202,9 +227,10 @@
 				
 			</div>
 		</div>
-
+		
 	</div>
 
+	
 	<!-- ------------Custom page!!! .--------------------->
 
 	<div id="allCustom" style="display:none;">
@@ -235,6 +261,8 @@
 			<br>
 			
 			<h5 id="keyWords" style="font-size: 16px;" >Referencia: <br><br> </h5>
+
+			<button id="helpBtn" class="button_styleRound hvr-grow">?</button>
 		</div>
 
 	
@@ -251,7 +279,7 @@
 
 			<br id="brInResponsive">
 
-			<button id="btnAnswer" class="button_styleInput hvr-grow ">Responder</button>
+			<button id="btnAnswer" class="button_styleInput ">Responder</button>
 
 
 			</center>			
@@ -259,6 +287,24 @@
 		
 		</div>
 
+		<!-- modal to clear "get to understand" questions -->
+		<div class="modalDesign "id="modalQuestions" >
+			<div class="modal-content" id="modalQuestionsContent">
+
+				<span class="close">&times;</span>
+				<div id="divAppendHere" style="margin-bottom:30px;"></div>
+
+				<!-- <div class="modal-header" id="modal-Title"></div> -->		
+					<!-- append the processed content here -->
+						
+					
+				<button class="modalSendBtn" style="background-color: #AA5491FF" id="getItBtn">
+				¡OK! ENTIENDO!</button>
+				
+			</div>
+		</div>
+
+	</div>
 		
 		<div id="ResultAndGo">
 			<center>

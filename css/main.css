@@ -105,6 +105,17 @@ li{
     -ms-transition:transform 0.3s ease-in-out;
     
 }
+.hvr-grow:hover{
+	-webkit-transform:scale(1.1) ; /* Safari and Chrome */
+    -moz-transform:scale(1.1) ; /* Firefox */
+    -ms-transform:scale(1.1) ; /* IE 9 */
+    -o-transform:scale(1.1) ; /* Opera */
+     transform:scale(1.1) ;
+
+    -webkit-transition: transform 0.3s ease-in-out;
+    -moz-transition:transform 0.3s ease-in-out;
+    -ms-transition:transform 0.3s ease-in-out;
+}
 #IconToHover:hover{
 	/*Animation of the Social Media Icons!*/
 	-webkit-transform:scale(1.1) ; /* Safari and Chrome */
@@ -117,6 +128,17 @@ li{
     -moz-transition:transform 0.3s ease-in-out;
     -ms-transition:transform 0.3s ease-in-out;
 }
+/*FlexBox to the Main Upper Navigation Bar*/
+.flexNavigationBar{
+	display:flex;
+	justify-content: space-around;
+
+}
+.flexNavigationBar li {
+	flex:auto;
+	text-align:center;
+}
+
 #buttonSet{
 	position:relative;
 	width:100%;
@@ -310,7 +332,7 @@ input[name="timesQuest"]{
 	font-family: 'Bungee', cursive;
 	box-shadow: none;
 	margin:30px;
-	float:right;
+	
 }
 .button_style6{
 	text-decoration: none;
@@ -337,6 +359,11 @@ input[name="timesQuest"]{
 	margin:30px;
 	font-family: 'Bungee', cursive;
 
+}
+.button_styleRound{
+	font-family: 'Bungee', cursive;
+	border-radius: 20px;
+	font-size: 20px;
 }
 .button_stylefrmAsk{
 	text-decoration: none;
@@ -437,7 +464,19 @@ input[name="timesQuest"]{
 	margin:20px;
 }
 /*Form to insert data or question  MODAL BOX*/
-
+.modalDesign{
+	display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 10em;
+}
 #modal{
 	display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -459,7 +498,7 @@ input[name="timesQuest"]{
     width: 80%;
 }
 .modal-header {
-
+	font-size:30px;
 	font-family: 'Bungee', cursive;
     padding: 2px 16px;
     text-align: center;
@@ -499,7 +538,6 @@ span[name="spnTakeDeep"]{
 	padding:40px;
 }
 span[name="spnDirections"]{
-	text-align:center;
 	font-size:20px; 
 	padding:40px;
 }
@@ -539,7 +577,7 @@ span[name="spnPreventWorry"]{
 	border: 5px solid #27C0D7;
 	border-radius: 6px;
 	word-wrap: break-word;
-	padding:50px;
+	padding:30px;
 	margin-bottom: 20px;
 }
 /*#content form[name="commentFrm"]{
@@ -805,8 +843,12 @@ div[name="divItem"]{
   background-color: #2098D1;
   color: white;
 }
+.img-adjust{ /*to normal width*/
+	width: 40%;
+	height: auto;
+}
 
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
 
 
 
@@ -866,7 +908,9 @@ div[name="divItem"]{
 	}
 		
 
-	
+	#sLogo{
+		display:none;
+	}
 
 
 	/* ---------------------------------------- */
@@ -943,7 +987,7 @@ div[name="divItem"]{
 	}
 	.button_MathaForum{
 		margin: 30px;
-		float:none;
+		float:right;
 	}
 	.FQATitles{
 		font-size: 2.8em;
@@ -1009,11 +1053,6 @@ div[name="divItem"]{
 	#forumNavBar > *	{
 		display:block;
 	}
-
-	#forumNavBar{
-		float:right;
-		
-	}
 	#forumNavBar form{
 		margin-top: 60px;
 	}
@@ -1023,10 +1062,6 @@ div[name="divItem"]{
 		position: relative;
 		font-size: 16px;
 		width: 150px;
-	}
-
-	#sLogo{
-		display:none;
 	}
 
 	#selectFilter{
@@ -1115,18 +1150,14 @@ div[name="divItem"]{
 		width:200px;
 		height: 140px;
 	}
-
-	
-
-}
-
-
-
-
-
+	.img-adjust{
+		width: 100%;
+		height: auto;
+	}
 
 
 }
+
 @media only screen and (max-width: 992px){
 
 	.sizeLetter_25{

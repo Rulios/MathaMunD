@@ -1,9 +1,12 @@
 //For strictly initial operations 	
 $(document).ready(function(){
 
-	if (window.location.pathname == "/MathaMunD/" || window.location.pathname == "/MathaMunD/index.html") {
+	
+	var locationPathName = window.location.pathname;
+	console.log(window.location.pathname);
+	if (locationPathName == "/index.html" || locationPathName == "/MathaMunD/index.html" || locationPathName == '/' || locationPathName == '/MathaMunD/' ) {
 		//Callback
-
+			
 		fetchQuote(function(data){
 			
 			data = JSON.parse(data); //JSON string to JS object
@@ -15,16 +18,17 @@ $(document).ready(function(){
 			$('#quote').text(quote);
 			$('#quoteAuthor').text(author);
 			$('a[name=authorBio]').attr('href', authorBio);
-						
+
 		});
 	}
-		
-		
-
-	
 
 });
 
+
+$(window).resize(function(event) {
+	/* Act on the event */
+	console.log('New width:' + $(this).width());
+});
 
 $(window).bind('load', function(e){
 
@@ -58,30 +62,35 @@ $(window).bind('load', function(e){
 	});
 		
 	// When the user clicks on <span> (x), close the modal
-	var span = document.getElementsByClassName("close")[0];
+	var spanLength = $('.close');
 
-	span.onclick = function(){
-		$('#modal').css('display', 'none');
-	}
+	$('.close').on("click", function(){
+		if(spanLength !== 'undefined' && spanLength.length > 0){
+			$('#modal').css('display', 'none');
+			$('#modalQuestions').css('display', 'none');
+		}
+	});
+
 
 	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event){
-		
-		if (event.target.nodeName == 'DIV') {
-			$('#modal').css('display', 'none');
-			
+	$(window).on("click", function(event){
+		if(spanLength !== 'undefined' && spanLength.length > 0){
+			if (event.target.nodeName == 'DIV') {
+				$('#modal').css('display', 'none');
+				$('#modalQuestions').css('display', 'none');
+			}	
 		}
-	}
+	});
+
+	
+
+	
 
 
 ///////////////////////AJAX///////////////////////////////////
 	//index.html to fetch quotes
 	
 
-
-
-
-	
 			
 	//La parte de e.preventDefault() sirve 
 			//para prevenir de que el action del form
@@ -110,7 +119,7 @@ $(window).bind('load', function(e){
 				
 
 				success: function(respond){
-		
+					
 				},
 
 				error: function(jqXHR, status, error){
@@ -332,8 +341,8 @@ $(window).bind('load', function(e){
 				var txtOfDivToMatch = $('div[value="'+ row[0] + '"][name=divItem]').html();
 				var strToMatch =  strToDisplay;
 				
-
-				var valMatched = txtOfDivToMatch.search(strToMatch);
+				
+				var valMatched = txtOfDivToMatch.search(escapeRegExp(strToMatch));
 				
 		
 		// This If is to verify if valMatched has encountered some same comments
@@ -367,7 +376,9 @@ repeatCheckOverlapping();
 
 });
 
-
+function escapeRegExp(str) {
+	return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
+  }
 
 function loadAjaxForum(event){
 
@@ -406,6 +417,7 @@ function loadAjaxForum(event){
 					for (var i in data.reverse()){ 
  					//data.reverse() is used to arrange to the most recent data
 					row = data[i];	
+					
 					elementId.push(row[0]);
 					
 					name = row[1];
@@ -625,7 +637,8 @@ function generate(range ,needZero){
 //This only works on Mathaforum.html!
 var checker;
 function repeatCheckOverlapping(){
-	if (window.location.pathname == "/MathaMunD/Mathaforum.html") {
+	if (window.location.pathname == "/MathaMunD/MathaForum.html") {
+		
 		checker = setInterval(collidesWith, 1000);
 	}
 	
@@ -633,7 +646,7 @@ function repeatCheckOverlapping(){
 
 //If content overlaps the footer
 function collidesWith (element1, element2) {
-
+	
 	var element1 = $('#ForumSection');
 	var element2 = $('#forumFooter');
 	

@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -20,9 +21,9 @@
 
 		var urlG = 'prgfiles/formSuggestion.php';
 		var methodF = 'POST';
-		var	nom = $('realname').val();
+		
 
-				var comentarios = $('comments').val();
+		
 		
 		$(document).ready(function(){
 
@@ -30,14 +31,20 @@
 		//para prevenir de que el action del form
 		//nos redireccione a formSuggestion.php
 		$('#frmSugg').on('submit', function(e){
-
+			var comentarios = $('#comments').val();
 			e.preventDefault();
+			
 
+			if(comentarios == '' || typeof comentarios == undefined){
 
-			$.ajax({
+				alert('Introduzca un mensaje');
+
+			}else{
+
+				$.ajax({
 				url: urlG,
 				type: methodF,
-				data: {realname: nom, comments: comentarios},
+				data: {comments: comentarios},
 
 				success: function(respond){
 					console.log(respond);
@@ -52,10 +59,19 @@
 
 				complete: function(jqXHR, state){
 					console.log(state);
+					
+					$('#buttonToSubmit').val('SUGERENCIA ENVIADA!');
+					$('#buttonToSubmit').css('width','auto');
+					$('#buttonToSubmit').css('background-color', 'grey');
+					$('#buttonToSubmit').css('color', 'green');
+					$('#buttonToSubmit').addClass('disable');
 				}
 
 
-			})
+				})
+
+			}	
+			
 		
 		})
 
@@ -72,24 +88,26 @@
 <body>
 
 
-
-	<ul style="margin:10px;" class="animated slideInDown retrasoDeAnimacion_1">
+	<nav>
+	<ul class="flexNavigationBar" style=" align-items: baseline;">
 	
-		<li><a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" height="40px" width="40px">
+		<li><a href="index.html"><img src="imgs/home-icon.png" id="IconToHover" style="height: 40px; width: 40px;  ">
 			</a></li>
 
-		<li><a href="Jugar.html" style="vertical-align: sub;" class="bungee_letra" id="Jugar">
+		<li><a href="Jugar.html" style="margin-top:10px;" class="bungee_letra" id="Jugar">
 			Jugar</a></li>	
 
-		<li><img src="imgs/MathaMunD.png" style="float:right;"id="sLogo"  height="120" width="200"></li>	
+		<li><img src="imgs/MathaMunD.png" id="sLogo"  height="120" width="200"></li>	
 
 	</ul>
+
+	</nav>
 
 	
 
 	
 		
-	<div style="margin-top:100px;" class="center animated fadeIn retrasoDeAnimacion_1-5 " >
+	<div style="margin-top:100px;" class="center animated fadeIn" >
 		
 		<h1 class="bungee_letra " id="h1OfFeedBack">Nos interesan tus opiniones y sugerencias!</h1>
 
@@ -116,7 +134,7 @@
 	<br>
 	<br>
 
-	<footer class=" animated fadeInDown retrasoDeAnimacion_1 text-center"  >
+	<footer class="text-center"  >
 		<div style="background-color: #A0B0A4FF; display:inline-block; "  class="wrapper">
 
 			
@@ -137,7 +155,7 @@
 			
 			<div id="CPDiv">
 
-				© 2017 MathaMunD Todos los derechos reservados 
+				© 2019 MathaMunD Todos los derechos reservados 
 				<br>
 				Icons made by <a target="_blank" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 

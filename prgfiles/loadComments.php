@@ -7,7 +7,7 @@ $db = "mathaforum";
 
 $id = $_GET['id'];
 
-
+$pw = '';
 $conn =mysqli_connect($host, $user, $pw);
 
 if (!$conn) {
@@ -19,7 +19,7 @@ if (!$conn) {
 
 mysqli_select_db($conn, $db) or die ('Problemas al conectar con la base de datos');	
 
- $registro = mysql_query("SELECT * FROM commentsofquestions WHERE id = $id") or die ('Problemas en la consulta: '.mysql_error());
+ $registro = mysqli_query($conn, "SELECT * FROM commentsofquestions WHERE id = $id") or die ('Problemas en la consulta: '.mysqli_error());
 
 
 $data = array();
@@ -33,7 +33,6 @@ while ($row = mysqli_fetch_array($registro)) {
 
 
 echo json_encode($data);
-
 
 
 

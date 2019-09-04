@@ -13,11 +13,38 @@ $posdata = $_POST['postD'];
 
 	# code...
 
-	$conn = mysql_connect($host, $user) or $conn = mysql_connect($host, $user, $db) or die ("Problemas al Conectar");
+	#check if the strings has quotations mark
+	#to prevent confusion with MySQL it adds /
 
-	mysql_select_db($db, $conn) or die ("Problemas al Conectar Base de Datos");
+	$strpos = strpos($nombre, "'");
+	if($strpos != false){
+		$nombre = addcslashes($nombre, "'");
+	}
 
-	mysql_query("INSERT INTO questions (name, area, problem, posdata) VALUES ('$nombre' , '$area' , '$problema', '$posdata') ", $conn)  or die ("Problemas al insertar");
+	$strpos = strpos($area, "'");
+	if($strpos != false){
+		$area = addcslashes($area, "'");
+	}
+
+	$strpos = strpos($problema, "'");
+	if($strpos != false){
+		$problema = addcslashes($problema, "'");
+	}
+
+	$strpos = strpos($posdata, "'");
+	if($strpos != false){
+		$posdata = addcslashes($posdata, "'");
+	}
+		
+	$conn = mysqli_connect($host, $user, $pw);
+
+	if (!$conn) {
+		die("Connection failed: " . mysqli_connect_error());
+	}
+
+	mysqli_select_db($conn, $db) or die ("Problemas al Conectar Base de Datos");
+
+	mysqli_query($conn, "INSERT INTO questions (name, area, problem, posdata) VALUES ('$nombre' , '$area' , '$problema', '$posdata') ")  or die ("Problemas al insertar").mysqli_error($conn);
 
 
 
