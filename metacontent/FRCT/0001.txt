@@ -1,0 +1,14 @@
+﻿¿Por qué se simplifican las fracciones?
+ <titleI>
+
+
+Las fracciones se simplifican para hacer que cualquiera operación que se vaya a realizar
+con ellas, se dé en números bajos. 
+
+<br>
+<b>RECUERDA</b>
+<br>
+Una fracción con numeradores y denominadores altos son los mismos que su versión simplificada 
+(si es que se puede). Esto ocurre ya que la fracción es una manera de escribir una división.
+<br>
+<img src="metacontent/FRCT/imgs/demo0001.png">

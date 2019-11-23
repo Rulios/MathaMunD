@@ -1,8 +1,8 @@
+html {
+  scroll-behavior: smooth;
+}
 #play{
 	background-image: url('ma1.jpg');
-	
-
-	
 }
 
 .disable{
@@ -52,6 +52,9 @@ li{
 .oswald_letra{
 	font-family: 'Oswald', sans-serif;
 }
+.karla_letra{
+	font-family: 'Karla', sans-serif;
+}
 .baloo-thambi_letra{
 	font-family: 'Baloo Thambi', cursive;
 }
@@ -82,10 +85,14 @@ li{
 	bottom:0;
 }
 #ICDiv{
-	float:right;
-}
-#CPDiv{
 	float:left;
+}
+/*#CPDiv{
+	float:left;
+}*/
+#mailSuscriberDiv{
+	float:right;
+	
 }
 #SCIconToHover{
 	border-radius: 10px;
@@ -201,31 +208,32 @@ input[name="timesQuest"]{
 .showText{
 	width:100%;
 }
-/*.showText:hover #HiddenText{
-	display:block;
-}*/
-/*.showText:hover #Title{
-	color:#356BC9FF;
-	text-shadow:-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}*/
 
-/*.showText:hover {
-	overflow:hidden;
-	height:auto;
-	min-height: 100px;
-	transform:scale(1.1) ;
-	-webkit-transform:scale(1.1) ; /* Safari and Chrome */
-    -moz-transform:scale(1.1) ; /* Firefox */
-    -ms-transform:scale(1.1) ; /* IE 9 */
-    -o-transform:scale(1.1) ; /* Opera */
-    
+/*Para suscribirse en el NEWSLETTER DEL EMAIL*/
+#inputMail{
+	width: 100%;
+	border-radius: 5px;
+	text-indent: 2%;
+	border: none !important;
+	box-sizing: border-box;
+	font-size: 16px;
 
-    -webkit-transition: transform 1s ease-in-out;
-    -moz-transition:transform 1s ease-in-out;
-    -ms-transition:transform 1s ease-in-out;
+}
+#mailSuscriberSubmitBtn{
+	margin-top:10px;
+	width: 100%;
+
+
+	text-decoration: none;
+	border-radius: 35px;
+	border: 5px solid #113940;
+	background-color: transparent;
 	
-}*/
-
+	height: auto;
+	padding:6px;
+	font-size:15px;
+}
+/* ----------------------------------*/
 .middle {
   transition: .5s ease;
   opacity: 0;
@@ -700,8 +708,11 @@ div[name="divItem"]{
 	height: 438px;
 }
 #DescMath{
-	font-size: 40px;
+	padding-left:50px;
+	padding-right: 50px;
+	font-size: 30px;
 }
+
 #h1OfFeedBack{
 	color:#BD330B;;
 	font-size: 60px;
@@ -846,6 +857,7 @@ div[name="divItem"]{
 .img-adjust{ /*to normal width*/
 	width: 40%;
 	height: auto;
+	
 }
 
 @media only screen and (max-width: 768px) {
@@ -995,7 +1007,9 @@ div[name="divItem"]{
 	
 
 	#DescMath{
-		font-size: 30px;
+		padding-left: auto;
+		padding-right:auto;
+		font-size: 20px;
 	}
 	
 	.titles{

@@ -12,10 +12,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script  src="prgfiles/details.js"></script>
+	<script  src="prgfiles/details.js" defer></script>
 
 
 	<link href="https://fonts.googleapis.com/css?family=Bungee|Oswald" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Karla&display=swap" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 	<link rel="stylesheet" type="text/css" href="css/animate.css">
 	
@@ -29,12 +30,11 @@
 <body >
 	<div>
 
-		<div id="MathaMunD">
-
-		<img src="imgs/MathaMunDLogoSlogan.png" class=" animated fadeInDown retrasoDeAnimacion_1 img-change" style="display:block;margin-left: auto; margin-right: auto;" alt="MathaMunD">
-
-		</div>	
 		
+		
+		<div id="MathaMunD">
+		
+			<img src="imgs/MathaMunDLogoSlogan.png" class=" animated fadeInDown retrasoDeAnimacion_1 img-change" style="display:block;margin-left: auto; margin-right: auto;" alt="MathaMunD">
 
 		<center>
 		<div class="text-center roboto_letra" id="quoteDiv">
@@ -55,7 +55,7 @@
 
 			<div class="col-sm-4">
 
-			<a href="queEsMathaMunD.html"><button class="  button_style1 bungee_letra hvr-fade">Qué es MathaMunD?</button></a>
+			<a href="#getToKnow"><button class="  button_style1 bungee_letra hvr-fade">Qué es MathaMunD?</button></a>
 
 			</div>
 
@@ -75,15 +75,126 @@
 		</div>
 
 
+	<!-- Introduction to what is MathaMunD -->
+
+<div id="getToKnow" class="text-center">
+	
+	<h1 class=" animated fadeIn bungee_letra col-md-12 FQATitles "   style="color:#18E654;">
+	Nuestra Misión
+	</h1>
+	
 
 
+<h2 class="animated fadeIn  karla_letra text-justify col-md-12" style="margin-top: 60px; font-size:35px; " id="DescMath">
+
+<p >
+	<b>
+		Nuestra misión es ofrecer un método de didactismo educacional adaptable para <u>TODOS</u>.
+	</b>
+</p>
+	
+</h2>
+
+</div>
+
+
+<div  class="text-center ">
+	
+	<h1 class=" animated fadeIn  bungee_letra col-md-12 FQATitles "   style="color:#11C8C0;">
+	Qué es MathaMunD?
+	</h1>
+	
+
+<h2 class="animated fadeIn karla_letra text-justify col-md-12" style="margin-top: 60px;  " id="DescMath">
+<p >
+	<b>
+		MathaMunD es un divertido juego pensado en agilizar, aprender y divertirse con las Matemáticas.
+	En MathaMunD tendrás toda la libertad para elegir el modo, que por supuesto es para divertirse!
+	</b>
+</p>
+	
+</h2>
+
+</div>
+
+	<div class="text-center" style="background-color: #37C78A;">
+		<h1 class=" animated fadeIn  bungee_letra col-md-12 FQATitles"  style="color:#EF5E0F;">
+	Qué es MathaForum?
+	</h1>
+
+	<h2 class="animated fadeIn karla_letra text-justify col-md-12" style="margin-top: 60px;  " id="DescMath">
+	<p >
+		<b>
+		MathaForum es un foro en la que puedes preguntar y responder problemas simples o complejos, este foro se centra en problemas que ayuden a desarrollar la abilidad de comprensión de problemas, para así buscar su solución.
+
+		<br>
+		<br>
+
+		Si tienes problemas que no puedas resolver o quieres resolver problemas para desarrollar esa abilidad, entonces visita <a href="MathaForum.html">MathaForum</a> 
+		</b>
+	</p>
+	
+</h2>
+
+	</div>
+
+	<div class="text-center" >
+		<h1 class=" animated fadeIn  bungee_letra col-md-12 FQATitles" style="color: #A050AEFF;"   >
+	Cómo funciona el modo Jugar en MathaMunD
+	</h1>
+
+	<h2 class="animated fadeIn karla_letra text-justify col-md-12" style="margin-top: 60px;  " id="DescMath">
+	<p >
+		<b>
+			 
+			El modo Jugar es una de las mejores características de MathaMunD, te ayuda a practicar problemas matemáticos aplicados a la vida real. ¡Todo esto a tu ritmo y  método!
+			<br>
+			<br>
+			Selecciona los modos disponibles para jugar.
+
+			<br>
+			<br>
+
+			Después de haberlo escogido, te aparecerán una 
+			serie de problemas que tendrás que resolverlo
+			con calma. Abre tu mente y deja que la creatividad 
+			fluya con instinto propio!
+
+			<br>
+			<br>
+
+			No importa si no pudistes resolver un problema,
+			tendrás varios de ellos para poder recuperar
+			esas pérdidas. ¡Solo es cuestión de empeño 
+			y de esfuerzo! ¡Vamos!
+
+		 
+		</b>
+	</p>
+	
+	</h2>
+
+	</div>
 
 	
 		
 	<footer class=" text-center" id="forumFooter" >
 		<div style="background-color: #A0B0A4FF; display:inline-block; "  class="wrapper">
+
+				<div id ="mailSuscriberDiv"> 
+
+					<label id ="lblSuscribe" class="bungee_letra" style="font-size: 20px;">¡Suscríbete a nuestro boletín!</label>
+
+					<br>
+
+					<input type="text" placeholder="Tu Correo..." class="karla_letra"name="inputMail" id="inputMail">
+					<br>
+
+					<input type="submit" name="mailSuscriberSubmitBtn" value="Suscribirme" class="bungee_letra hvr-fade"id="mailSuscriberSubmitBtn">
+
+				</div>
+
 				<div id="ICDiv">
-							
 					<h4 style="font-size: 15px; "> Síguenos en nuestras redes sociales!</h4>
 
 
@@ -93,16 +204,20 @@
 					
 								
 					<a target="_blank" href="https://www.facebook.com/mathamund"><img id="SCIconToHover" src="imgs/social-media-icons/facebook.png" ></a>
+
 	
 				</div>
-			
-			<div id="CPDiv">
+
+
+			<center>
+			<div id="CPDiv" >
 
 				© 2019 MathaMunD Todos los derechos reservados 
 				<br>
 				Icons made by <a target="_blank" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 
 			</div>
+			</center>
 		</div>
 	</footer>
 		

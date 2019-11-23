@@ -1,4 +1,4 @@
-var lang = 'es';
+var lang = "es";
 
 //Initialize the global scope variables
 var actualTotalCorrectResult;//Only for Answers in one line.
@@ -19,7 +19,7 @@ var maleNames = [];
 var actMode = "";
 //These variables can be added more if need more context
 
-//TPYTHG - Pythagora's Theorem
+//TPYTHG - Pythagora"s Theorem
 var questionsContext1TPYTHG = [];
 var questionsContext2TPYTHG = [];
 var questionsContext3TPYTHG = [];  
@@ -51,118 +51,117 @@ $(document).ready(function(){
   fetchNames();
 
 
-  readTxtFiles();
-  
+  //varIdentifierAndGenerator("Tienes un cuadrado x-a|> 8-x y por eso nombre x-b|< a-x y vete pa la pinga x-g|= 9-x");
  
 
-  $('button[name=ToSelectMode]').click(function(e){ //Works as a Checkbox
+  $("button[name=ToSelectMode]").click(function(e){ //Works as a Checkbox
     var textMode = this.value;
-    var t = $('.showText[value=' + textMode + '] #Title'); 
-    var sS = $('.showText[value=' + textMode + '] #selectedSign');
-    var hT = $('.showText[value=' + textMode + '] #HiddenText');
+    var t = $(".showText[value=" + textMode + "] #Title"); 
+    var sS = $(".showText[value=" + textMode + "] #selectedSign");
+    var hT = $(".showText[value=" + textMode + "] #HiddenText");
 
     if (selectedModes.indexOf(textMode) >= 0) {
       selectedModes.splice(selectedModes.indexOf(textMode), 1);
-      sS.css('display', 'none');
-      hT.css('display', 'block');
+      sS.css("display", "none");
+      hT.css("display", "block");
     
       
     }else{
       selectedModes.push(textMode);
-      sS.css('display', 'block');
-      hT.css('display', 'none');
+      sS.css("display", "block");
+      hT.css("display", "none");
  
     }
   });
 
 
 
-  $('.showText').hover(function(){// mouseenter event
+  $(".showText").hover(function(){// mouseenter event
     var textMode = this.value;
-    var cST = $('.showText[value=' + textMode + ']');
-    var t = $('.showText[value=' + textMode + '] #Title'); 
-    var sS = $('.showText[value=' + textMode + '] #selectedSign');
-    var hT = $('.showText[value=' + textMode + '] #HiddenText');
+    var cST = $(".showText[value=" + textMode + "]");
+    var t = $(".showText[value=" + textMode + "] #Title"); 
+    var sS = $(".showText[value=" + textMode + "] #selectedSign");
+    var hT = $(".showText[value=" + textMode + "] #HiddenText");
 
-    if (sS.css('display') == 'none') {
+    if (sS.css("display") == "none") {
 
-      hT.css('display', 'block');
-      cST.css('overflow', 'hidden');
-      cST.css('height', 'auto');
+      hT.css("display", "block");
+      cST.css("overflow", "hidden");
+      cST.css("height", "auto");
 
       if ($(window).width() >= 768) {
-        cST.css('min-height', '100px');
+        cST.css("min-height", "100px");
       }else{
-        cST.css('min-height', 'auto');
+        cST.css("min-height", "auto");
       }
       
-      // cST.css('-webkit-transform', 'scale(1.1)');
-      // cST.css('-moz-transform', 'scale(1.1)');
-      // cST.css('-o-transform', 'scale(1.1)');
-      // cST.css('transform', 'scale(1.1)');
+      // cST.css("-webkit-transform", "scale(1.1)");
+      // cST.css("-moz-transform", "scale(1.1)");
+      // cST.css("-o-transform", "scale(1.1)");
+      // cST.css("transform", "scale(1.1)");
 
-      cST.css('-webkit-transition', 'transform 1s ease-in-out');
-      cST.css('-moz-transition', 'transform 1s ease-in-out');
-      cST.css('-ms-transition', 'transform 1s ease-in-out');
+      cST.css("-webkit-transition", "transform 1s ease-in-out");
+      cST.css("-moz-transition", "transform 1s ease-in-out");
+      cST.css("-ms-transition", "transform 1s ease-in-out");
 
     }
 
-    t.css('color' , '#356BC9FF');
-    t.css('text-shadow', '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black');
+    t.css("color" , "#356BC9FF");
+    t.css("text-shadow", "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black");
   }, function(){ // mouseleave event
     var textMode = this.value;
-    var t = $('.showText[value=' + textMode + '] #Title'); 
-    var sS = $('.showText[value=' + textMode + '] #selectedSign');
-    var hT = $('.showText[value=' + textMode + '] #HiddenText');
+    var t = $(".showText[value=" + textMode + "] #Title"); 
+    var sS = $(".showText[value=" + textMode + "] #selectedSign");
+    var hT = $(".showText[value=" + textMode + "] #HiddenText");
 
-    if (sS.css('display') == 'none') {
+    if (sS.css("display") == "none") {
 
-      hT.css('display', 'none');
+      hT.css("display", "none");
 
     }
-    t.css('color', '#3E3D40');
-    t.css('text-shadow' , 'initial');
+    t.css("color", "#3E3D40");
+    t.css("text-shadow" , "initial");
 
   });
 
 
 
 
-  // $('.showText').mouseleave(function(){
+  // $(".showText").mouseleave(function(){
   //   var textMode = this.value;
-  //   var t = $('.showText[value=' + textMode + '] #Title'); 
-  //   var hT = $('.showText[value=' + textMode + '] #HiddenText');
-  //   var sS = $('.showText[value=' + textMode + '] #selectedSign');
+  //   var t = $(".showText[value=" + textMode + "] #Title"); 
+  //   var hT = $(".showText[value=" + textMode + "] #HiddenText");
+  //   var sS = $(".showText[value=" + textMode + "] #selectedSign");
 
-  //   if (t.css('display') == 'none') {
-  //     sS.css('opacity', '1');
-  //     t.css('display', 'none');
+  //   if (t.css("display") == "none") {
+  //     sS.css("opacity", "1");
+  //     t.css("display", "none");
   //   }else{
-  //     hT.css('display', 'none');
+  //     hT.css("display", "none");
   //   }
 
   // });
 
 
-  $('button[name=btnStartCustom]').click(function(e){
+  $("button[name=btnStartCustom]").click(function(e){
     
     if (selectedModes.length == 0) {
-      alert('SELECCIONE UNO O MÁS MODOS!');
+      alert("SELECCIONE UNO O MÁS MODOS!");
     }else{
 
-      if ($('input[name="timesQuest"]').val() == '' || $('input[name="timesQuest"]').val() == 0) {
+      if ($("input[name=timesQuest]").val() == "" || $("input[name=timesQuest]").val() == 0) {
         alert("Introduzca la cantidad de preguntas!");
-        $('input[name="timesQuest"]').focus();
+        $("input[name=timesQuest]").focus();
       }else{
         console.log(selectedModes);
         
-        times = $('input[name="timesQuest"]').val();
+        times = $("input[name=timesQuest]").val();
         while(times <= selectedModes.length){
           times = Math.round(times * 1.5);
 
         }
 
-        $('#modal').css('display', 'block');
+        $("#modal").css("display", "block");
   
       }
 
@@ -170,26 +169,26 @@ $(document).ready(function(){
 
   });
 
-$('#btnacceptedTips').click(function(){
-        $('#modal').css('display', 'none');
+$("#btnacceptedTips").click(function(){
+        $("#modal").css("display", "none");
         timesPRep += 1;
         randomizeCustomModes();
-        $('#allPlayPage').css('display', 'none');
-        $('#allCustom').css('display', 'block');
+        $("#allPlayPage").css("display", "none");
+        $("#allCustom").css("display", "block");
 });
 
-$('#getItBtn').click(function(){
-        $('#modalQuestions').css('display', 'none');
+$("#getItBtn").click(function(){
+        $("#modalQuestions").css("display", "none");
       
 });
 
-  $('#helpBtn').click(function(){
+  $("#helpBtn").click(function(){
 
-    $('#modalQuestions').css('display', 'block');
+    $("#modalQuestions").css("display", "block");
 
   });
 
-  $('#btnAnswer').click(function(){
+  $("#btnAnswer").click(function(){
 
     var m = actMode;
     var correct = 0;
@@ -202,11 +201,11 @@ $('#getItBtn').click(function(){
     switch(m){
 
       case "FRCT": //Fractions
-      var usrMixedNumberInput = $('#inputMixedNumberCustom').val();
-      var usrNumeratorInput = $('#inputNumeratorCustom').val();
-      var usrDenominatorInput = $('#inputDenominatorCustom').val();
+      var usrMixedNumberInput = $("#inputMixedNumberCustom").val();
+      var usrNumeratorInput = $("#inputNumeratorCustom").val();
+      var usrDenominatorInput = $("#inputDenominatorCustom").val();
 
-      console.log('Denom Input:' + usrDenominatorInput);
+      console.log("Denom Input:" + usrDenominatorInput);
 
       if (usrMixedNumberInput == undefined) {
         usrMixedNumberInput = 0;
@@ -243,8 +242,8 @@ $('#getItBtn').click(function(){
       break;
 
 
-      case "iSTD": //All answers that doesn't need customized inputs
-        var userValue = $('#inputCustom').val();
+      case "iSTD": //All answers that doesn"t need customized inputs
+        var userValue = $("#inputCustom").val();
 
         if (userValue == actualTotalCorrectResult) {
           correct = 1;
@@ -254,7 +253,7 @@ $('#getItBtn').click(function(){
       break;
 
       case "iSLCT":
-        var userValue = $('#iSelect').val();
+        var userValue = $("#iSelect").val();
 
         if (userValue == actualTotalCorrectResult) {
           correct = 1;
@@ -268,51 +267,51 @@ $('#getItBtn').click(function(){
 
       if (correct == 1) {
       usrAnswer += 1;  
-      showTags ('Right', 'Show')
+      showTags ("Right", "Show")
       
 
       }else if (correct == 0 ){
-        showTags('Wrong', 'Show');
+        showTags("Wrong", "Show");
          
       }else if (correct == 2){
-        alert('RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!');
+        alert("RESPUESTA INVÁLIDA! SIEMPRE PUEDES RESPONDER ALGO!");
 
       }
-      $("#btnAnswer").addClass('disable');
-      $('#Arrow2').css('display', 'inline-block');
-    console.log('Respuesta '+ actualMixedNumberResult + ' ' + actualNumeratorResult + '/' + actualDenominatorResult);
-    console.log('Usuario '+actualMixedNumberResult + ' '+ + usrNumeratorInput + '/' + usrDenominatorInput);
+      $("#btnAnswer").addClass("disable");
+      $("#Arrow2").css("display", "inline-block");
+    console.log("Respuesta "+ actualMixedNumberResult + " " + actualNumeratorResult + "/" + actualDenominatorResult);
+    console.log("Usuario "+actualMixedNumberResult + " "+ + usrNumeratorInput + "/" + usrDenominatorInput);
   });
 
 
 //To check if the user has entered some value
-$('#inputCustom').bind('input',function(){
+$("#inputCustom").bind("input",function(){
 
-  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+  if (typeof usrInteracted == "undefined" || usrInteracted == false) {
     usrInteracted = true;
   }
   
 });
 
-$('#inputMixedNumberCustom').bind('input',function(){
+$("#inputMixedNumberCustom").bind("input",function(){
 
-  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+  if (typeof usrInteracted == "undefined" || usrInteracted == false) {
     usrInteracted = true;
   }
   
 });
 
-$('#inputNumeratorCustom').bind('input',function(){
+$("#inputNumeratorCustom").bind("input",function(){
 
-  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+  if (typeof usrInteracted == "undefined" || usrInteracted == false) {
     usrInteracted = true;
   }
   
 });
 
-$('#inputDenominatorCustom').bind('input',function(){
+$("#inputDenominatorCustom").bind("input",function(){
 
-  if (typeof usrInteracted == 'undefined' || usrInteracted == false) {
+  if (typeof usrInteracted == "undefined" || usrInteracted == false) {
     usrInteracted = true;
   }
   
@@ -322,17 +321,17 @@ $('#inputDenominatorCustom').bind('input',function(){
 
 
 
-  $('#inputCustom').focus();
+  $("#inputCustom").focus();
 
 /*----------------- Repetition of the problem and randomization ---------*/
-$('#Arrow2Container').click(function() {
+$("#Arrow2Container").click(function() {
     usrInteracted = false;
     timesPRep += 1;
    
     if (timesPRep <= times) {
 
       randomizeCustomModes();
-      showTags('none', 'Hide');
+      showTags("none", "Hide");
     
      }else{
        showResults();
@@ -361,19 +360,19 @@ function randomizeCustomModes(){
 
   switch(x){
 
-    case 'BAOP':
+    case "BAOP":
     generateBasicArithmeticsOperationsQuestions();
     break;
 
-    case 'FRCT':
+    case "FRCT":
     generateFractionsQuestions();
     break;
 
-    case 'ARPSR':
+    case "ARPSR":
     generateQuestionsAreaAndPerimeter();
     break;
 
-    case 'TPYTHG':
+    case "TPYTHG":
     generatePythagorasQuestions();
 
     break;
@@ -384,25 +383,25 @@ function checkSelectedModes(arrSelected , requester){
   //The parameter of receiver is to know what variable is requesting it
 
    var found = false;
-   var strToPerimeter = 'Areas y Perímetros';
-   var strToPythagoras = 'Teorema de Pitagoras';
+   var strToPerimeter = "Areas y Perímetros";
+   var strToPythagoras = "Teorema de Pitagoras";
 
         //See if the variable that is requesting  is
-//[0] = 'Teorema de Pitagoras'
+//[0] = "Teorema de Pitagoras"
         //Pythagoras
-        if (requester == 'Pythagoras') {
+        if (requester == "Pythagoras") {
 
             if (arrSelected[0] == strToPythagoras) {
               found = true;
              
             }
-//[1] = 'Areas y Perimetros'
+//[1] = "Areas y Perimetros"
           //Perimeter or Area  
         }else{
 
           for(var i = 0; i < arrSelected.length; i ++){
 
-            if (requester == 'Perimeter') {
+            if (requester == "Perimeter") {
 
               if (arrSelected[i] == strToPerimeter) {
                 found = true;
@@ -446,7 +445,7 @@ var c = 0;
       var notDecimal = false;//This variable is to check if 
                 //the result is going decimal
                 // if is false means that has decimal
-                // else it doesn't have
+                // else it doesn"t have
 
       var beforeRoot;//variable to get value before Square Root
 
@@ -485,7 +484,7 @@ var c = 0;
       var notDecimal = false;//This variable is to check if 
                 //the result is going decimal
                 // if is false means that has decimal
-                // else it doesn't have
+                // else it doesn"t have
 
       var beforeRoot;//variable to get value before Square Root
 
@@ -525,7 +524,7 @@ var c = 0;
       var notDecimal = false;//This variable is to check if 
                 //the result is going decimal
                 // if is false means that has decimal
-                // else it doesn't have
+                // else it doesn"t have
 
       var beforeRoot;//variable to get value before Square Root
 
@@ -544,15 +543,15 @@ var c = 0;
 
     }while(notDecimal == false)
 
-    console.log('Before Root' + beforeRoot);
-    console.log('Square Root' + squareRoot);
+    console.log("Before Root" + beforeRoot);
+    console.log("Square Root" + squareRoot);
 
     actualTotalCorrectResult = Math.sqrt(Math.pow(c,2) - Math.pow(b,2));
     //generatePythagorasQuestions(3, 0, b, c);
   }
 
     //See structure//
-    //It Ajax's the questions from the DB, to then direct to the 
+    //It Ajax"s the questions from the DB, to then direct to the 
     //HTML conversion
 
     return [a,b,c];
@@ -567,13 +566,13 @@ var c = 0;
 function generate(range ,needZero){
 
   var n ;
-  range += 1; //add 1, Don't know why, but it fix some accuracy problems
+  range += 1; //add 1, Don"t know why, but it fix some accuracy problems
 
   if (needZero == true) {
 
      n = Math.floor(Math.random() * range);
 
-  }else if(typeof needZero == 'undefined' || needZero == false){
+  }else if(typeof needZero == "undefined" || needZero == false){
 
       do{
 
@@ -605,8 +604,8 @@ function generatePythagorasQuestions(){
 
     var pythagorasQuestions = [];
     
-    $('#keyWords').text('');
-    $('#MainTitleCustom').text('Teorema de Pitágoras');
+    $("#keyWords").text("");
+    $("#MainTitleCustom").text("Teorema de Pitágoras");
 
     if (UserStatePYTHG == false) { //Means that first loaded state
 
@@ -709,7 +708,7 @@ function generatePythagorasQuestions(){
           
         }
 
-        var questionsDescription = $('#DescriptionCustom');
+        var questionsDescription = $("#DescriptionCustom");
         string = checkIfName(string);
         questionsDescription.text(string);   
       });
@@ -761,24 +760,24 @@ function generatePythagorasQuestions(){
           
         }
 
-        var questionsDescription = $('#DescriptionCustom');
+        var questionsDescription = $("#DescriptionCustom");
         string = checkIfName(string);
         questionsDescription.text(string);   
 
 
     }
 
-    $('#FormulaDescriptionCustom').text('Fórmula:' );
-    $('#FormulaDescriptionCustom').append('<br>');
-    $('#FormulaDescriptionCustom').append('$$hipotenus{a^2} = catet{o^2} + catet{o^2}$$');
+    $("#FormulaDescriptionCustom").text("Fórmula:" );
+    $("#FormulaDescriptionCustom").append("<br>");
+    $("#FormulaDescriptionCustom").append("$$hipotenus{a^2} = catet{o^2} + catet{o^2}$$");
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
 
-    $('#keyWords').append('El teorema de pitágoras establece que en un triángulo rectángulo, el cuadrado del lado más largo es igual a la suma de sus dos lados más cortos al cuadrado. <br> <br> ')
-    $('#keyWords').append(' <b><u> Hipotenusa:</u> </b> Lado más largo de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ');
-    $('#keyWords').append('<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°.');
+    $("#keyWords").append("El teorema de pitágoras establece que en un triángulo rectángulo, el cuadrado del lado más largo es igual a la suma de sus dos lados más cortos al cuadrado. <br> <br> ")
+    $("#keyWords").append(" <b><u> Hipotenusa:</u> </b> Lado más largo de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°. <br> ");
+    $("#keyWords").append("<b><u> Catetos</u> </b> : Lados de menor longitud de un Triángulo Rectángulo, o sea, de un triángulo que contiene un vértice de 90°.");
     
 
-     appendCustomInputType('iSTD');
+     appendCustomInputType("iSTD");
      showCurrentState();
      string = "";
 
@@ -787,7 +786,7 @@ function generatePythagorasQuestions(){
 }
 
 function generateAYPSR(context){
-   console.log('AR');
+   console.log("AR");
    var a,b;
 
    if (context == 1) { //AREA OF Square
@@ -823,9 +822,9 @@ function generateAYPSR(context){
 function generateQuestionsAreaAndPerimeter(){
  
 
-  $('#FormulaDescriptionCustom').text('');
-  $('#keyWords').text('');
-  $('#imgPythagoras').css('display' , 'none');
+  $("#FormulaDescriptionCustom").text("");
+  $("#keyWords").text("");
+  $("#imgPythagoras").css("display" , "none");
 
 if (UserStateAYPSR == false) {
   UserStateAYPSR = true;
@@ -943,50 +942,50 @@ if (UserStateAYPSR == false) {
         }
        
      if (context == 1) {
-      $('#MainTitleCustom').text('Área de un Cuadrado');
+      $("#MainTitleCustom").text("Área de un Cuadrado");
 
-      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
-      $('#keyWords').append('<br>');
+      $("#keyWords").text("Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.");
+      $("#keyWords").append("<br>");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Are{a_{cuadrado}} = Lad{o_1}^2$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Are{a_{cuadrado}} = Lad{o_1}^2$$");
     }else if (context == 2){
 
-      $('#MainTitleCustom').text('Área de un Rectángulo');
+      $("#MainTitleCustom").text("Área de un Rectángulo");
 
-      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
-      $('#keyWords').append('<br>');
+      $("#keyWords").text("Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.");
+      $("#keyWords").append("<br>");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Are{a_{recta ngulo}} = Lad{o_A}*Lad{o_B}$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Are{a_{recta ngulo}} = Lad{o_A}*Lad{o_B}$$");
     }else if (context == 3) {
 
-      $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+      $("#MainTitleCustom").text("Perímetro de un Cuadrado");
 
-      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
-      $('#keyWords').append('<br>');
+      $("#keyWords").text("Perímetro: distancia alrededor de una figura.");
+      $("#keyWords").append("<br>");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{cuadrado}} = Lad{o_A}*4$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Peri metr{o_{cuadrado}} = Lad{o_A}*4$$");
     }else if (context == 4) {
-      $('#MainTitleCustom').text('Perímetro de un Rectángulo');
+      $("#MainTitleCustom").text("Perímetro de un Rectángulo");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{recta ngulo}} = 2*( {Lad{o_A} + Lad{o_B}})$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Peri metr{o_{recta ngulo}} = 2*( {Lad{o_A} + Lad{o_B}})$$");
       
-      $('#keyWords').append('<br>');
-      $('#keyWords').append('Perímetro: distancia alrededor de una figura.');
+      $("#keyWords").append("<br>");
+      $("#keyWords").append("Perímetro: distancia alrededor de una figura.");
     }   
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
-    var questionsDescription = $('#DescriptionCustom');
+    var questionsDescription = $("#DescriptionCustom");
     string = checkIfName(string);
     questionsDescription.text(string);
     
@@ -1052,56 +1051,56 @@ if (UserStateAYPSR == false) {
         }
        
      if (context == 1) {
-      $('#MainTitleCustom').text('Área de un Cuadrado');
+      $("#MainTitleCustom").text("Área de un Cuadrado");
 
-      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
-      $('#keyWords').append('<br>');
+      $("#keyWords").text("Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.");
+      $("#keyWords").append("<br>");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Are{a_{cuadrado}} = Lad{o_1}^2$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Are{a_{cuadrado}} = Lad{o_1}^2$$");
     }else if (context == 2){
 
-      $('#MainTitleCustom').text('Área de un Rectángulo');
+      $("#MainTitleCustom").text("Área de un Rectángulo");
 
-      $('#keyWords').text('Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.');
-      $('#keyWords').append('<br>');
+      $("#keyWords").text("Área: espacio de una superficie de una figura, o sea, la medida de la parte de adentro de una figura.");
+      $("#keyWords").append("<br>");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Are{a_{recta ngulo}} = Lad{o_A}*Lad{o_B}$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Are{a_{recta ngulo}} = Lad{o_A}*Lad{o_B}$$");
     }else if (context == 3) {
 
-      $('#MainTitleCustom').text('Perímetro de un Cuadrado');
+      $("#MainTitleCustom").text("Perímetro de un Cuadrado");
 
-      $('#keyWords').text('Perímetro: distancia alrededor de una figura.');
-      $('#keyWords').append('<br>');
+      $("#keyWords").text("Perímetro: distancia alrededor de una figura.");
+      $("#keyWords").append("<br>");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{cuadrado}} = Lad{o_A}*4$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Peri metr{o_{cuadrado}} = Lad{o_A}*4$$");
     }else if (context == 4) {
-      $('#MainTitleCustom').text('Perímetro de un Rectángulo');
+      $("#MainTitleCustom").text("Perímetro de un Rectángulo");
 
-      $('#FormulaDescriptionCustom').append('Fórmula:');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('<br>');
-      $('#FormulaDescriptionCustom').append('$$Peri metr{o_{recta ngulo}} = 2*( {Lad{o_A} + Lad{o_B}})$$');
+      $("#FormulaDescriptionCustom").append("Fórmula:");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("<br>");
+      $("#FormulaDescriptionCustom").append("$$Peri metr{o_{recta ngulo}} = 2*( {Lad{o_A} + Lad{o_B}})$$");
       
-      $('#keyWords').append('<br>');
-      $('#keyWords').append('Perímetro: distancia alrededor de una figura.');
+      $("#keyWords").append("<br>");
+      $("#keyWords").append("Perímetro: distancia alrededor de una figura.");
     }   
     MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
-    var questionsDescription = $('#DescriptionCustom');
+    var questionsDescription = $("#DescriptionCustom");
     string = checkIfName(string);
     questionsDescription.text(string);
     
 
 }
-    appendCustomInputType('iSTD');
+    appendCustomInputType("iSTD");
     showCurrentState();
 }
 
@@ -1116,23 +1115,23 @@ function generateBasicArithmeticsOperationsQuestions(){
   switch(xy){
 
     case 1: //Add
-    mode = 'Add';
-    tMode = 'Suma';
+    mode = "Add";
+    tMode = "Suma";
     break;
 
     case 2: //Substract
-    mode = 'Substract';
-    tMode = 'Resta';
+    mode = "Substract";
+    tMode = "Resta";
     break;
 
     case 3: //Multiplication
-    mode = 'Multiplication';
-    tMode = 'Multiplicación';
+    mode = "Multiplication";
+    tMode = "Multiplicación";
     break;
 
     case 4: //Division
-    mode = 'Division';
-    tMode = 'División';
+    mode = "Division";
+    tMode = "División";
     break;
   }
 
@@ -1156,10 +1155,10 @@ function generateBasicArithmeticsOperationsQuestions(){
   //Entonces esta parte funciona para que 
   //El primer numero, en este caso n1, sea mayor
   //a n2, y que el resultado no sea negativo
-  if (mode == 'Substract') {
+  if (mode == "Substract") {
 
     if (n1 < n2) {
-      //Creates a variable named 'temporary'
+      //Creates a variable named "temporary"
       //to hold n2 value
       //so with that n1 can have the Not changed
       //value of variable n2
@@ -1170,20 +1169,20 @@ function generateBasicArithmeticsOperationsQuestions(){
       n1 = temporary;
     }
     
-  }else if (mode == 'Multiplication') {
+  }else if (mode == "Multiplication") {
 
 
     n1 = generate(25,true);
     n2 = generate(10,true);
     
-  }else if (mode == 'Division') {
+  }else if (mode == "Division") {
 
 
     var totalTemporaryDiv = 0 ;
 
     do{ //This DO is to run once time the code
 
-      //Maybe this can be unnecessary , but I'm just randoming on lower numbers
+      //Maybe this can be unnecessary , but I"m just randoming on lower numbers
       //by the difficulty, and randoming again if the number I get is 
       //equal to 1 or 0, because that is just too easy
 
@@ -1200,7 +1199,7 @@ function generateBasicArithmeticsOperationsQuestions(){
 
       if (n2 > n1) {
 
-      //Creates a variable named 'temporary'
+      //Creates a variable named "temporary"
       //to hold n2 value
       //so with that n1 can have the Not changed
       //value of variable n2
@@ -1226,27 +1225,27 @@ function generateBasicArithmeticsOperationsQuestions(){
      var string = "";
      switch(mode){
 
-      case 'Add':
+      case "Add":
       actualTotalCorrectResult = n1 + n2;
-      string = '¿' + n1 + ' + ' + n2 + '?';
+      string = "¿" + n1 + " + " + n2 + "?";
 
       break;
 
-      case 'Substract':
+      case "Substract":
       actualTotalCorrectResult = n1 - n2;
-      string = '¿' + n1 + ' - ' + n2 + '?';
+      string = "¿" + n1 + " - " + n2 + "?";
 
       break;
 
-      case 'Multiplication':
+      case "Multiplication":
       actualTotalCorrectResult = n1 * n2;
-      string = '¿' + n1 + ' * ' + n2 + '?';
+      string = "¿" + n1 + " * " + n2 + "?";
 
       break;
 
-      case 'Division':
+      case "Division":
       actualTotalCorrectResult = n1 / n2;
-      string = '¿' + n1 + ' / ' + n2 + '?';
+      string = "¿" + n1 + " / " + n2 + "?";
 
       break;    
 
@@ -1254,15 +1253,15 @@ function generateBasicArithmeticsOperationsQuestions(){
 
   console.log(mode);
   console.log(string);
-  var questionsDescription = $('#DescriptionCustom');
-  questionsDescription.css('text-align', 'center');
+  var questionsDescription = $("#DescriptionCustom");
+  questionsDescription.css("text-align", "center");
   questionsDescription.text(string);
-  appendCustomInputType('iSTD');
+  appendCustomInputType("iSTD");
 
-  $('#FormulaDescriptionCustom').css('display', 'none');
-  $('#imgPythagoras').css('display', 'none');
-  $('#keyWords').text('');
-  $('#MainTitleCustom').text(tMode);
+  $("#FormulaDescriptionCustom").css("display", "none");
+  $("#imgPythagoras").css("display", "none");
+  $("#keyWords").text("");
+  $("#MainTitleCustom").text(tMode);
   
 }
 
@@ -1285,8 +1284,8 @@ function generateFractions(quantityOfFractions, needSameDenominators, needMixedN
 
     if (needMixedNumber == true) {
       mixedNumber.push(generate(10,false));
-    }else if (needMixedNumber == false || needMixedNumber == undefined || needMixedNumber == '') {
-      //Don't do anything, just to prevent adding other parameters
+    }else if (needMixedNumber == false || needMixedNumber == undefined || needMixedNumber == "") {
+      //Don"t do anything, just to prevent adding other parameters
     }
     
   }
@@ -1299,7 +1298,7 @@ function generateFractionsQuestions(){
   // var fractions = generateFractions(quantityOfFractions, false);
 
   // for(var i = 0; i < quantityOfFractions; i++){
-  //   console.log(fractions.numerators[i] + '/' + fractions.denominators[i]);
+  //   console.log(fractions.numerators[i] + "/" + fractions.denominators[i]);
   // }
 
 
@@ -1321,27 +1320,27 @@ function generateFractionsQuestions(){
     case 2: //Addition and Substraction of Fractions
       fraction = generateFractionsAdditionAndSubstractOfFractions();
       simpleFractionQuestionGeneration(fraction);
-      appendCustomInputType('FRCT');
+      appendCustomInputType("FRCT");
 
     break;
 
     case 3: //Multiplication and Division of Fractions
       fraction = generateFractionsMultiplicationAndDivisionOfFractions();
       simpleFractionQuestionGeneration(fraction);
-      appendCustomInputType('FRCT');
+      appendCustomInputType("FRCT");
 
     break;
 
     case 4: //Fraction Comparison
       fraction = generateFractionsComparison();
       simpleFractionQuestionGeneration(fraction);
-      appendCustomInputType('iSLCT');
+      appendCustomInputType("iSLCT");
     break;
 
     case 5: //Fractions w/ Mixed Numbers
       fraction = generateFractionsWithMixedNumbers();
       simpleFractionQuestionGeneration(fraction);
-      appendCustomInputType('FRCT');
+      appendCustomInputType("FRCT");
     break;
   }
 
@@ -1358,7 +1357,7 @@ function simpleFractionQuestionGeneration(fractionProp){
   //To use Backlashes it is necessary to use two.
   switch(fractionProp.mode){
 
-    case 'Addition': //Adding of Fractions
+    case "Addition": //Adding of Fractions
       tMode ="Adición de fracciones";
       for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
@@ -1366,7 +1365,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
         question += "{" +numerator + " \\over " + denominator +"}  ";
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += "+";
@@ -1376,7 +1375,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
     break;
 
-    case 'Substraction':
+    case "Substraction":
       tMode = "Resta de fracciones";
       for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
@@ -1384,7 +1383,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
         question += "{" +numerator + " \\over " + denominator +"}  ";
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += "-";
@@ -1394,7 +1393,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
     break;
 
-    case 'Multiplication':
+    case "Multiplication":
       tMode = "Multiplicación de fracciones";
       for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
@@ -1402,7 +1401,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
         question += "{" +numerator + " \\over " + denominator +"}  ";
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += "*";
@@ -1411,7 +1410,7 @@ function simpleFractionQuestionGeneration(fractionProp){
       }
     break;
 
-    case 'Division':
+    case "Division":
       tMode = "División de fracciones"
       for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
@@ -1419,7 +1418,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
         question += "{" +numerator + " \\over " + denominator +"}  ";
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += "/";
@@ -1431,7 +1430,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
     //Mixed Number Modes
 
-    case 'Mixed Number To Improper Fraction':
+    case "Mixed Number To Improper Fraction":
       tMode = "Conversión de una fracción mixta a fracción impropia"
       for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
@@ -1440,7 +1439,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
         question += mixedNumber +   "{" +numerator + " \\over " + denominator +"}  ";
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += "/";
@@ -1450,7 +1449,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
     break;
     
-    case 'Improper Fraction To Mixed Number':
+    case "Improper Fraction To Mixed Number":
       tMode = "Conversión de una fracción impropia a una fracción mixta"
       for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
@@ -1459,7 +1458,7 @@ function simpleFractionQuestionGeneration(fractionProp){
 
         question +="{" +numerator + " \\over " + denominator +"}  ";
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += "/";
@@ -1469,21 +1468,21 @@ function simpleFractionQuestionGeneration(fractionProp){
     break;
 
     /////Fraction Comparison
-    case 'Fraction Comparison':
+    case "Fraction Comparison":
     tMode ="Comparación de Fracciones";
     for(var i = 0; i < quantity; i++){
         numerator = fractionProp.numerators[i];
         denominator = fractionProp.denominators[i];
         mixedNumber = fractionProp.mixedNumber[i];
 
-        if (mixedNumber == 0 || mixedNumber == 'undefined') {
+        if (mixedNumber == 0 || mixedNumber == "undefined") {
           question += "{" +numerator + " \\over " + denominator +"}  ";
 
         }else{
           question += mixedNumber + "{" +numerator + " \\over " + denominator +"}  ";
         }
 
-        if(typeof fractionProp.numerators[i + 1] == 'undefined'){
+        if(typeof fractionProp.numerators[i + 1] == "undefined"){
           question += "$$";
         }else{
           question += " ";
@@ -1497,58 +1496,64 @@ function simpleFractionQuestionGeneration(fractionProp){
 //To asign input fields
   switch(fractionProp.mode){
 
-    case 'Addition': //Adding of Fractions
+    case "Addition": //Adding of Fractions
       invokeAnswerFieldForFraction(false);
-       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
-       
+       $("#keyWords").text("Al terminar con la operación, ten en cuenta la simplificación de la fracción!");
+       issueSelector("FRCT", "0001");
     break;
 
-    case 'Substraction':
+    case "Substraction":
       invokeAnswerFieldForFraction(false); 
-       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+       $("#keyWords").text("Al terminar con la operación, ten en cuenta la simplificación de la fracción!");
+       issueSelector("FRCT", "0001");
     break;
 
-    case 'Multiplication':
+    case "Multiplication":
       invokeAnswerFieldForFraction(false);
-       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+       $("#keyWords").text("Al terminar con la operación, ten en cuenta la simplificación de la fracción!");
+       issueSelector("FRCT", "0001");
     break;
 
-    case 'Division':
-      invokeAnswerFieldForFraction(false);
-       $('#keyWords').text('Al terminar con la operación, ten en cuenta la simplificación de la fracción!');
+    case "Division":
+        invokeAnswerFieldForFraction(false);
+       $("#keyWords").text("Al terminar con la operación, ten en cuenta la simplificación de la fracción!");
+       issueSelector("FRCT", "0001");
     break;
 
     //Mixed Number Modes
 
-    case 'Mixed Number To Improper Fraction':
+    case "Mixed Number To Improper Fraction":
       invokeAnswerFieldForFraction(false);
-       $('#keyWords').text('');
+       $("#keyWords").text("");
     break;
     
-    case 'Improper Fraction To Mixed Number':
+    case "Improper Fraction To Mixed Number":
       invokeAnswerFieldForFraction(true);
-       $('#keyWords').text('');
+       $("#keyWords").text("");
     break;
 
     //Fraction Comparison
-    case 'Fraction Comparison':
-    invokeAnswerSelector('sizeComparison');
-    $('#keyWords').text('Selecciona el operador correcto para su comparación');
+    case "Fraction Comparison":
+    invokeAnswerSelector("sizeComparison");
+    $("#keyWords").text("Selecciona el operador correcto para su comparación");
     break;
   }
 
   
-  var questionsDescription = $('#DescriptionCustom');
-  $('#FormulaDescriptionCustom').text('');
+  var questionsDescription = $("#DescriptionCustom");
+  $("#FormulaDescriptionCustom").text("");
   questionsDescription.text(question);
-  $('#MainTitleCustom').text(tMode);
-  questionsDescription.html()
+  $("#MainTitleCustom").text(tMode);
+  questionsDescription.html();
+  
+  readTxtFiles();
+  
   //alert(questionsDescription.text());
   MathJax.Hub.Queue(["Typeset",MathJax.Hub]); //MathJax rechecks the page and uploads new code.
 
 }
 function generateFractionsFetchQuestions(){
-  fetchCustomQuestions('FRCT',function(){
+  fetchCustomQuestions("FRCT",function(){
 
   });
 }
@@ -1602,19 +1607,19 @@ function generateFractionsComparison(){
   
 
   if (frac1 == frac2) {
-    actualTotalCorrectResult = 'equalTo';
+    actualTotalCorrectResult = "equalTo";
   }else if (frac1 < frac2) {
-    actualTotalCorrectResult = 'lessThan';
+    actualTotalCorrectResult = "lessThan";
   }else if (frac1 > frac2) {
-    actualTotalCorrectResult = 'greaterThan';
+    actualTotalCorrectResult = "greaterThan";
   }
    
    console.log(actualTotalCorrectResult) ;
-   //Since this is one of the only modes that doesn't require
+   //Since this is one of the only modes that doesn"t require
    //fractions as answer, just selectors
 
    fractionsObj.quantityOfFractions = quantityOfFractions; 
-   fractionsObj.mode = 'Fraction Comparison';
+   fractionsObj.mode = "Fraction Comparison";
   return fractionsObj;
 }
 function generateFractionsAdditionAndSubstractOfFractions(){
@@ -1638,14 +1643,14 @@ function generateFractionsAdditionAndSubstractOfFractions(){
         
         for(var i = 0; i < quantityOfFractions; i++){
           
-          if (typeof fractionsObj.numerators[i + 1] != 'undefined') { 
+          if (typeof fractionsObj.numerators[i + 1] != "undefined") { 
             //check if there is a next fraction
 
             //Butterfly Method for solving the fraction
-            if (temporaryNumerator == 0){ //Means that it's the first calculation
+            if (temporaryNumerator == 0){ //Means that it"s the first calculation
               temporaryNumerator += (fractionsObj.numerators[i] * fractionsObj.denominators[i + 1] ) + (fractionsObj.denominators[i] * fractionsObj.numerators[i + 1]);
               temporaryDenominator = fractionsObj.denominators[i] * fractionsObj.denominators[i + 1];
-            }else{ //Means that it's nt the first calculation
+            }else{ //Means that it"s nt the first calculation
               temporaryNumerator = (temporaryNumerator * fractionsObj.denominators[i + 1] ) + (temporaryDenominator * fractionsObj.numerators[i + 1]);
               temporaryDenominator = temporaryDenominator * fractionsObj.denominators[i + 1];
             }
@@ -1653,7 +1658,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
         }
         actualNumeratorResult = temporaryNumerator;
         actualDenominatorResult = temporaryDenominator;
-        fractionsObj.mode = 'Addition';
+        fractionsObj.mode = "Addition";
         break;
 
         case 2: //Substraction
@@ -1691,14 +1696,14 @@ function generateFractionsAdditionAndSubstractOfFractions(){
         
           for(var i = 0; i < quantityOfFractions; i++){
             
-            if (typeof fractionsObj.numerators[i + 1] != 'undefined') { 
+            if (typeof fractionsObj.numerators[i + 1] != "undefined") { 
               //check if there is a next fraction
 
               //Butterfly Method for solving the fraction
-              if (temporaryNumerator == 0){ //Means that it's the first calculation
+              if (temporaryNumerator == 0){ //Means that it"s the first calculation
                 temporaryNumerator += (fractionsObj.numerators[i] * fractionsObj.denominators[i + 1] ) - (fractionsObj.denominators[i] * fractionsObj.numerators[i + 1]);
                 temporaryDenominator = fractionsObj.denominators[i] * fractionsObj.denominators[i + 1];
-              }else{ //Means that it's nt the first calculation
+              }else{ //Means that it"s nt the first calculation
                 temporaryNumerator = (temporaryNumerator * fractionsObj.denominators[i + 1] ) - (temporaryDenominator * fractionsObj.numerators[i + 1]);
                 temporaryDenominator = temporaryDenominator * fractionsObj.denominators[i + 1];
               }
@@ -1706,8 +1711,8 @@ function generateFractionsAdditionAndSubstractOfFractions(){
           }
           actualNumeratorResult = temporaryNumerator;
           actualDenominatorResult = temporaryDenominator;
-          console.log(actualNumeratorResult +'/'+ actualDenominatorResult);
-          fractionsObj.mode = 'Substraction';
+          console.log(actualNumeratorResult +"/"+ actualDenominatorResult);
+          fractionsObj.mode = "Substraction";
         break;
       }
     break;
@@ -1727,8 +1732,8 @@ function generateFractionsAdditionAndSubstractOfFractions(){
 
       //Solve Denominator
         actualDenominatorResult = fractionsObj.denominators[0]; 
-        console.log(actualNumeratorResult + '/' + actualDenominatorResult);
-        fractionsObj.mode = 'Addition'; 
+        console.log(actualNumeratorResult + "/" + actualDenominatorResult);
+        fractionsObj.mode = "Addition"; 
       break;
 
       case 2: //Substraction
@@ -1767,7 +1772,7 @@ function generateFractionsAdditionAndSubstractOfFractions(){
        //Solve Denominator
        actualDenominatorResult = copyFractionsObj.denominators[0];
        fractionsObj = copyFractionsObj;
-       fractionsObj.mode = 'Substraction';
+       fractionsObj.mode = "Substraction";
       break;
       }
     break;
@@ -1803,7 +1808,7 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
         }
 
       }
-      fractionsObj.mode = 'Multiplication';   
+      fractionsObj.mode = "Multiplication";   
     break;
 
 /////////////////////////
@@ -1822,7 +1827,7 @@ function generateFractionsMultiplicationAndDivisionOfFractions(){
         actualDenominatorResult = actualDenominatorResult * fractionsObj.numerators[i + 1];
         }
       }
-     fractionsObj.mode = 'Division'; 
+     fractionsObj.mode = "Division"; 
     break;  
   }
 
@@ -1856,7 +1861,7 @@ MixedMode = 2;
 
       actualNumeratorResult = (fractionsObj.denominators[0] * fractionsObj.mixedNumber[0]) + fractionsObj.numerators[0];
       actualDenominatorResult = fractionsObj.denominators[0];
-      fractionsObj.mode = 'Mixed Number To Improper Fraction';
+      fractionsObj.mode = "Mixed Number To Improper Fraction";
       
       console.log(actualNumeratorResult + " " + actualDenominatorResult);
     break;
@@ -1896,8 +1901,8 @@ MixedMode = 2;
         actualDenominatorResult = fractionsObj.denominators[0];
       }
       
-      fractionsObj.mode = 'Improper Fraction To Mixed Number';
-      console.log(u + ' ' + actualNumeratorResult+ '/'+ actualDenominatorResult);
+      fractionsObj.mode = "Improper Fraction To Mixed Number";
+      console.log(u + " " + actualNumeratorResult+ "/"+ actualDenominatorResult);
 
     break;
   }
@@ -1916,49 +1921,49 @@ function simplifyFractions(numerator, denominator){ //Used to simplify fractions
 }
 function appendCustomInputType(inputType){
 
-   if (inputType == 'iSTD') {
-    actMode = 'iSTD';
+   if (inputType == "iSTD") {
+    actMode = "iSTD";
 
-      if ($('#inputCustom').css('display') == 'none') {
-        if ($('#divForCustomInputs').css('display') == 'block') {
+      if ($("#inputCustom").css("display") == "none") {
+        if ($("#divForCustomInputs").css("display") == "block") {
         //Remove textboxes
-        removeElement('divForFractionCustom');
+        removeElement("divForFractionCustom");
         }
-        $('#inputCustom').css('display', 'block');
+        $("#inputCustom").css("display", "block");
       }else{
-        $('#inputCustom').val('');
+        $("#inputCustom").val("");
       }
 
-  }else if (inputType == 'FRCT' || inputType == 'iSLCT') {
-    if (inputType == 'FRCT') {
-      actMode = 'FRCT';
+  }else if (inputType == "FRCT" || inputType == "iSLCT") {
+    if (inputType == "FRCT") {
+      actMode = "FRCT";
     }
 
-    if (inputType == 'iSLCT') {
-      actMode = 'iSLCT'
+    if (inputType == "iSLCT") {
+      actMode = "iSLCT"
     }
-    if ($('#divForCustomInputs').css('display') == 'block') {
+    if ($("#divForCustomInputs").css("display") == "block") {
       //Remove textboxes
-      if ($('#divForFractionCustom').length >= 1) {
-        removeElement('divForFractionCustom');;
+      if ($("#divForFractionCustom").length >= 1) {
+        removeElement("divForFractionCustom");;
       }
       
-      //Since inputMixedNumberCustom doesn't belong to divForFractionCustom it needs to be 
+      //Since inputMixedNumberCustom doesn"t belong to divForFractionCustom it needs to be 
       //Removed individually
-      if ($('#inputMixedNumberCustom').length >= 1) {
-        removeElement('inputMixedNumberCustom');
+      if ($("#inputMixedNumberCustom").length >= 1) {
+        removeElement("inputMixedNumberCustom");
       }
 
       //Since iSelect also belongs to the FRCT, it needs to be removed
       
-      if ($('#iSelect').length >= 1) {
-        removeElement('iSelect');
+      if ($("#iSelect").length >= 1) {
+        removeElement("iSelect");
       }
 
     }else{
-      $('#inputCustom').val('');
-      $('#inputCustom').css('display', 'none');
-      $('#divForCustomInputs').css('display', 'block');
+      $("#inputCustom").val("");
+      $("#inputCustom").css("display", "none");
+      $("#divForCustomInputs").css("display", "block");
     }
   }
 
@@ -1970,26 +1975,26 @@ function showTags(state, action){
     //The parameter of _action means the if it needs to close or open 
     //the tags.
     
-    if (action == 'Show') {
+    if (action == "Show") {
 
-      if (state == 'Right') {
+      if (state == "Right") {
 
-        $('#Right').css('display', 'inline-block');
-        $('#Right').css('position', 'relative');
+        $("#Right").css("display", "inline-block");
+        $("#Right").css("position", "relative");
 
-      } else if (state == 'Wrong') {
+      } else if (state == "Wrong") {
 
-       $('#Wrong').css('display', 'inline-block');
-       $('#Wrong').css('position', 'relative');
+       $("#Wrong").css("display", "inline-block");
+       $("#Wrong").css("position", "relative");
      }
 
-   } else if (action == 'Hide'){ //This includes all the animation hiding
+   } else if (action == "Hide"){ //This includes all the animation hiding
       
-      $('#Right').css('display', 'none');
-      $('#Wrong').css('display', 'none');
+      $("#Right").css("display", "none");
+      $("#Wrong").css("display", "none");
       
-      $('#btnAnswer').removeClass('disable');
-      $('#Arrow2').css('display', 'none');
+      $("#btnAnswer").removeClass("disable");
+      $("#Arrow2").css("display", "none");
 
   }
 }
@@ -1997,37 +2002,37 @@ function showTags(state, action){
 function showResults(){
   
   var f;
-  $('#FormulaDescriptionCustom').text('');
+  $("#FormulaDescriptionCustom").text("");
   if (usrAnswer <= Math.round(times / 3)) {
-    $('#DescriptionCustom').css('color', 'red');
+    $("#DescriptionCustom").css("color", "red");
   }else if (usrAnswer <= Math.round(times * 2 / 3)){
-    $('#DescriptionCustom').css('color', 'yellow');
-    $('#DescriptionCustom').css('text-shadow', '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black');
+    $("#DescriptionCustom").css("color", "yellow");
+    $("#DescriptionCustom").css("text-shadow", "-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black");
   }else if (usrAnswer <= Math.round(times)) {
-    $('#DescriptionCustom').css('color', 'green');
+    $("#DescriptionCustom").css("color", "green");
   }
   
   
-  $('#DescriptionCustom').css('text-align', 'center');
-  $('#DescriptionCustom').text('Has respondido ' + usrAnswer + ' de ' + times + '!');
-  $('#DescriptionCustom').append("<br>");
-  $('#DescriptionCustom').append("No importa el resultado, lo importante es que hayas aprendido!");
-  $('#keyWords').css('font-size', '40px');
-  $('#keyWords').text("LOS CAMPEONES SIGUEN JUGANDO HASTA QUE LO HACEN BIEN - Billie Jean King");
-  $('#ResultAndGo').css('display','none');
-  $('#divAnswerCustom').css('display', 'none');
-  $('#MainTitleCustom').css('display', 'none');
-  $('#imgPythagoras').css('display', 'none');
+  $("#DescriptionCustom").css("text-align", "center");
+  $("#DescriptionCustom").text("Has respondido " + usrAnswer + " de " + times + "!");
+  $("#DescriptionCustom").append("<br>");
+  $("#DescriptionCustom").append("No importa el resultado, lo importante es que hayas aprendido!");
+  $("#keyWords").css("font-size", "40px");
+  $("#keyWords").text("LOS CAMPEONES SIGUEN JUGANDO HASTA QUE LO HACEN BIEN - Billie Jean King");
+  $("#ResultAndGo").css("display","none");
+  $("#divAnswerCustom").css("display", "none");
+  $("#MainTitleCustom").css("display", "none");
+  $("#imgPythagoras").css("display", "none");
 
 }
 //Javascript///////////////////////////fetch with AJAX
 function fetchNames(){
 
     $.ajax({
-      url: 'prgfiles/fetchNames.php',
-      type: 'GET',
+      url: "prgfiles/fetchNames.php",
+      type: "GET",
       data: {lang: lang},
-      datatype:'json',
+      datatype:"json",
 
       success: function(data){
         
@@ -2073,47 +2078,47 @@ function checkIfName(string){
  //Available to 10 names. (Means that nombreF or nombreM will go until ...
  // nombreF10 or nombreM10)
  var selectedNames = [];
- var foundF = string.search('nombreF1');
- var foundM = string.search('nombreM1');
+ var foundF = string.search("nombreF1");
+ var foundM = string.search("nombreM1");
 
  if ((foundF >= 0) || (foundM >= 0)) {
 
   for (var i = 0; i < 10; i++){
 
-    foundF = string.search('nombreF' + i);
-    foundM = string.search('nombreM' + i);
+    foundF = string.search("nombreF" + i);
+    foundM = string.search("nombreM" + i);
 
     if (foundF >= 0) {
 
-      var name = randomizeName('F');
+      var name = randomizeName("F");
       
       for(var x = 0; x < selectedNames.length; x++){
         while (name == selectedNames[x]) {
-          name = randomizeName('F');
+          name = randomizeName("F");
         }
       }
       
       selectedNames.push(name);
       do{
-        string = string.replace('nombreF' + i, name);
-      }while(string.search('nombreF' + i) >= 0)
+        string = string.replace("nombreF" + i, name);
+      }while(string.search("nombreF" + i) >= 0)
     }
 
 
 
     if (foundM >= 0) {
-      var name = randomizeName('M');
+      var name = randomizeName("M");
       
       for(var x = 0; x < selectedNames.length; x++){ //check if has the same coincidence
         while (name == selectedNames[x]) {
-          name = randomizeName('M');
+          name = randomizeName("M");
         }
       }
       
       selectedNames.push(name);
       do{
-      string = string.replace('nombreM' + i, name);
-      }while(string.search('nombreM' + i) >= 0)
+      string = string.replace("nombreM" + i, name);
+      }while(string.search("nombreM" + i) >= 0)
 
     }
 }
@@ -2125,7 +2130,7 @@ return string;
 }
 function showCurrentState(){
 
-  $('#NProblem').text('#' + timesPRep + '/' + times );
+  $("#NProblem").text("#" + timesPRep + "/" + times );
 
 }
 function fetchCustomQuestions(mode, callback){ //This is used to get the questions from the DB
@@ -2135,10 +2140,10 @@ var data = [];
 var row = [];
 
       $.ajax({
-        url: 'prgfiles/fetchCustomQuestions-CustomMode.php',
-        type: 'GET',
+        url: "prgfiles/fetchCustomQuestions-CustomMode.php",
+        type: "GET",
         data: {mode: mode},
-        datatype:'json',
+        datatype:"json",
 
       }).done(function(done){}, callback);
 }
@@ -2164,7 +2169,7 @@ function questionIdentification(question, mode){//function to see which context
   var context;
   var aFound, bFound, cFound;
 
-  if (mode == "TPYTHG") { //Pythagora's Theorem
+  if (mode == "TPYTHG") { //Pythagora"s Theorem
 
     aFound = question.search("valorA");
     bFound = question.search("valorB");
@@ -2223,19 +2228,19 @@ function stringReplaceValue(arr,question){
   var c = arr[2];
 
 
-  if (a != 0 || typeof a =='undefined'){
+  if (a != 0 || typeof a =="undefined"){
    
-  question = question.replace('valorA', a);
+  question = question.replace("valorA", a);
 
   }
 
-  if (b != 0 || typeof b =='undefined') {
-  question = question.replace('valorB', b);
+  if (b != 0 || typeof b =="undefined") {
+  question = question.replace("valorB", b);
     
   }
 
-  if(c != 0 || typeof c =='undefined'){
-  question = question.replace('valorC', c);
+  if(c != 0 || typeof c =="undefined"){
+  question = question.replace("valorC", c);
     
   }
   
@@ -2259,48 +2264,48 @@ function onLeaveAction(){
 ////FUNCTIONS TO INVOKE CUSTOMIZED INPUT FIELDS
 function invokeAnswerFieldForFraction(wMixedNumbers){
 
-  var inputMixedNumber = document.createElement('INPUT');
-  inputMixedNumber.setAttribute('id', 'inputMixedNumberCustom');
-  inputMixedNumber.setAttribute('onkeypress', 'return justNumbers(event);');
-  inputMixedNumber.setAttribute('class', 'inputFractionCustom ');
-  inputMixedNumber.setAttribute('style', 'top:10px; position:relative;');
+  var inputMixedNumber = document.createElement("INPUT");
+  inputMixedNumber.setAttribute("id", "inputMixedNumberCustom");
+  inputMixedNumber.setAttribute("onkeypress", "return justNumbers(event);");
+  inputMixedNumber.setAttribute("class", "inputFractionCustom ");
+  inputMixedNumber.setAttribute("style", "top:10px; position:relative;");
  
 
-  var inputNumerator = document.createElement('INPUT');
-  inputNumerator.setAttribute('id', 'inputNumeratorCustom');
-  inputNumerator.setAttribute('onkeypress', 'return justNumbers(event);');
-  inputNumerator.setAttribute('class', 'inputFractionCustom ');
+  var inputNumerator = document.createElement("INPUT");
+  inputNumerator.setAttribute("id", "inputNumeratorCustom");
+  inputNumerator.setAttribute("onkeypress", "return justNumbers(event);");
+  inputNumerator.setAttribute("class", "inputFractionCustom ");
   
 
-  var inputDenominator = document.createElement('INPUT');
-  inputDenominator.setAttribute('id', 'inputDenominatorCustom');
-  inputDenominator.setAttribute('onkeypress', 'return justNumbers(event);'); 
-  inputDenominator.setAttribute('class', 'inputFractionCustom ');
+  var inputDenominator = document.createElement("INPUT");
+  inputDenominator.setAttribute("id", "inputDenominatorCustom");
+  inputDenominator.setAttribute("onkeypress", "return justNumbers(event);"); 
+  inputDenominator.setAttribute("class", "inputFractionCustom ");
 
 
-  var divInputFraction = document.createElement('DIV');
-  divInputFraction.setAttribute('class', 'divInputFractionCustom');
-  divInputFraction.setAttribute('id', 'divForFractionCustom');
+  var divInputFraction = document.createElement("DIV");
+  divInputFraction.setAttribute("class", "divInputFractionCustom");
+  divInputFraction.setAttribute("id", "divForFractionCustom");
 
   // if (wMixedNumbers == true) { //To see if there it is a mixed number fraction
   //   divInputFraction.appendChild(inputMixedNumber);
-  //   inputMixedNumber.setAttribute('style', 'left:-5px; top:20px; position:relative;');
-  //   inputNumerator.setAttribute('style', 'bottom:10px;');
-  //   inputDenominator.setAttribute('style', 'top:10px; left:35px; position:relative;');
+  //   inputMixedNumber.setAttribute("style", "left:-5px; top:20px; position:relative;");
+  //   inputNumerator.setAttribute("style", "bottom:10px;");
+  //   inputDenominator.setAttribute("style", "top:10px; left:35px; position:relative;");
       
   // }else{
-  //   inputNumerator.setAttribute('style','left:35px;position:relative;');
-  //   inputDenominator.setAttribute('style', 'position:relative;top: 50px;left:-35px; ');  
+  //   inputNumerator.setAttribute("style","left:35px;position:relative;");
+  //   inputDenominator.setAttribute("style", "position:relative;top: 50px;left:-35px; ");  
   // }
 
   if (wMixedNumbers == true) {
-    $('#divForCustomInputs').append(inputMixedNumber);
+    $("#divForCustomInputs").append(inputMixedNumber);
   }
   divInputFraction.appendChild(inputNumerator);
   divInputFraction.appendChild(inputDenominator);
 
-  //$('#divAnswerCustom').append(divInputFraction);
-  $('#divForCustomInputs').append(divInputFraction);
+  //$("#divAnswerCustom").append(divInputFraction);
+  $("#divForCustomInputs").append(divInputFraction);
 } 
 function invokeAnswerSelector(typeOfAnswer){
 
@@ -2310,33 +2315,33 @@ function invokeAnswerSelector(typeOfAnswer){
 
    /*   If a DEFAULT ANSWER then
       typeOfAnswer should come as plain text*/
-  var booleanAnswer = {true:'VERDADERO',false: 'FALSE'};
+  var booleanAnswer = {true:"VERDADERO",false: "FALSE"};
 
   var sizeComparison = 
-  {equalTo:'=', 
-  greaterThan:'>', 
-  lessThan:'<', 
-  greatherThanOrEqualTo:'≥', 
-  lessThanOrEqualTo:'≤', 
-  notEqualTo:'≠'};
+  {equalTo:"=", 
+  greaterThan:">", 
+  lessThan:"<", 
+  greatherThanOrEqualTo:"≥", 
+  lessThanOrEqualTo:"≤", 
+  notEqualTo:"≠"};
 
   var obToProcess = {};
 
-  var iSelect = document.createElement('SELECT'); //Selector
-  iSelect.setAttribute('id', 'iSelect');
-  iSelect.setAttribute('class', 'ansSelector');
+  var iSelect = document.createElement("SELECT"); //Selector
+  iSelect.setAttribute("id", "iSelect");
+  iSelect.setAttribute("class", "ansSelector");
 
   //Check if the variable is an object
-  if (typeof typeOfAnswer === 'object' && typeOfAnswer !== null) {
+  if (typeof typeOfAnswer === "object" && typeOfAnswer !== null) {
 
     obToProcess = typeOfAnswer;
   }else{
     switch(typeOfAnswer){
-      case 'booleanAnswer':
+      case "booleanAnswer":
         obToProcess = booleanAnswer;
       break;
 
-      case 'sizeComparison':
+      case "sizeComparison":
         obToProcess = sizeComparison;
       break;
     }
@@ -2345,14 +2350,14 @@ function invokeAnswerSelector(typeOfAnswer){
   for (var key in obToProcess) {
       if (obToProcess.hasOwnProperty(key)) {
 
-          var optionGen = document.createElement('OPTION');
-          optionGen.setAttribute('value', key);
+          var optionGen = document.createElement("OPTION");
+          optionGen.setAttribute("value", key);
           optionGen.append(obToProcess[key]);
           iSelect.append(optionGen);
       }
   }
 
-$('#divForCustomInputs').append(iSelect);
+$("#divForCustomInputs").append(iSelect);
 }
 function justNumbers(e){
         var keynum = window.event ? window.event.keyCode : e.which;
@@ -2422,7 +2427,7 @@ function readTxtFiles(){
       topic = objToSelectIssueProperties[i];
       issue = objToSelectIssue[topic][u];
 
-      url = 'metacontent/'+ topic + '/' + issue + '.txt';
+      url = "metacontent/"+ topic + "/" + issue + ".txt";
       
 
       $.get(url, function(data) {
@@ -2462,45 +2467,331 @@ arrText[1].replace("<titleI>", "");
 
   return objToReturn;
 }
-function deletePropertiesFromObj(){
-
-  for(var i = 0; i < arrPropToDelete.length; i++){
-    delete objToSelectIssue["'" + arrPropToDelete[i] + "'"];
-  }
-
-}
-
 var m = 0;
 function arrangetoModal(title, content){
     m += 1;
-    var h2Title = document.createElement('H2');
+    var h2Title = document.createElement("H2");
     var texth2 = document.createTextNode(title);
     h2Title.appendChild(texth2);
   
-    var divTitle = document.createElement('DIV');
-    divTitle.setAttribute('class', 'modal-header');
-    divTitle.setAttribute('id', 'modal-Title');
+    var divTitle = document.createElement("DIV");
+    divTitle.setAttribute("class", "modal-header");
+    divTitle.setAttribute("id", "modal-Title");
     divTitle.append(h2Title);
 
-    var name = 'spnContent' + title;
+    var name = "spnContent" + title;
     var textspn = document.createTextNode(content);
-    var spnContent = document.createElement('SPAN');
-    spnContent.setAttribute('class', 'bungee_letra');
-    spnContent.setAttribute('style', ' font-size:16px;');
-    spnContent.setAttribute('id', m);
+    var spnContent = document.createElement("SPAN");
+    spnContent.setAttribute("class", "bungee_letra");
+    spnContent.setAttribute("style", " font-size:16px;");
+    spnContent.setAttribute("id", m);
   
     spnContent.innerHTML = content; //use native JS
+
+    var center = document.createElement("CENTER");
+    center.setAttribute("style", "margin:30px;");
+    center.append(spnContent);
    
 
-    $('#divAppendHere').append(divTitle);
-    $('#divAppendHere').append('<center style="margin:30px;">');
-    $('#divAppendHere').append(spnContent);
-    $('#divAppendHere').append('</center>');
+    $("#divAppendHere").append(divTitle);
+    $("#divAppendHere").append(center);
 
 }
 function imageAdjust(){
-  $('#divAppendHere img').attr('class', 'img-adjust');
+  $("#divAppendHere img").attr("class", "img-adjust");
 }
 
+//f(x) to get the variables from the string and to use it later to parse it
+function varIdentifierAndGenerator(string){ 
+  var variables = [];
+
+  //Variables to store the positions indexes
+  //of the text to stop duplicates
+  var iniPos = [];
+  var endPos = [];
+
+  //blockId stores the string extracted with the separator
+  //because after getting the variables, it needs to replace
+  //those variable identifiers with values depending on the 
+  //condition it gives
+  var blockId = [];
+
+  //Determine the times to loop through every unparsed variable
+  var times = string.match(/x-/g);
+
+  //A copy is needed since in string, the replace()
+  //is going on, so it won't be able to get slice()
+  var copyString = string;
+
+  var firstParse = true;
+
+    for (var i = 0; i < times.length; i++){
+
+      
+      var ini = string.search("x-");
+      var end = string.search("-x");
+
+        //Check if the index has been traced
+        if (iniPos.indexOf(ini) == -1) { 
+          iniPos.push(ini);
+          
+         
+
+          if (endPos.indexOf(end) == -1) {
+          endPos.push(end);
+          
+
+
+            if (firstParse == true) {
+              firstParse = false;
+              string = string.replace("x-", "");
+              string = string.replace("-x", ""); 
+              //end is +2 because the end doesn't counts
+              blockId.push(copyString.slice(ini, end + 2));
+            }else{
+              
+              //end is +2 because the end doesn't counts
+              blockId.push(string.slice(ini, end + 2));
+              string = string.replace("x-", "");
+              string = string.replace("-x", ""); 
+            }
+          
+
+          var lo = blockId[i];
+     
+          //Delete the separators
+          lo = lo.replace("x-" , "");
+          lo = lo.replace("-x" , "");
+
+          //split the text into two arrays
+          //the [0] is the variable
+          //the [1] is the condition
+          lo = lo.split("|");
+        
+          
+          //Push Variables characteristics as an object
+          variables.push({
+            variable: lo[0],
+            condition : lo[1],
+            value : 0,
+            generateWithCondition: function(){
+
+                if(this.condition == ""){
+                this.value = generate(20, false);
+                }else{
+                  
+                        var arrCond = [];
+                        var arrCondMatch;
+
+                        //Strictly search in the text 
+                        var actCharacter = ""; //Establish actual character
+
+                        //TO use it at verifying variables
+                        var found = false;
+                        var searchIndex = 0;
+
+                        if ((this.value == 0) || (typeof this.value == undefined) ) {
+
+                              actCharacter = "=";
+                              arrCondMatch = this.condition.match(/(^|\W)=($|\W)/);
+                              if (arrCondMatch != null &&  arrCondMatch.length > 0 ) {
+                                arrCond = this.condition.split("=");
+                                
+                                //Means that the condition to evaluate is a NUMBER
+                                if (isNumeric(arrCond[1])){
+                                    do{
+                                      this.value = generate(20,false);
+                                    }while(this.value != arrCond[1]);
+                                }else{
+                                  //Means that the condition to evaluate IS NOT NUMBER
+                                  //This evaluates first the Variable With Condition
+                                  //Then it evaluates the current variable in hold
+
+                                  while(found == false){
+                                    if(variables[searchIndex].variable == arrCond[1]){
+                                      found = true;
+
+                                    }else{
+                                      searchIndex +=1;  
+                                    }
+                                  }
+                                  
+                                  
+                                  variables[searchIndex].generateWithCondition();
+                                  this.condition = actCharacter + " " + variables[searchIndex].value;
+                                  
+                                  this.generateWithCondition(); //Repeat evaluation
+                                }
+                              }
+
+                              actCharacter = ">";
+                              arrCondMatch = this.condition.match(/(^|\W)>($|\W)/);
+                              if (arrCondMatch != null &&  arrCondMatch.length > 0 ) {
+                                arrCond = this.condition.split(">");
+                                
+                                if(isNumeric(arrCond[1])){
+                                  do{
+                                    this.value = generate(20,false);
+
+                                  }while(this.value < arrCond[1]);
+                                }else{
+                                  //Means that the condition to evaluate IS NOT NUMBER
+                                  //This evaluates first the Variable With Condition
+                                  //Then it evaluates the current variable in hold
+
+                                  while(found == false){
+                                    if(variables[searchIndex].variable == arrCond[1]){
+                                      found = true;
+
+                                    }else{
+                                      searchIndex +=1;  
+                                    }
+                                  }
+                                  
+                                  
+                                  variables[searchIndex].generateWithCondition();
+                                  this.condition = actCharacter + " " + variables[searchIndex].value;
+                               
+                                  this.generateWithCondition(); //Repeat evaluation
+                                }
+                              }
+
+
+
+                              actCharacter = "<";
+                              arrCondMatch = this.condition.match(/(^|\W)<($|\W)/);
+                              if (arrCondMatch != null &&  arrCondMatch.length > 0 ) {
+                                arrCond = this.condition.split("<");
+                                arrCond[0] = actCharacter; //Since split deletes the operational sign
+                                arrCond[1] = arrCond[1].trim(); //remove whitespaces
+
+
+                                  if(isNumeric(arrCond[1])){
+                                    do{
+                                      this.value = generate(20,false);
+                                    }while(this.value > arrCond[1]);
+                                  }else{
+                                  //Means that the condition to evaluate IS NOT NUMBER
+                                  //This evaluates first the Variable With Condition
+                                  //Then it evaluates the current variable in hold
+
+                                  while(found == false){
+                                    if(variables[searchIndex].variable == arrCond[1]){
+                                      found = true;
+
+                                    }else{
+                                      searchIndex +=1;  
+                                    }
+                                  }
+                                  
+                                 
+                                  variables[searchIndex].generateWithCondition();
+                                  this.condition = actCharacter + " " + variables[searchIndex].value;
+                                
+                                  this.generateWithCondition(); //Repeat evaluation
+                                  }
+                                
+                              }
+
+                              actCharacter = ">=";
+                              arrCondMatch = this.condition.match(/(^|\W)>=($|\W)/);
+                              if (arrCondMatch != null &&  arrCondMatch.length > 0 ) {
+                                arrCond = this.condition.split(">=");
+
+                                if (isNumeric(arrCond[1])) {
+                                  do{
+                                    this.value = generate(20,false);
+                                  }while(this.value < arrCond[1]);
+                                }else{
+                                  //Means that the condition to evaluate IS NOT NUMBER
+                                  //This evaluates first the Variable With Condition
+                                  //Then it evaluates the current variable in hold
+
+                                  while(found == false){
+                                    if(variables[searchIndex].variable == arrCond[1]){
+                                      found = true;
+
+                                    }else{
+                                      searchIndex +=1;  
+                                    }
+                                  }
+                                  
+                                 
+                                  variables[searchIndex].generateWithCondition();
+                                  this.condition = actCharacter + " " + variables[searchIndex].value;
+                                  
+                                  this.generateWithCondition(); //Repeat evaluation
+                                }
+                                
+                              }
+
+                              actCharacter = "<=";
+                              arrCondMatch = this.condition.match(/(^|\W)<=($|\W)/);
+                              if (arrCondMatch != null &&  arrCondMatch.length > 0 ) {
+                                arrCond = this.condition.split("<=");
+
+                                if (isNumeric(arrCond[1])) {
+                                  do{
+                                    this.value = generate(20,false);
+                                  }while(this.value > arrCond[1]);
+                                }else{
+                                  //Means that the condition to evaluate IS NOT NUMBER
+                                  //This evaluates first the Variable With Condition
+                                  //Then it evaluates the current variable in hold
+
+                                  while(found == false){
+                                    if(variables[searchIndex].variable == arrCond[1]){
+                                      found = true;
+
+                                    }else{
+                                      searchIndex +=1;  
+                                    }
+                                  }
+                                  
+                                  
+                                  variables[searchIndex].generateWithCondition();
+                                  this.condition = actCharacter + " " + variables[searchIndex].value;
+                                 
+                                  this.generateWithCondition(); //Repeat evaluation
+                                }
+                              }   
+                        }        
+                }  
+
+              } 
+
+            });
+          
+
+        }
+
+        
+      }
+
+  }  
+
+     for(var i = 0; i < times.length; i++){
+
+          variables[i].generateWithCondition();
+          console.log(variables[i].value);
+          console.log(variables);
+
+      }
+
+}
+
+
+//insert into string with an determined X position
+// str = the string in which text needs to be inserted
+// sub = the text to inserted
+// pos = position 
+const insertAt = (str, sub, pos) => `${str.slice(0, pos)}${sub}${str.slice(pos)}`;
+
+function parseEquations(){
+  console.log("Resultado: "+  math.evaluate("2+2"));
+}
+function isNumeric(num){ //check if the string is a number or a variable
+  return !isNaN(num);
+}
 
 
