@@ -25,10 +25,6 @@ $(document).ready(function(){
 });
 
 
-$(window).resize(function(event) {
-	/* Act on the event */
-	console.log('New width:' + $(this).width());
-});
 
 $(window).bind('load', function(e){
 
@@ -82,7 +78,7 @@ $(window).bind('load', function(e){
 		}
 	});
 
-	
+
 
 	
 
@@ -378,7 +374,7 @@ repeatCheckOverlapping();
 
 function escapeRegExp(str) {
 	return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
-  }
+}
 
 function loadAjaxForum(event){
 
@@ -644,6 +640,14 @@ function repeatCheckOverlapping(){
 	
 }
 
+//This only works on Jugar.html
+//Function to focus the 'Suscribe to Newsletter' part
+//At Jugar.html
+function fadeOpacityToShowSuscribe(e){
+
+}
+
+
 //If content overlaps the footer
 function collidesWith (element1, element2) {
 	
@@ -671,6 +675,10 @@ function collidesWith (element1, element2) {
 
     }
     
+}
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 }
 
 

@@ -5,6 +5,11 @@
 <meta charset="utf-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<meta name="description" content="MathaMunD - ¡Aprende jugando con problemas matemáticos aplicados a la vida real!">
+
+	<meta name="keywords" content="mathamund, matemáticas, educación, adaptabilidad, mathaforum">
+	
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -116,7 +121,7 @@
 				<div  id="FeedBackBox" >
 					<center>
 					<h3 style="color:#21727F;">Tus comentarios o sugerencias:</h3> <br>
-					<textarea  name="comments" id="comments" rows="6" cols="70" placeholder="Comentario..." required></textarea>
+					<textarea  name="comments" id="comments" rows="6" cols="70" placeholder="Comentario..." required oninvalid="this.setCustomValidity('Introduzca un comentario')"  oninput="this.setCustomValidity('')"></textarea>
 
 					<br>
 					<br>
@@ -134,42 +139,70 @@
 	<br>
 	<br>
 
-	<footer class="text-center"  >
+	<footer class=" text-center" id="forumFooter" >
 		<div style="background-color: #A0B0A4FF; display:inline-block; "  class="wrapper">
 
-			
+					<div id ="mc_embed_signup"> 
 
-				<div id="ICDiv">
+						<form  action="https://000webhostapp.us4.list-manage.com/subscribe/post?u=e541056017a1f7c5d62169704&amp;id=43e28f9403" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+						
+
+							<h2 id ="lblSuscribe" class="bungee_letra" style="font-size: 20px;">¡Suscríbete a nuestro boletín!</h2>
+
+							<br>
+
+							<input type="email" placeholder="*Tu Correo..." class="karla_letra inputMail required email"name="EMAIL" id="mce-EMAIL">
+
+							<br>
 							
-					<h4 class="oswald_letra " style="font-size: 15px; "> Síguenos en nuestras redes sociales!</h4>
+							<div style="display:none;" class="karla_letra" name="guidanceDiv"></div>
+
+						
+
+							<input type="text" placeholder="Tu Nombre" class="karla_letra inputName required"name="FNAME" id="mce-FNAME">
+
+
+							
+							
+							<div class="clear"> 
+
+							<input type="submit" name="suscribe" value="Suscribirme" class="bungee_letra hvr-fade mailSuscriberSubmitBtn"id="mc-embedded-suscribe">
+
+							</div>
+
+
+						</form>
+
+					</div>
+			
+				<div id="ICDiv">
+					<h4 style="font-size: 15px; "> Síguenos en nuestras redes sociales!</h4>
 
 
 
 					<a target="_blank" href="https://www.instagram.com/mathamund"><img id="SCIconToHover" src="imgs/social-media-icons/instagram.png "  ></a>	
 				
-
+					
 								
 					<a target="_blank" href="https://www.facebook.com/mathamund"><img id="SCIconToHover" src="imgs/social-media-icons/facebook.png" ></a>
+
 	
 				</div>
-			
-			<div id="CPDiv">
+
+
+			<center>
+			<div id="CPDiv" >
 
 				© 2019 MathaMunD Todos los derechos reservados 
 				<br>
-				Icons made by <a target="_blank" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+				Icons made by <a target="_blank" href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
 
 			</div>
-
-
-		
+			</center>
 		</div>
-			
-		
-
-			
 	</footer>
-
+		
 
 </body>
 </html>

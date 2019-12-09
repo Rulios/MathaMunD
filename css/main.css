@@ -94,6 +94,9 @@ li{
 	float:right;
 	
 }
+#mc_embed_signup{
+	float:right;
+}
 #SCIconToHover{
 	border-radius: 10px;
 	height: 60px;
@@ -210,16 +213,39 @@ input[name="timesQuest"]{
 }
 
 /*Para suscribirse en el NEWSLETTER DEL EMAIL*/
-#inputMail{
+.inputMail{
 	width: 100%;
 	border-radius: 5px;
 	text-indent: 2%;
-	border: none !important;
+	border: none ;
 	box-sizing: border-box;
 	font-size: 16px;
 
 }
-#mailSuscriberSubmitBtn{
+.inputName{
+	width: 100%;
+	border-radius: 5px;
+	text-indent: 2%;
+	border: none ;
+	box-sizing: border-box;
+	font-size: 16px;
+	margin-top:10px;
+}
+.mailSuscriberSubmitBtn{
+	margin-top:10px;
+	width: 100%;
+
+
+	text-decoration: none;
+	border-radius: 35px;
+	border: 5px solid #113940;
+	background-color: transparent;
+	
+	height: auto;
+	padding:6px;
+	font-size:15px;
+}
+#mc-embedded-suscribe{
 	margin-top:10px;
 	width: 100%;
 
@@ -1061,6 +1087,14 @@ div[name="divItem"]{
 	#FeedBackBox textarea{
 		width: 90%;
 		height: 100px;
+	}
+
+	#mc_embed_signup{
+		margin-top:20px;
+		margin-bottom: 4em;
+	}
+	#mailSuscriberSubmitBtn{
+		font-size: 20px;
 	}
 
 	/* -------------------------- */
